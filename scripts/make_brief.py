@@ -20,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from cluster_events import load_articles  # noqa: E402
+from cluster_events import load_articles, norm_title  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -204,6 +204,30 @@ def main() -> int:
             continue
         used.add(eid)
         items.append(build_item(ev, texts, len(items) + 1))
+
+    # 事件数本身不够 5 条时：用没被任何事件覆盖的原文单篇补足（宁可拆开，也不漏发）
+    if len(items) < 5:
+        covered = set()
+        for ev in ordered:
+            covered.update(ev.get("urls", []))
+        for a in articles:
+            if len(items) >= 5:
+                break
+            if a["url"] in covered:
+                continue
+            if len(a["title"].strip()) < 6 or len(a["text"].strip()) < 200:
+                continue
+            fake = {
+                "id": f"x{len(items)}",
+                "category": "tech" if "AI" in a["text"][:500] else "other",
+                "representative_title": norm_title(a["title"]),
+                "titles": [norm_title(a["title"])],
+                "urls": [a["url"]],
+                "article_count": 1,
+                "source_names": [a.get("source", "")],
+            }
+            items.append(build_item(fake, texts, len(items) + 1))
+            covered.add(a["url"])
 
     followup = None
     fid = data.get("followup")

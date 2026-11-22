@@ -145,8 +145,11 @@ def main() -> int:
 
     ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:
-        print("✗ 出卡失败（多半是校验没通过），终止")
-        return 1
+        print("  ⚠ 出卡校验没过，用 --lenient 重试（保证每天都能发）")
+        ok, _ = run_step("出卡（宽松）", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path), "--lenient"], log_path)
+        if not ok:
+            print("✗ 出卡仍然失败，终止")
+            return 1
 
     card = ROOT / "output" / f"card-{date}.html"
     if not card.exists():

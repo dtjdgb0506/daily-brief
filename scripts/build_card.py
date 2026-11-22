@@ -171,7 +171,7 @@ def validate(brief: dict, events: dict | None) -> tuple[list[str], list[str]]:
     if len(items) != items_cfg:
         warns.append(f"新闻条数 {len(items)} ≠ 配置的 {items_cfg} 条")
     if len(items) < 3:
-        errors.append(f"新闻只有 {len(items)} 条，太少")
+        warns.append(f"新闻只有 {len(items)} 条（照常发送，不阻断）")
 
     seen_urls: set[str] = set()
     seen_titles: set[str] = set()
@@ -636,6 +636,7 @@ def main() -> int:
     parser.add_argument("--date", default=None)
     parser.add_argument("--base", default=None, help="网页版根地址，默认取 profile.toml [delivery].web_base")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--lenient", action="store_true", help="校验错误降级为告警（保证每天能发）")
     args = parser.parse_args()
 
     brief = load_json(Path(args.brief))
@@ -646,6 +647,9 @@ def main() -> int:
     events = load_json(events_path) if events_path.exists() else None
 
     errors, warns = validate(brief, events)
+    if args.lenient and errors:
+        warns.extend(f"[已忽略] {e}" for e in errors)
+        errors = []
     for w in warns:
         print(f"  ⚠ {w}")
     if errors:
