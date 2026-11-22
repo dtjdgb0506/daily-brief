@@ -15,7 +15,8 @@ words = ["股价", "股市", "IPO", "财报", "营收", "美联储", "利率", "
 words = ["选举", "国会", "参议院", "众议院", "听证", "外交", "空袭", "导弹", "战争", "停火", "伊朗", "沙特", "也门", "以色列", "日本", "特朗普", "普京", "联合国", "安理会", "核潜艇", "加沙", "乌克兰", "总统", "首相", "制裁", "峰会", "会晤", "内阁", "议会", "大选", "民主党", "共和党",
          "election", "congress", "senate", "war", "military", "ceasefire", "sanctions", "treaty", "summit", "president", "prime minister", "parliament", "gaza", "ukraine", "russia", "china", "iran", "israel", "trump", "putin", "nato", "diplomat", "refugee", "missile", "drone", "airstrike", "protest", "government",
          "lawmakers", "legislation", "bill", "governor", "white house", "administration", "supreme court", "judge", "ruling", "deport", "border", "rebels", "coup", "opposition",
-         "execution", "death row", "inmate", "prosecutor", "verdict", "court", "rights", "protesters"]
+         "execution", "death row", "inmate", "prosecutor", "verdict", "court", "rights", "protesters",
+         "taiwan", "trade war", "diplomatic", "embassy", "alliance", "provocation"]
 
 [exclude]
 # 命中这些词时，说明它其实不是该类别的大事（例：“科技展览会”不是科技新闻）。

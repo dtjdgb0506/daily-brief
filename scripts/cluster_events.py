@@ -51,6 +51,8 @@ SOFT_PATTERNS = [
     r"展[会览销]", r"博览会", r"展览会", r"开幕", r"揭牌", r"启动仪式", r"签约", r"招商",
     r"招聘", r"促销", r"节庆", r"庆典", r"大赛", r"竞赛", r"联赛", r"演唱会", r"研讨会",
     r"评选", r"榜单", r"盘点", r"游记", r"美食", r"通车", r"试运营", r"投产", r"开工", r"竣工",
+    # 娱乐/体育（用户明确不想看）
+    r"游戏", r"GTA", r"票房", r"剧集", r"综艺", r"音乐节", r"电影", r"赛事",
     # 文旅/生活类
     r"旅游", r"游客", r"打卡", r"美景", r"风光", r"探访", r"民俗", r"非遗", r"古都",
     r"历史文化魅力", r"古镇", r"民宿", r"温泉", r"养生", r"减肥", r"星座", r"情感",
@@ -95,11 +97,18 @@ TITLE_SOURCE_TAIL = re.compile(
     r"\s*:\s*(?:NPR|CNBC|WSJ|BBC|CNN|AP|Reuters|Bloomberg|FT|Politico|The Hill)\s*$",
     re.I,
 )
+# 有些源把来源写在标题最前面：“奇客Solidot | 正文标题”。不清掉会把正文标题当页脚删掉。
+TITLE_SOURCE_PREFIX = re.compile(
+    r"^(?:(?:奇客)?\s*Solidot|IT之家|爱范儿|快科技|钛媒体|华尔街见闻|界面新闻|"
+    r"中国新闻网|中新网|FT中文网|财联社|36氪|虎嗅)\s*[|｜:：]\s*",
+    re.I,
+)
 
 
 def clean_title(title: str) -> str:
     """去掉来源页脚/样板后缀，避免把不相干稿子粘在一起。"""
     t = re.sub(r"\s+", " ", title or "")   # 先把换行/制表符压成空格
+    t = TITLE_SOURCE_PREFIX.sub("", t)
     t = TITLE_BOILERPLATE.sub("", t)
     t = TITLE_SOURCE_TAIL.sub("", t)
     return re.sub(r"\s+", " ", t).strip()
@@ -592,8 +601,19 @@ def category_of(title_blob: str, body_blob: str, weights: dict) -> tuple[str, li
 
     def hits(blob: str, words: list[str]) -> int:
         # 按“命中了多少个不同的词”算，不按出现次数：长文里 AI/chip 出现几十次
-        # 会把不相干的稿子也判成科技
-        return sum(1 for w in words if w and w.lower() in blob)
+        # 会把不相干的稿子也判成科技。
+        # 英文短词（AI / fed / app）必须整词匹配，否则 "ai" 会命中 "said"、"again"。
+        n = 0
+        for w in words:
+            if not w:
+                continue
+            lw = w.lower()
+            if lw.isascii() and len(lw) <= 3:
+                if re.search(rf"(?<![a-z]){re.escape(lw)}(?![a-z])", blob):
+                    n += 1
+            elif lw in blob:
+                n += 1
+        return n
 
     title_counts: dict[str, int] = {}
     body_counts: dict[str, int] = {}
