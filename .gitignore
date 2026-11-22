@@ -7,3 +7,4 @@ output/
 site/
 logs/
 state/
+config/brief.draft.json
