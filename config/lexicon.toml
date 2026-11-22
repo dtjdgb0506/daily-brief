@@ -1,19 +1,25 @@
 # 类别词表 + 标题规则。
-# 正文命中给 1 分，标题命中给 3 分；[title_rules] 里的“动作词”命中标题额外加 3 分。
-# 一个事件可以同时属于多个类别（例如“亚马逊收购 AI 初创”= 科技 + 财经），
-# 排序时取其中权重最高的类别。
+# 正文命中给 1 分，标题命中给 3 分；[title_rules] 里的“动作词”命中标题额外 +3。
+# 一个事件可以同时属于多个类别；排序时取其中权重最高的类别。
+# 中英文都放：国际源是英文稿，没有英文词会被归成“综合”。
 
 [lexicon.tech]
-words = ["AI", "人工智能", "大模型", "模型", "芯片", "半导体", "英伟达", "NVIDIA", "OpenAI", "Anthropic", "Claude", "GPT", "算力", "数据中心", "机器人", "自动驾驶", "量子", "苹果", "谷歌", "微软", "亚马逊", "台积电", "华为", "算法", "开源", "训练", "黎曼", "数学", "证明", "Lean", "飞行汽车", "卫星", "航天"]
+words = ["AI", "人工智能", "大模型", "模型", "芯片", "半导体", "英伟达", "NVIDIA", "OpenAI", "Anthropic", "Claude", "GPT", "算力", "数据中心", "机器人", "自动驾驶", "量子", "苹果", "谷歌", "微软", "亚马逊", "台积电", "华为", "算法", "开源", "训练", "黎曼", "数学", "证明", "Lean", "飞行汽车", "卫星", "航天",
+         "chip", "chips", "semiconductor", "model", "models", "robot", "robotics", "quantum", "startup", "nvidia", "openai", "anthropic", "google", "microsoft", "apple", "meta", "tesla", "datacenter", "data center", "compute", "algorithm", "software", "tech"]
 
 [lexicon.finance]
-words = ["股价", "股市", "IPO", "财报", "营收", "美联储", "利率", "债券", "黄金", "原油", "基金", "市值", "收购", "并购", "融资", "投资者", "指数", "美股", "港股", "A股", "降息", "加息", "SEC", "会计", "季度", "涨幅", "跌幅", "私募", "承销", "美元"]
+words = ["股价", "股市", "IPO", "财报", "营收", "美联储", "利率", "债券", "黄金", "原油", "基金", "市值", "收购", "并购", "融资", "投资者", "指数", "美股", "港股", "A股", "降息", "加息", "SEC", "会计", "季度", "涨幅", "跌幅", "私募", "承销", "美元", "经济",
+         "earnings", "stocks", "stock", "bonds", "inflation", "fed", "market", "markets", "oil", "gold", "tariff", "revenue", "valuation", "ipo", "investor", "interest rate", "economy", "economic", "trade", "debt"]
 
 [lexicon.politics]
-words = ["选举", "国会", "参议院", "众议院", "听证", "外交", "空袭", "导弹", "战争", "停火", "伊朗", "沙特", "也门", "以色列", "日本", "特朗普", "普京", "联合国", "安理会", "核潜艇", "加沙", "乌克兰", "总统", "首相", "制裁", "峰会", "会晤", "内阁", "议会", "大选", "民主党", "共和党"]
+words = ["选举", "国会", "参议院", "众议院", "听证", "外交", "空袭", "导弹", "战争", "停火", "伊朗", "沙特", "也门", "以色列", "日本", "特朗普", "普京", "联合国", "安理会", "核潜艇", "加沙", "乌克兰", "总统", "首相", "制裁", "峰会", "会晤", "内阁", "议会", "大选", "民主党", "共和党",
+         "election", "congress", "senate", "war", "military", "ceasefire", "sanctions", "treaty", "summit", "president", "prime minister", "parliament", "gaza", "ukraine", "russia", "china", "iran", "israel", "trump", "putin", "nato", "diplomat", "refugee", "missile", "drone", "airstrike", "protest", "government"]
 
 [title_rules]
 # 标题里出现这些词，直接给对应类别加分（收购/上市这类资本动作最容易和科技混）
-finance = ["收购", "并购", "IPO", "上市", "财报", "股价", "融资", "市值", "营收", "涨", "跌", "投资者", "美联储", "降息", "加息"]
-politics = ["空袭", "袭击", "听证", "选举", "国会", "制裁", "会晤", "峰会", "总统", "总理", "外长", "停火", "协议", "投票"]
-tech = ["AI", "芯片", "模型", "机器人", "卫星", "航天", "自动驾驶", "飞行汽车", "算法", "量子"]
+finance = ["收购", "并购", "IPO", "上市", "财报", "股价", "融资", "市值", "营收", "涨", "跌", "投资者", "美联储", "降息", "加息",
+           "earnings", "stocks", "bonds", "inflation", "fed", "tariff", "revenue", "valuation"]
+politics = ["空袭", "袭击", "听证", "选举", "国会", "制裁", "会晤", "峰会", "总统", "总理", "外长", "停火", "协议", "投票",
+            "election", "congress", "war", "sanctions", "summit", "president", "ceasefire", "treaty", "strike", "attack"]
+tech = ["AI", "芯片", "模型", "机器人", "卫星", "航天", "自动驾驶", "飞行汽车", "算法", "量子",
+        "chip", "semiconductor", "model", "robot", "quantum", "startup", "openai", "nvidia", "anthropic"]

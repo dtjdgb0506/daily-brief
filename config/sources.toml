@@ -1,6 +1,6 @@
 # 采集源：一条 [[feed]] 一个 RSS/Atom。
 # category 只用于日志统计；真正排序用的是 profile.toml 的 [weights] + 内容分类。
-# 想加源：复制一条 [[feed]]，把 name/url 换掉即可；collect.py 会自动去重、按 48h 时间窗过滤。
+# 境外源在国内直连会超时，但每日任务跑在 GitHub Actions（美国）上，可正常抓取。
 
 # —— 科技 ——
 [[feed]]
@@ -11,6 +11,31 @@ category = "tech"
 [[feed]]
 name = "Solidot"
 url = "https://www.solidot.org/index.rss"
+category = "tech"
+
+[[feed]]
+name = "快科技"
+url = "https://rss.mydrivers.com/rss.aspx?Tid=1"
+category = "tech"
+
+[[feed]]
+name = "爱范儿"
+url = "https://www.ifanr.com/feed"
+category = "tech"
+
+[[feed]]
+name = "钛媒体"
+url = "https://www.tmtpost.com/rss.xml"
+category = "tech"
+
+[[feed]]
+name = "新华网-科技"
+url = "http://www.xinhuanet.com/tech/news_tech.xml"
+category = "tech"
+
+[[feed]]
+name = "人民网-科技"
+url = "http://www.people.com.cn/rss/it.xml"
 category = "tech"
 
 # —— 财经 ——
@@ -34,6 +59,26 @@ name = "中新网-财经"
 url = "https://www.chinanews.com.cn/rss/finance.xml"
 category = "finance"
 
+[[feed]]
+name = "Nikkei Asia"
+url = "https://asia.nikkei.com/rss/feed/nar"
+category = "finance"
+
+[[feed]]
+name = "Economist"
+url = "https://www.economist.com/finance-and-economics/rss.xml"
+category = "finance"
+
+[[feed]]
+name = "FT World"
+url = "https://www.ft.com/world?format=rss"
+category = "finance"
+
+[[feed]]
+name = "WSJ World"
+url = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
+category = "finance"
+
 # —— 政治 / 国际 ——
 [[feed]]
 name = "新华网-国际"
@@ -53,4 +98,70 @@ category = "politics"
 [[feed]]
 name = "新华网-时政"
 url = "http://www.xinhuanet.com/politics/news_politics.xml"
+category = "politics"
+
+[[feed]]
+name = "BBC World"
+url = "https://feeds.bbci.co.uk/news/world/rss.xml"
+category = "politics"
+
+[[feed]]
+name = "Guardian World"
+url = "https://www.theguardian.com/world/rss"
+category = "politics"
+
+[[feed]]
+name = "Al Jazeera"
+url = "https://www.aljazeera.com/xml/rss/all.xml"
+category = "politics"
+
+[[feed]]
+name = "DW World"
+url = "https://rss.dw.com/rdf/rss-en-world"
+category = "politics"
+
+[[feed]]
+name = "France24"
+url = "https://www.france24.com/en/rss"
+category = "politics"
+
+[[feed]]
+name = "SCMP"
+url = "https://www.scmp.com/rss/91/feed"
+category = "politics"
+
+# —— 国际权威分析 ——
+[[feed]]
+name = "Foreign Policy"
+url = "https://foreignpolicy.com/feed/"
+category = "politics"
+
+[[feed]]
+name = "Foreign Affairs"
+url = "https://www.foreignaffairs.com/rss.xml"
+category = "politics"
+
+[[feed]]
+name = "Project Syndicate"
+url = "https://www.project-syndicate.org/rss"
+category = "politics"
+
+[[feed]]
+name = "The Diplomat"
+url = "https://thediplomat.com/feed/"
+category = "politics"
+
+[[feed]]
+name = "CSIS"
+url = "https://www.csis.org/analysis/feed"
+category = "politics"
+
+[[feed]]
+name = "Brookings"
+url = "https://www.brookings.edu/feed/"
+category = "politics"
+
+[[feed]]
+name = "War on the Rocks"
+url = "https://warontherocks.com/feed/"
 category = "politics"

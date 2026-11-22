@@ -166,12 +166,37 @@ def canonical(url: str) -> str:
     return urllib.parse.urlunsplit((p.scheme, p.netloc, path, urllib.parse.urlencode(query), ""))
 
 
+
+NAV_WORDS = ("首页", "时政", "国际", "财经", "社会", "娱乐", "体育", "军事", "科技",
+             "图片", "视频", "直播", "专题", "评论", "字号", "分享", "责任编辑",
+             "来源：", "来源:", "作者：", "作者:", "编辑：", "编辑:", "扫一扫", "返回顶部")
+META_LINE = re.compile(r"^(20\d{2}[-年/]|\d{1,2}月\d{1,2}日|来源|作者|编辑|责任编辑|字号|分享|扫一扫)")
+
+
+def clean_body(text: str) -> str:
+    """去掉页面导航、来源/编辑等元信息行、以及文末“相关新闻”区，让相似度算的是正文。"""
+    lines = [l.strip() for l in (text or "").split("\n") if l.strip()]
+    i = 0
+    while i < min(len(lines), 25):
+        line = lines[i]
+        if any(w in line for w in NAV_WORDS) or META_LINE.match(line) or len(line) <= 8:
+            i += 1
+            continue
+        break
+    body = "\n".join(lines[i:])
+    for marker in ("更多精彩", "相关新闻", "相关阅读", "推荐阅读", "精彩推荐", "热门推荐", "相关稿件"):
+        idx = body.find(marker)
+        if idx > 120:
+            body = body[:idx]
+    return body.strip()
+
+
 def extract(html: str, url: str = "") -> dict:
     p = TextExtractor()
     p.feed(html)
     fallback = html_lib.unescape(p.text())
     main = extract_main_text(html, url)
-    text = main if len(main) >= 200 else fallback
+    text = clean_body(main) if len(main) >= 200 else clean_body(fallback)
     return {
         "title": p.title.strip()[:120],
         "text": text,

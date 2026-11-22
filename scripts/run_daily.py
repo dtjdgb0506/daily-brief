@@ -79,7 +79,7 @@ def main() -> int:
     parser.add_argument("--no-collect", action="store_true")
     parser.add_argument("--no-send", action="store_true")
     parser.add_argument("--force", action="store_true")
-    parser.add_argument("--fetch", type=int, default=30, help="采集后抓多少篇正文")
+    parser.add_argument("--fetch", type=int, default=40, help="采集后抓多少篇正文")
     parser.add_argument("--auto-brief", action="store_true", help="当天没有 brief 时用 make_brief.py 生成自动初稿")
     parser.add_argument("--window-hours", type=int, default=24)
     parser.add_argument("--same-day", action="store_true", help="默认推前一天的新闻；加这个才推当天")

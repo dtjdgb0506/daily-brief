@@ -149,6 +149,37 @@ def title_coverage(title: str, text: str) -> float:
     return 1.0
 
 
+
+
+NAV_WORDS = ("首页", "时政", "国际", "财经", "社会", "娱乐", "体育", "军事", "科技",
+             "图片", "视频", "直播", "专题", "评论", "字号", "分享", "责任编辑",
+             "来源：", "来源:", "作者：", "作者:", "编辑：", "编辑:", "扫一扫", "返回顶部")
+META_LINE = re.compile(r"^(20\d{2}[-年/]|\d{1,2}月\d{1,2}日|来源|作者|编辑|责任编辑|字号|分享|扫一扫)")
+
+
+def clean_body(text: str) -> str:
+    """去掉页面导航、来源/编辑等元信息行、以及文末“相关新闻”区，让相似度算的是正文。"""
+    lines = [l.strip() for l in (text or "").split("\n") if l.strip()]
+    i = 0
+    while i < min(len(lines), 25):
+        line = lines[i]
+        if any(w in line for w in NAV_WORDS) or META_LINE.match(line) or len(line) <= 8:
+            i += 1
+            continue
+        break
+    body = "\n".join(lines[i:])
+    for marker in ("更多精彩", "相关新闻", "相关阅读", "推荐阅读", "精彩推荐", "热门推荐", "相关稿件"):
+        idx = body.find(marker)
+        if idx > 120:
+            body = body[:idx]
+    return body.strip()
+
+
+def title_bigrams(title: str) -> set[str]:
+    core = norm_title(title)
+    return {run[i:i + 2] for run in CJK.findall(core) for i in range(len(run) - 1)}
+
+
 def tokenize(title: str, text: str) -> Counter:
     """标题权重 3，正文前 5000 字权重 1。"""
     tokens: Counter = Counter()
@@ -254,7 +285,7 @@ def load_articles(raw_dir: Path) -> list[dict]:
             "url": meta.get("url", ""),
             "title": norm_title(meta.get("title", "") or js.stem),
             "raw_title": meta.get("title", ""),
-            "text": text,
+            "text": clean_body(text),
             "source": meta.get("source", "") or js.parent.name,
             "published": published,
         })
@@ -543,7 +574,14 @@ def main() -> int:
             if not same_event and shared_people and in_titles(shared_people, "people") and sim >= 0.15:
                 same_event, reason = True, "person+similarity"
             if not same_event and sim >= args.threshold:
-                same_event, reason = True, "similarity"
+                # 正文相似还不够，标题也得有交集：中新网这类模板会让“完全无关的新闻”正文很像
+                ti_bg = title_bigrams(articles[i]["title"])
+                tj_bg = title_bigrams(articles[j]["title"])
+                overlap = len(ti_bg & tj_bg) / max(len(ti_bg | tj_bg), 1)
+                if overlap >= 0.15:
+                    same_event, reason = True, "similarity+title"
+                else:
+                    reason = ""
             if args.debug:
                 pairs.append((round(max(sim, 0.5 if same_event else sim), 3),
                               articles[i]["title"][:26], articles[j]["title"][:26], reason or "-"))
