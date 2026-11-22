@@ -1,4 +1,4 @@
-# 把 site/ 发布出去（GitHub Pages）或本地预览
+﻿# 把 site/ 发布出去（GitHub Pages）或本地预览
 #
 # 本地预览（默认）：
 #   powershell -ExecutionPolicy Bypass -File scripts/deploy_pages.ps1 -Local

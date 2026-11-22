@@ -1,4 +1,4 @@
-# 注册 Windows 计划任务：每天 07:30 跑 run_daily.py
+﻿# 注册 Windows 计划任务：每天 07:30 跑 run_daily.py
 # 用法（管理员 PowerShell）：
 #   powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
 #   powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1 -Time 07:15
