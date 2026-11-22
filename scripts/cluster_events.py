@@ -53,6 +53,9 @@ SOFT_PATTERNS = [
     r"评选", r"榜单", r"盘点", r"游记", r"美食", r"通车", r"试运营", r"投产", r"开工", r"竣工",
     # 娱乐/体育（用户明确不想看）
     r"游戏", r"GTA", r"票房", r"剧集", r"综艺", r"音乐节", r"电影", r"赛事",
+    # 购物/导购稿（"Best Pura Deals for Cyber Week" 这类）
+    r"cyber week", r"\bgifts\b", r"shopping", r"discount", r"best .{0,30}deals",
+    r"emergency prep", r"prep spending",
     # 文旅/生活类
     r"旅游", r"游客", r"打卡", r"美景", r"风光", r"探访", r"民俗", r"非遗", r"古都",
     r"历史文化魅力", r"古镇", r"民宿", r"温泉", r"养生", r"减肥", r"星座", r"情感",
@@ -128,12 +131,15 @@ HARD_NEWS_WORDS = [
     "起诉", "逮捕", "制裁", "禁令", "法案", "财政", "利率", "降息", "加息", "通胀",
     "空袭", "袭击", "停火", "谈判", "峰会", "选举", "投票", "财报", "营收", "收购",
     "并购", "上市", "IPO", "破产", "裁员", "调查", "监管", "出口", "管制", "关税",
+    "传票", "证明", "公布", "叫停", "暂停", "弹劾", "罢免", "下台", "暴跌", "暴涨",
+    "围堵", "封锁", "召回", "停摆",
     "resign", "appoint", "fire", "election", "sanction", "tariff", "ban", "sue",
     "investigat", "approve", "reject", "deal", "merger", "layoff", "earnings",
 ]
 
 # 源质量权重：国际权威 > 国际科技/深度分析 > 国内主流 > 地方稿
-TIER_FACTOR = {"core": 1.30, "tech": 1.15, "analysis": 1.10, "cn": 0.95, "local": 0.55}
+# 只做小幅修正（±12%），避免“英文核心源”把分数抬得比事件本身还高
+TIER_FACTOR = {"core": 1.12, "tech": 1.06, "analysis": 1.05, "cn": 0.96, "local": 0.55}
 
 
 def is_soft_news(title: str) -> bool:
@@ -478,6 +484,25 @@ def load_history(archive_dir: Path, days: int, today: str) -> list[dict]:
     return history
 
 
+# 中英文同一件事（同一话题的两种语言写法）：标题都命中就合并
+CROSS_LANG_TOPICS = [
+    ["黎曼", "riemann"],
+    ["杀手机器人", "killer robot"],
+    ["芯片出口", "chip export"],
+    ["中美关系", "us-china"],
+    ["台海", "taiwan strait"],
+    ["比特币", "bitcoin"],
+]
+
+
+def cross_topic_match(a: str, b: str) -> str:
+    la, lb = a.lower(), b.lower()
+    for group in CROSS_LANG_TOPICS:
+        if any(k in la for k in group) and any(k in lb for k in group):
+            return group[0]
+    return ""
+
+
 def prune_archive(root: Path, keep_days: int = 30) -> None:
     """只保留最近 N 天归档，别让仓库无限变大。"""
     if not root.exists():
@@ -768,6 +793,11 @@ def main() -> int:
                 else:
                     reason = ""
             if not same_event:
+                # 同一话题的中英文稿件（黎曼/Riemann、杀手机器人/killer robots）直接合并
+                topic = cross_topic_match(ti, tj)
+                if topic:
+                    same_event, reason = True, f"topic:{topic}"
+            if not same_event:
                 # 英文媒体同一件事：标题实词重合度高就合并（"killer robots" / "UN talks" 这类）
                 t_i, t_j = articles[i]["title"], articles[j]["title"]
                 en_i = sum(1 for ch in t_i if ch.isascii() and ch.isalpha())
@@ -793,16 +823,22 @@ def main() -> int:
         title_blob = " ".join(articles[i]["title"] for i in members)
         body_blob = " ".join(articles[i]["text"][:3000] for i in members)
         cat, cat_labels, cat_counts = category_of(title_blob, body_blob, weights)
-        # “其他”只是兜底类别，不该和科技/政治/财经同权
-        default_w = 8 if cat == "other" else 20
-        cat_weight = max(weights.get(cat, default_w), 1) / 100
-        scale = 1 + 0.25 * math.log2(1 + len(members))
+        # 兴趣：只做小幅度调整（科技 1.00 / 政治 0.89 / 财经 0.83 / 其他 0.76）
+        max_w = max(weights.values()) if weights else 50
+        my_w = weights.get(cat, 8 if cat == "other" else 20)
+        interest = 0.72 + 0.28 * (max(my_w, 1) / max(max_w, 1))
+
+        # 重要性：不看类别，只看“这件事本身多大”
+        # 覆盖度（几家在报）+ 跨源 + 硬新闻信号（有没有动作/数字）+ 有人分析
+        n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
+        coverage = 1 + 0.18 * min(len(members) - 1, 6)
+        cross_src = 1 + 0.08 * min(n_sources - 1, 3)
         blob = " ".join(articles[i]["text"][:2000] for i in members)
         opinion_hits = sum(1 for m in ("认为", "指出", "表示", "预计", "担忧", "分析", "评论",
                                        "警告", "said", "according to", "analyst", "argued", "warned")
                            if m in blob)
         jarg = jargon_hits(title_blob + blob)
-        analysis_factor = 1 + 0.12 * min(opinion_hits, 4)   # 有人分析 → 加分
+        analysis_factor = 1 + 0.05 * min(opinion_hits, 4)   # 有人分析 → 轻微加分
         plain_factor = 1 - 0.08 * min(jarg, 5)              # 官话越多 → 降权
 
         ages = [age_hours(articles[i].get("published", "")) for i in members]
@@ -810,8 +846,6 @@ def main() -> int:
         if known and min(known) > args.max_age_hours:
             continue  # 这件事最新的一篇都两天前了，不算今天新闻
         fresh = freshness_factor([a if a >= 0 else 36.0 for a in ages], half_life)
-        n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
-        diversity = 1 + 0.1 * min(n_sources, 3)
         members_sorted = sorted(members, key=lambda i: -len(articles[i]["text"]))
         rep = members_sorted[0]
         person_aliases = [a for al in ENTITY_ALIASES["people"].values() for a in al]
@@ -840,8 +874,8 @@ def main() -> int:
             "id": None,
             "category": cat,
             "tags": cat_labels,
-            "score": round(cat_weight * scale * fresh * diversity * analysis_factor
-                           * plain_factor * hard_f * tier_f * w_f * 100, 2),
+            "score": round(coverage * cross_src * hard_f * analysis_factor
+                           * interest * fresh * plain_factor * tier_f * w_f * 100, 2),
             "source_tier": best_tier,
             "hard_news": round(hard_f, 2),
             "article_count": len(members),
