@@ -172,7 +172,20 @@ def main() -> int:
     print(f"候选清单: {out}" if not args.dry_run else "(dry-run，未写清单)")
 
     if args.fetch and candidates and not args.dry_run:
-        todo = candidates[: args.fetch]
+        # 按源轮转取正文，避免 IT之家一家占满 30 个名额
+        by_feed: dict[str, list[dict]] = {}
+        for c in candidates:
+            by_feed.setdefault(c.get("feed", "?"), []).append(c)
+        todo, i = [], 0
+        while len(todo) < args.fetch:
+            added = False
+            for items in by_feed.values():
+                if i < len(items) and len(todo) < args.fetch:
+                    todo.append(items[i])
+                    added = True
+            if not added:
+                break
+            i += 1
         print(f"\n抓正文 {len(todo)} 篇 ...")
         ok = 0
         for it in todo:

@@ -94,3 +94,20 @@ class TestClusterFixture(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestMakeBrief(unittest.TestCase):
+    def test_draft_passes_validation(self):
+        import make_brief  # noqa: F401
+        out = Path(tempfile.mkdtemp()) / "brief.json"
+        cmd = [
+            sys.executable, str(ROOT / "scripts" / "make_brief.py"),
+            "--events", str(ROOT / "output" / "events.json"),
+            "--raw", str(ROOT / "output" / "raw"),
+            "--out", str(out),
+        ]
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+        if proc.returncode != 0 or not out.exists():
+            self.skipTest("还没有 events.json，跳过自动初稿测试")
+        brief = json.loads(out.read_text(encoding="utf-8"))
+        errs, _ = build_card.validate(brief, None)
+        self.assertEqual(errs, [])

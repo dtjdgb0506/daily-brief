@@ -134,6 +134,19 @@ def norm_title(title: str) -> str:
     return t.strip()
 
 
+def title_coverage(title: str, text: str) -> float:
+    """标题里的字词有多大比例能在正文里找到——用来识别“只抓到导航条”的坏稿。"""
+    core = norm_title(title)
+    bigrams = [run[i:i + 2] for run in CJK.findall(core) for i in range(len(run) - 1)]
+    if bigrams:
+        return sum(1 for b in bigrams if b in text) / len(bigrams)
+    words = [w.lower() for w in LATIN.findall(core) if len(w) >= 4]
+    if words:
+        low = text.lower()
+        return sum(1 for w in words if w in low) / len(words)
+    return 1.0
+
+
 def tokenize(title: str, text: str) -> Counter:
     """标题权重 3，正文前 5000 字权重 1。"""
     tokens: Counter = Counter()
@@ -223,8 +236,13 @@ def load_articles(raw_dir: Path) -> list[dict]:
         text_path = js.with_suffix(".txt")
         text = text_path.read_text(encoding="utf-8", errors="ignore") if text_path.exists() else ""
         title = meta.get("title", "") or js.stem
-        # 抓取失败/只剩导航的稿子不要：标题太短、正文太短、标题就是站名
+        # 抓取失败/只剩导航的稿子不要：标题太短、正文太短、标题里的词正文里几乎没有
         if len(title.strip()) < 6 or len(text.strip()) < 120:
+            continue
+        if title_coverage(title, text) < 0.35:
+            continue
+        # 导航条污染：正文里一堆“| 北京 | 天津 |”这种，说明没抓到正文
+        if text.count("|") >= 15 or text.count("首页") >= 4:
             continue
         published = meta.get("published", "") or ""
         if not published:
@@ -489,10 +507,22 @@ def main() -> int:
             p_j, c_j = ents[j]
             shared_people = p_i & p_j
             shared_comps = c_i & c_j
-            # 同一人物 + 同一公司 → 视为同一事件（跨媒体、跨语言都能并上）
-            same_event = bool(shared_people and shared_comps)
-            reason = "person+company" if same_event else ""
-            if not same_event and shared_people and sim >= 0.15:
+            ti, tj = articles[i]["title"].lower(), articles[j]["title"].lower()
+
+            def in_titles(canon: set, kind: str) -> bool:
+                aliases = [a.lower() for c in canon for a in ENTITY_ALIASES[kind].get(c, [c])]
+                return any(a in ti or a in tj for a in aliases)
+
+            # 同一人物 + 同一公司，且其中一个真的出现在标题里才算同一事件
+            # （否则“顺带提到”会把不相干的稿子粘起来：例如特斯拉 FSD 提到英伟达）
+            strong = bool(
+                shared_people and shared_comps
+                and in_titles(shared_people, "people")
+                and in_titles(shared_comps, "companies")
+            )
+            same_event = strong
+            reason = "person+company" if strong else ""
+            if not same_event and shared_people and in_titles(shared_people, "people") and sim >= 0.15:
                 same_event, reason = True, "person+similarity"
             if not same_event and sim >= args.threshold:
                 same_event, reason = True, "similarity"
@@ -543,6 +573,7 @@ def main() -> int:
             "score": round(cat_weight * scale * fresh * diversity * 100, 2),
             "article_count": len(members),
             "source_count": n_sources,
+            "source_names": sorted({articles[i].get("source", "") for i in members if articles[i].get("source")}),
             "freshness": round(fresh, 3),
             "representative_title": rep_title,
             "keywords": display_keywords([w for w, _ in Counter(cat_tokens).most_common(24)]),

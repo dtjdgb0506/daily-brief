@@ -8,6 +8,7 @@
 ```bash
 python scripts/run_daily.py --dry-run     # 全流程跑一遍，不发信
 python scripts/run_daily.py               # 真发（今天发过自动跳过）
+python scripts/run_daily.py --auto-brief  # 没人写 brief 时用抽取式初稿兜底
 python scripts/run_daily.py --force       # 强制重发
 ```
 
@@ -57,10 +58,30 @@ python scripts/cluster_events.py --fixture tests/fixture_articles.json \
 powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
 ```
 
+## 三个“没人/没服务器”时怎么办
+
+**1. 采集源**：`config/sources.toml` 现在 8 个源（IT之家 / Solidot / 华尔街见闻 / 界面新闻 /
+新华网-时政 / 中国新闻网 / 联合国新闻 / …）。正文抓取会做三道过滤：正文太短、标题词在正文里
+出现不到 35%、导航条污染（`| 北京 | 天津 |`）——都已经在 `cluster_events.py` 的 `load_articles` 里。
+目前政治源的问题是**网页正文抓不到**（新华网点进去常是视频页、中新网只剩导航），
+下一步要么给这两个站写专用抽取规则，要么换 API/付费源。
+
+**2. brief 没人写**：`python scripts/make_brief.py` 会从 events.json + 原文里抽标题/导语/
+三条要点/时间线/出处，生成 `config/brief.draft.json`；`run_daily.py --auto-brief` 会在
+当天没稿时自动用它。质量比手写糙（导语是原文句子直搬），但能过全部校验、能发。
+
+**3. 网页版地址 / 每天定时**：
+- 本地预览：`powershell -ExecutionPolicy Bypass -File scripts/deploy_pages.ps1 -Local`（默认 8080 端口，手机同 WiFi 可看）
+- 发布：先建空 GitHub 仓库，再
+  `... -RemoteUrl https://github.com/<你>/<仓库>.git -WebBase https://<你>.github.io/<仓库>`
+  （脚本会顺手把 `web_base` 写进 profile.toml；第一次还要在仓库 Settings → Pages 里把 Source 设成 `gh-pages`）
+- 定时：`scripts/install_task.ps1`（注册每天 07:30 的 Windows 计划任务，跑 `run_daily.py`）
+
 ## 已知边界
 
 - 聚类是启发式的：同一天两件事同时涉及同一个人和同一家公司，会被并成一条。
-- 采集源偏科技（新浪/联合早报/BBC 的 RSS 目前都返回空或非 XML），政治/国际源待补；
-  源偏科时前 5 条会全是同一类，配额只能在有别的类可用时才起作用。
+- 采集源仍然偏科技：能用的政治源正文抓不干净（见上），所以今天 top5 仍可能全 tech；
+  类别配额只在“有别的类可用且分差不超过 30%”时才换，不会为了多样性塞垃圾。
+- 自动初稿是抽取式的，导语/要点是原文句子直搬，只能兜底，不建议长期直接发。
 - `web_base` 现在是占位符，正式发信前改成你自己的托管地址；`site/` 整个目录可直接丢 GitHub Pages。
 - 暗黑模式、Outlook 兼容还没做；163 单日发送数有限，目前只发自己。

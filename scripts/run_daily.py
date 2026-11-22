@@ -69,6 +69,7 @@ def main() -> int:
     parser.add_argument("--no-send", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--fetch", type=int, default=30, help="采集后抓多少篇正文")
+    parser.add_argument("--auto-brief", action="store_true", help="当天没有 brief 时用 make_brief.py 生成自动初稿")
     parser.add_argument("--window-hours", type=int, default=24)
     args = parser.parse_args()
 
@@ -91,21 +92,29 @@ def main() -> int:
         print("✗ 聚类失败，终止")
         return 1
 
-    # 3. 出卡：brief 必须是当天的
+    # 3. 出卡：优先用人工稿；没有/过期时可以自动生成初稿
     brief_path = ROOT / "config" / "brief.json"
-    if not brief_path.exists():
-        print(f"✗ 缺少 {brief_path}：这一步要人工/模型把 events.md 写成 brief.json")
-        return 1
-    try:
-        brief = json.loads(brief_path.read_text(encoding="utf-8-sig"))
-    except json.JSONDecodeError as exc:
-        print(f"✗ brief.json 解析失败：{exc}")
-        return 1
-    if brief.get("date") != date:
-        print(f"✗ brief.json 的 date={brief.get('date')}，不是今天（{date}）。先更新 brief 再发。")
-        return 1
+    need_brief = True
+    if brief_path.exists():
+        try:
+            brief = json.loads(brief_path.read_text(encoding="utf-8-sig"))
+            need_brief = brief.get("date") != date
+        except json.JSONDecodeError:
+            need_brief = True
+    if need_brief:
+        if not args.auto_brief:
+            print(f"✗ config/brief.json 缺失或不是今天（{date}）。"
+                  f"\n  要么先写 brief，要么加 --auto-brief 用抽取式初稿兜底。")
+            return 1
+        draft = ROOT / "config" / "brief.draft.json"
+        ok, _ = run_step("自动初稿", ["scripts/make_brief.py", "--date", date], log_path)
+        if not ok or not draft.exists():
+            print("✗ 自动初稿生成失败")
+            return 1
+        brief_path = draft
+        print("  ⚠ 用的是自动初稿（抽取式），建议抽查后再发。")
 
-    ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date], log_path)
+    ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:
         print("✗ 出卡失败（多半是校验没通过），终止")
         return 1
