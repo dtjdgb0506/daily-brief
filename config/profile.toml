@@ -6,7 +6,7 @@ time = "07:30"              # 北京时间，daily
 timezone = "Asia/Shanghai"
 items = 5                   # 每天几条事件
 weekend_items = 3           # 周末条数（暂未启用）
-web_base = "https://example.com/brief"   # 网页版根地址：邮件里的链接会拼成 {web_base}/{日期}/#pN
+web_base = ""   # 留空 = 邮件自带详细内容（国内打不开 github.io）；填了就把标题链到网页版
 
 [weights]
 tech = 50                   # 科技

@@ -270,7 +270,7 @@ def render_archive(entries: list[tuple[str, str, int, int]]) -> str:
     return ARCHIVE_TMPL.format(rows=rows)
 
 
-def render_card(brief: dict, link_prefix: str) -> str:
+def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> str:
     out = [CARD_HEAD.format(
         title=esc(brief.get("doc_title", "每日情报")),
         preheader=esc(brief.get("preheader", "")),
@@ -355,8 +355,62 @@ def render_card(brief: dict, link_prefix: str) -> str:
         )
         out.append("</td></tr>")
 
+    if email_detail:
+        out.append(render_email_details(brief))
+
     out.append(CARD_FOOT.format(gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
     return "\n".join(out)
+
+
+def render_email_details(brief: dict) -> str:
+    """没有网页版可点时，把时间线和出处直接放进邮件（手机离线也能看）。"""
+    parts = ['<tr><td style="padding:30px 26px 0;border-top:1px solid #e8edf3;">'
+             '<div style="font-size:11px;letter-spacing:3px;color:#94a3b8;font-weight:700;">DETAILS · 详细内容</div>'
+             '<div style="font-size:12.5px;color:#94a3b8;margin-top:6px;">点上面的标题可以跳到对应段落</div>'
+             '</td></tr>']
+    for idx, it in enumerate(brief.get("items", []), 1):
+        w = it.get("web") or {}
+        parts.append(
+            f'<tr><td id="p{idx}" style="padding:22px 26px 0;">'
+            f'<h3 style="margin:0 0 8px;font-size:16px;color:#0f172a;">{esc(it.get("title", ""))}</h3>'
+        )
+        if w.get("timeline"):
+            rows = "".join(
+                f'<tr><td style="padding:3px 10px 3px 0;white-space:nowrap;vertical-align:top;font-size:12.5px;color:#475569;">{esc(d)}</td>'
+                f'<td style="padding:3px 0;font-size:13px;line-height:1.75;color:#334155;">{esc(txt)}</td></tr>'
+                for d, txt in w["timeline"][:10]
+            )
+            parts.append(f'<table role="presentation" cellpadding="0" cellspacing="0">{rows}</table>')
+        if w.get("sources"):
+            links = " · ".join(
+                f'<a href="{esc(s.get("url", ""))}" style="color:#1d4ed8;text-decoration:none;">{esc(s.get("label", "")[:40])}</a>'
+                for s in w["sources"][:5]
+            )
+            parts.append(f'<div style="margin-top:8px;font-size:12px;line-height:1.9;color:#94a3b8;">出处：{links}</div>')
+        parts.append("</td></tr>")
+
+    fu = brief.get("followup")
+    if fu:
+        w = fu.get("web") or {}
+        parts.append(
+            f'<tr><td id="f1" style="padding:24px 26px 0;">'
+            f'<h3 style="margin:0 0 8px;font-size:16px;color:#0f172a;">{esc(fu.get("title", ""))}</h3>'
+        )
+        if w.get("timeline"):
+            rows = "".join(
+                f'<tr><td style="padding:3px 10px 3px 0;white-space:nowrap;vertical-align:top;font-size:12.5px;color:#475569;">{esc(d)}</td>'
+                f'<td style="padding:3px 0;font-size:13px;line-height:1.75;color:#334155;">{esc(txt)}</td></tr>'
+                for d, txt in w["timeline"][:10]
+            )
+            parts.append(f'<table role="presentation" cellpadding="0" cellspacing="0">{rows}</table>')
+        if w.get("sources"):
+            links = " · ".join(
+                f'<a href="{esc(s.get("url", ""))}" style="color:#1d4ed8;text-decoration:none;">{esc(s.get("label", "")[:40])}</a>'
+                for s in w["sources"][:5]
+            )
+            parts.append(f'<div style="margin-top:8px;font-size:12px;line-height:1.9;color:#94a3b8;">出处：{links}</div>')
+        parts.append("</td></tr>")
+    return "\n".join(parts)
 
 
 def render_web(brief: dict) -> str:
@@ -451,8 +505,8 @@ def main() -> int:
     if args.dry_run:
         return 0
 
-    base = args.base or load_profile().get("delivery", {}).get("web_base", "https://example.com/brief")
-    base = base.rstrip("/")
+    base = args.base if args.base is not None else load_profile().get("delivery", {}).get("web_base", "")
+    base = (base or "").rstrip("/")
     site_dir = ROOT / "site" / date
     site_dir.mkdir(parents=True, exist_ok=True)
     out_dir = ROOT / "output"
@@ -463,7 +517,8 @@ def main() -> int:
 
     web = render_web(brief)
     (site_dir / "index.html").write_text(web, encoding="utf-8")
-    send_card = render_card(brief, f"{base}/{date}/")
+    prefix = f"{base}/{date}/" if base else ""
+    send_card = render_card(brief, prefix, email_detail=not base)
     (out_dir / f"card-{date}.html").write_text(send_card, encoding="utf-8")
 
     rel = render_card(brief, "index.html")
@@ -490,7 +545,7 @@ def main() -> int:
         entries.append((d, m.get("doc_title", ""), int(m.get("items", 0)), int(m.get("followup", 0))))
     (ROOT / "site" / "index.html").write_text(render_archive(entries), encoding="utf-8")
     print(f"网页版: {site_dir / 'index.html'}")
-    print(f"发送用卡片: {out_dir / f'card-{date}.html'}（链接 {base}/{date}/#pN）")
+    print(f"发送用卡片: {out_dir / f'card-{date}.html'}（邮件自带详情，标题跳段内锚点）")
     print(f"本地预览: {site_dir / 'card-preview.html'}")
     return 0
 
