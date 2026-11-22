@@ -78,9 +78,9 @@ python scripts/cluster_events.py --fixture tests/fixture_articles.json \
 powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
 ```
 
-## 详情页托管（国内可开）
+## 详情页托管（国内可开、每件事一页）
 
-每个事件生成一个 Markdown 页，提交到仓库 `briefs/<日期>/p1.md …`，邮件里的「看详细」直接指过去。
+每个事件发布成一个独立的 telegra.ph 页面（`scripts/publish_telegraph.py`，无需账号、无需 VPN，实测 1.1s），邮件里的「看详细」直接指过去；同时会在仓库 `briefs/<日期>/` 留一份 Markdown 备份。
 GitHub 会把 Markdown 渲染成网页，`github.com` 国内可直连（不需要 VPN）。
 样例：https://github.com/dtjdgb0506/daily-brief/blob/master/briefs/2026-11-22/p1.md
 

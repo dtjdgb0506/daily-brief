@@ -293,8 +293,9 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
         )
         fs = 24 if idx == 1 else 21
         title_inner = esc(it.get("title", ""))
-        if link_prefix:
-            title_inner = (f'<a href="{link_prefix}/p{idx}.md" '
+        item_link = it.get("detail_url") or (f"{link_prefix}/p{idx}.md" if link_prefix else "")
+        if item_link:
+            title_inner = (f'<a href="{item_link}" '
                            f'style="color:#0f172a;text-decoration:none;">{title_inner}</a>')
         out.append(
             f'<{h} style="margin:12px 0 10px;font-size:{fs}px;line-height:1.4;color:#0f172a;font-weight:700;">'
@@ -323,10 +324,9 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
                 f'style="font-size:13.5px;line-height:1.8;color:#334155;">{rows}</table>'
             )
-        if link_prefix:
-            hint = it.get("detail_hint", "")
+        if item_link:
             out.append(
-                f'<a href="{link_prefix}/p{idx}.md" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'<a href="{item_link}" style="display:inline-block;margin-top:10px;font-size:13.5px;'
                 f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细（分析 · 时间线 · 出处）→</a>'
             )
         elif email_detail:
@@ -341,12 +341,16 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             f'{esc(fu.get("section_title", "过去 7 天的重要后续"))}</div>'
             '</td></tr>'
         )
+        fu_link = fu.get("detail_url") or (f"{link_prefix}/f1.md" if link_prefix else "")
+        title_html = esc(fu.get("title", ""))
+        if fu_link:
+            title_html = f'<a href="{fu_link}" style="color:#0f172a;text-decoration:none;">{title_html}</a>'
         out.append(
             '<tr><td style="padding:12px 26px 0;">'
             f'<span style="display:inline-block;font-size:11px;line-height:1;color:#9a3412;background:#ffedd5;'
             f'border-radius:999px;padding:4px 10px;font-weight:700;">{esc(fu.get("tag", "后续"))}</span>'
             f'<h2 style="margin:12px 0 10px;font-size:21px;line-height:1.45;color:#0f172a;font-weight:700;">'
-            f'<a href="{link_prefix}#f1" style="color:#0f172a;text-decoration:none;">{esc(fu.get("title", ""))}</a></h2>'
+            f'{title_html}</h2>'
             f'<p style="margin:0 0 8px;font-size:15px;line-height:1.8;color:#1e293b;font-weight:600;">{esc(fu.get("lede", ""))}</p>'
             + render_points(fu.get("points", []), 14)
         )
@@ -356,9 +360,9 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
                 f'<div style="margin-top:12px;font-size:12.5px;color:#9a3412;">'
                 f'来自 {esc(hist.get("date", ""))} 的事件：{esc(hist.get("title", ""))}</div>'
             )
-        if link_prefix:
+        if fu_link:
             out.append(
-                f'<a href="{link_prefix}/f1.md" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'<a href="{fu_link}" style="display:inline-block;margin-top:10px;font-size:13.5px;'
                 f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细（分析 · 时间线 · 出处）→</a>'
             )
         elif email_detail:

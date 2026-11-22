@@ -134,6 +134,14 @@ def main() -> int:
             else:
                 print("  ⚠ 模型改写失败，继续用抽取式初稿")
 
+    # 4. 发布每个事件的独立详情页（telegra.ph，国内速度尚可）
+    published = ROOT / "config" / "brief.published.json"
+    ok, _ = run_step("发布详情页", ["scripts/publish_telegraph.py", "--brief", str(brief_path)], log_path)
+    if ok and published.exists():
+        brief_path = published
+    else:
+        print("  ⚠ 详情页发布失败，邮件里回退到 GitHub 链接")
+
     ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:
         print("✗ 出卡失败（多半是校验没通过），终止")
