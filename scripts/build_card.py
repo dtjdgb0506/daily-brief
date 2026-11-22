@@ -293,7 +293,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
         )
         fs = 24 if idx == 1 else 21
         title_inner = esc(it.get("title", ""))
-        item_link = it.get("detail_url") or (f"{link_prefix}/p{idx}.md" if link_prefix else "")
+        item_link = it.get("detail_url") or (f"{link_prefix}/index.html#p{idx}" if link_prefix else "")
         if item_link:
             title_inner = (f'<a href="{item_link}" '
                            f'style="color:#0f172a;text-decoration:none;">{title_inner}</a>')
@@ -341,7 +341,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             f'{esc(fu.get("section_title", "过去 7 天的重要后续"))}</div>'
             '</td></tr>'
         )
-        fu_link = fu.get("detail_url") or (f"{link_prefix}/f1.md" if link_prefix else "")
+        fu_link = fu.get("detail_url") or (f"{link_prefix}/index.html#f1" if link_prefix else "")
         title_html = esc(fu.get("title", ""))
         if fu_link:
             title_html = f'<a href="{fu_link}" style="color:#0f172a;text-decoration:none;">{title_html}</a>'
