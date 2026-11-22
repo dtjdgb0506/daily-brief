@@ -134,13 +134,18 @@ def main() -> int:
             else:
                 print("  ⚠ 模型改写失败，继续用抽取式初稿")
 
-    # 4. 发布每个事件的独立详情页（telegra.ph，国内速度尚可）
+    # 4. 发布每个事件的独立详情页（仅当配置了网页版地址时才发；国内境外托管都要 VPN，默认走邮件内联）
+    profile_text = (ROOT / "config" / "profile.toml").read_text(encoding="utf-8")
+    has_web = bool(__import__("re").search(r'web_base\s*=\s*"[^"]+"', profile_text))
     published = ROOT / "config" / "brief.published.json"
-    ok, _ = run_step("发布详情页", ["scripts/publish_telegraph.py", "--brief", str(brief_path)], log_path)
-    if ok and published.exists():
-        brief_path = published
+    if has_web:
+        ok, _ = run_step("发布详情页", ["scripts/publish_telegraph.py", "--brief", str(brief_path)], log_path)
+        if ok and published.exists():
+            brief_path = published
+        else:
+            print("  ⚠ 详情页发布失败，邮件里回退到内联详情")
     else:
-        print("  ⚠ 详情页发布失败，邮件里回退到 GitHub 链接")
+        print("\n▶ 发布详情页: 跳过（web_base 为空，详情直接内联在邮件里）")
 
     ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:

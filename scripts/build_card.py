@@ -378,6 +378,16 @@ def render_item_detail(item: dict) -> str:
     """邮件自包含模式：时间线 + 出处直接跟在新闻下面。"""
     w = item.get("web") or {}
     parts = []
+    for blk in w.get("blocks", []):
+        lines = "".join(
+            f'<div style="margin:4px 0;font-size:12.5px;line-height:1.75;color:#334155;">{esc(x)}</div>'
+            for x in blk.get("lines", [])
+        )
+        parts.append(
+            '<div style="margin-top:12px;padding:10px 12px;background:#f8fafc;border-radius:10px;">'
+            f'<div style="font-size:11px;letter-spacing:2px;color:#94a3b8;font-weight:700;margin-bottom:6px;">'
+            f'{esc(blk.get("title", "分析"))}</div>{lines}</div>'
+        )
     if w.get("timeline"):
         rows = "".join(
             f'<tr><td style="padding:2px 10px 2px 0;white-space:nowrap;vertical-align:top;'
