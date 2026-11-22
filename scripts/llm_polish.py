@@ -29,10 +29,13 @@ ROOT = Path(__file__).resolve().parent.parent
 SYSTEM = """你是中文科技/财经日报的编辑。给你 5 条新闻（已经按事件聚合，每条附带原始标题和原文句子），
 请为每条写：一个能概括事件的陈述句标题（不超过 26 字，绝对不要问句、不要“为什么/如何”开头）、
 一句话导语（40~70 字，信息量足）、三条要点（每条约 40~70 字，要点里的数字必须来自给定材料）。
+每条再给 3 条「对普通人的启示 / 能学到什么 / 怎么用」——要具体、可执行，不要“保持关注”这种空话。
 再为“后续”那条写同样结构的内容。
 严格输出 JSON，不要 markdown 代码块，格式：
-{"items":[{"event_id":"e1","title":"...","lede":"...","points":["...","...","..."]}, ...],
- "followup":{"event_id":"eX","title":"...","lede":"...","points":["...","...","..."]}}"""
+{"items":[{"event_id":"e1","title":"...","lede":"...","points":["...","...","..."],
+           "takeaway":["...","...","..."]}, ...],
+ "followup":{"event_id":"eX","title":"...","lede":"...","points":["...","...","..."],
+             "takeaway":["...","...","..."]}}"""
 
 
 def load_env_dict() -> dict:
@@ -121,6 +124,11 @@ def merge(draft: dict, llm: dict) -> dict:
         base["title"] = title[:38]
         base["lede"] = str(item.get("lede", "")).strip()[:150]
         base["points"] = [[f"{i} · ", p] for i, p in enumerate(points, 1)]
+        take = [str(x).strip() for x in item.get("takeaway", []) if str(x).strip()][:4]
+        if take:
+            blocks = [b for b in base.get("web", {}).get("blocks", []) if b.get("type") != "takeaway"]
+            blocks.append({"title": "普通人能学到什么 / 怎么用", "type": "takeaway", "lines": take})
+            base.setdefault("web", {})["blocks"] = blocks
         out_items.append(base)
     if len(out_items) < 3:
         raise ValueError(f"模型只返回了 {len(out_items)} 条可用新闻，放弃覆盖")
@@ -135,6 +143,11 @@ def merge(draft: dict, llm: dict) -> dict:
             fu["title"] = title[:38]
             fu["lede"] = str(lf.get("lede", "")).strip()[:150]
             fu["points"] = [[f"{i} · ", p] for i, p in enumerate(points, 1)]
+            take = [str(x).strip() for x in lf.get("takeaway", []) if str(x).strip()][:4]
+            if take:
+                blocks = [b for b in fu.get("web", {}).get("blocks", []) if b.get("type") != "takeaway"]
+                blocks.append({"title": "普通人能学到什么 / 怎么用", "type": "takeaway", "lines": take})
+                fu.setdefault("web", {})["blocks"] = blocks
     draft["draft"] = False
     draft["doc_title"] = out_items[0]["title"]
     return draft

@@ -99,6 +99,7 @@ WEB_HEAD = """<!doctype html>
   .tl b{{color:var(--ink);font-variant-numeric:tabular-nums;margin-right:6px}}
   .box{{background:#f8fafc;border-radius:10px;padding:14px 16px;font-size:14.5px;line-height:1.8}}
   .box.warn{{background:#fff7ed;color:#9a3412}}
+  .box.takeaway{{background:#ecfdf5;color:#065f46}}
   .box p{{margin:0 0 8px}}.box p:last-child{{margin:0}}
   .src{{font-size:13px;line-height:1.9;color:var(--mute)}}
   .src a{{color:var(--blue);text-decoration:none;border-bottom:1px solid #bfdbfe}}
@@ -113,6 +114,7 @@ WEB_HEAD = """<!doctype html>
     .tl{{border-color:#1f2937}} .tl li{{color:#cbd5e1}} .tl b{{color:#fff}}
     .box{{background:#1f2937;color:#cbd5e1}}
     .box.warn{{background:#3f2a15;color:#fdba74}}
+    .box.takeaway{{background:#064e3b;color:#a7f3d0}}
     .sec h3,.src{{color:#94a3b8}}
     .history{{background:#3f2a15;color:#fdba74}}
     .foot{{color:#64748b}}
@@ -383,9 +385,16 @@ def render_item_detail(item: dict) -> str:
             f'<div style="margin:4px 0;font-size:12.5px;line-height:1.75;color:#334155;">{esc(x)}</div>'
             for x in blk.get("lines", [])
         )
+        is_take = blk.get("type") == "takeaway"
+        bg = "#ecfdf5" if is_take else "#f8fafc"
+        fg = "#065f46" if is_take else "#334155"
+        lines = "".join(
+            f'<div style="margin:4px 0;font-size:12.5px;line-height:1.75;color:{fg};">{esc(x)}</div>'
+            for x in blk.get("lines", [])
+        )
         parts.append(
-            '<div style="margin-top:12px;padding:10px 12px;background:#f8fafc;border-radius:10px;">'
-            f'<div style="font-size:11px;letter-spacing:2px;color:#94a3b8;font-weight:700;margin-bottom:6px;">'
+            f'<div style="margin-top:12px;padding:10px 12px;background:{bg};border-radius:10px;">'
+            f'<div style="font-size:11px;letter-spacing:2px;color:{fg if is_take else "#94a3b8"};font-weight:700;margin-bottom:6px;">'
             f'{esc(blk.get("title", "分析"))}</div>{lines}</div>'
         )
     if w.get("timeline"):
@@ -537,7 +546,7 @@ def render_event_page(item: dict, date: str, section: str = "") -> str:
             parts.append(f"<li><b>{esc(d)}</b>{esc(txt)}</li>")
         parts.append("</ul></div>")
     for blk in w.get("blocks", []):
-        cls = "box warn" if blk.get("type") == "warn" else "box"
+        cls = {"warn": "box warn", "takeaway": "box takeaway"}.get(blk.get("type"), "box")
         lines = "".join(f"<p>{esc(x)}</p>" for x in blk.get("lines", []))
         parts.append(f'<div class="sec"><h3>{esc(blk.get("title", "分析"))}</h3><div class="{cls}">{lines}</div></div>')
     if w.get("sources"):
@@ -569,7 +578,7 @@ def render_web(brief: dict) -> str:
                 parts.append(f"<li><b>{esc(t)}</b>{esc(txt)}</li>")
             parts.append("</ul></div>")
         for blk in w.get("blocks", []):
-            cls = "box warn" if blk.get("type") == "warn" else "box"
+            cls = {"warn": "box warn", "takeaway": "box takeaway"}.get(blk.get("type"), "box")
             lines = "".join(f"<p>{esc(x)}</p>" for x in blk.get("lines", []))
             parts.append(f'<div class="sec"><h3>{esc(blk.get("title", ""))}</h3><div class="{cls}">{lines}</div></div>')
         if w.get("sources"):
@@ -596,7 +605,7 @@ def render_web(brief: dict) -> str:
                 parts.append(f"<li><b>{esc(t)}</b>{esc(txt)}</li>")
             parts.append("</ul></div>")
         for blk in w.get("blocks", []):
-            cls = "box warn" if blk.get("type") == "warn" else "box"
+            cls = {"warn": "box warn", "takeaway": "box takeaway"}.get(blk.get("type"), "box")
             lines = "".join(f"<p>{esc(x)}</p>" for x in blk.get("lines", []))
             parts.append(f'<div class="sec"><h3>{esc(blk.get("title", ""))}</h3><div class="{cls}">{lines}</div></div>')
         if w.get("sources"):
