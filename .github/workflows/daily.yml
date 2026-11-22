@@ -30,6 +30,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: 安装依赖
         run: pip install lxml
 
@@ -54,7 +58,11 @@ jobs:
           } > .env
           echo ".env 已写入（内容不打印）"
 
-      - name: 采集 → 聚类 → 出卡 → 发信
+      - name: 采集 → 聚类 → 出卡 → 部署网页版 → 发信
+        env:
+          TCB_ENV_ID: ${{ secrets.TCB_ENV_ID }}
+          TCB_SECRET_ID: ${{ secrets.TCB_SECRET_ID }}
+          TCB_SECRET_KEY: ${{ secrets.TCB_SECRET_KEY }}
         run: python scripts/run_daily.py --auto-brief
 
       - name: 失败通知

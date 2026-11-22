@@ -134,18 +134,13 @@ def main() -> int:
             else:
                 print("  ⚠ 模型改写失败，继续用抽取式初稿")
 
-    # 4. 发布每个事件的独立详情页（仅当配置了网页版地址时才发；国内境外托管都要 VPN，默认走邮件内联）
-    profile_text = (ROOT / "config" / "profile.toml").read_text(encoding="utf-8")
-    has_web = bool(__import__("re").search(r'web_base\s*=\s*"[^"]+"', profile_text))
-    published = ROOT / "config" / "brief.published.json"
-    if has_web:
+    # 4. 备用：发布到 telegra.ph（默认关闭；国内要 VPN，仅 TELEGRAPH_PUBLISH=1 时启用）
+    import os as _os
+    if _os.environ.get("TELEGRAPH_PUBLISH") == "1":
+        published = ROOT / "config" / "brief.published.json"
         ok, _ = run_step("发布详情页", ["scripts/publish_telegraph.py", "--brief", str(brief_path)], log_path)
         if ok and published.exists():
             brief_path = published
-        else:
-            print("  ⚠ 详情页发布失败，邮件里回退到内联详情")
-    else:
-        print("\n▶ 发布详情页: 跳过（web_base 为空，详情直接内联在邮件里）")
 
     ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:
@@ -157,7 +152,16 @@ def main() -> int:
         print(f"✗ 找不到 {card}")
         return 1
 
-    # 4. 发信（幂等）
+    # 5. 部署网页版（配了腾讯云 CloudBase 才部署；邮件里的链接指向它）
+    env_text = (ROOT / ".env").read_text(encoding="utf-8") if (ROOT / ".env").exists() else ""
+    if "TCB_ENV_ID" in env_text or _os.environ.get("TCB_ENV_ID"):
+        ok, _ = run_step("部署网页版", ["scripts/deploy_cloudbase.py"], log_path)
+        if not ok:
+            print("  ⚠ 网页版部署失败，邮件里的链接可能打不开")
+    else:
+        print("\n▶ 部署网页版: 跳过（未配置 TCB_ENV_ID）")
+
+    # 6. 发信（幂等）
     sent = load_sent()
     if not args.force and date in sent:
         print(f"\n▶ 发信: {date} 已在 {sent[date].get('sent_at')} 发过，跳过（--force 可强制重发）")
