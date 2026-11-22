@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: daily-brief
@@ -68,18 +68,6 @@ jobs:
       - name: 失败通知
         if: failure()
         run: python scripts/notify_failure.py || true
-
-      - name: 提交网页版和单事件页（供 GitHub 直接打开）
-        run: |
-          git config user.name "dailybrief"
-          git config user.email "dailybrief@local"
-          git add site/ briefs/
-          if ! git diff --cached --quiet; then
-            git commit -m "网页版 $(date +%F)"
-            git push
-          else
-            echo "网页版没有变化"
-          fi
 
       - name: 保留产物
         uses: actions/upload-artifact@v4
