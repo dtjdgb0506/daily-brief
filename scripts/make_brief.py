@@ -146,6 +146,8 @@ def build_item(event: dict, texts: dict[str, str], idx: int) -> dict:
     )
     body_pool = [texts.get(urls[k], "") for k in order]
     body_pool = [x for x in body_pool if x]
+    # 素材排序：有观点句的优先（分析文章 > 通稿）
+    body_pool.sort(key=lambda x: -sum(1 for m in OPINION_MARKERS if m in x))
     lede = pick_lede(body_pool)
     points = pick_points(body_pool)
     timeline = pick_timeline(body_pool)

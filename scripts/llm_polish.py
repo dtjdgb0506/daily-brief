@@ -26,19 +26,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-SYSTEM = """你是中文科技/财经日报的编辑。给你 5 条新闻（已经按事件聚合，每条附带原始标题和原文句子），
-请为每条写：一个能概括事件的陈述句标题（不超过 26 字，绝对不要问句、不要“为什么/如何”开头）、
-一句话导语（40~70 字，信息量足）、三条要点（每条约 40~70 字，要点里的数字必须来自给定材料）。
-每条再给 3 条「对普通人的启示 / 能学到什么 / 怎么用」——要具体、可执行，不要“保持关注”这种空话。
-另外给 3 条「值得琢磨的问题」：要有反常识的假设或悬念（例如“他是不是故意借绯闻保命”），不要复述事实。
-再为“后续”那条写同样结构的内容。
-严格输出 JSON，不要 markdown 代码块，格式：
+SYSTEM = """你是中文日报的编辑，读者是普通人，不是官员。你的任务是把当天素材写成“人能读明白的分析”。
+
+硬性规则：
+1. 只用具体的东西说话：动作、数字、公司/人名、时间。不写官话套话。
+2. 以下词一律不许出现在成稿里：高质量发展、深入实施、动能向新、结构向优、统筹推进、持续发力、多措并举、纵深推进、扎实推进、全面贯彻、贯彻落实、提质增效、激发活力、释放潜能、新质生产力、赋能、抓手、闭环、落地见效、走深走实、形成合力。
+3. 素材里如果只有官话（比如“消费潜能不断释放”），你要把它翻译成人话：哪个行业、哪个品类、哪群人、变化了多少；找不到具体信息，就写“原文只有宏观表述，没有给出具体数据”，不要替它编。
+4. 每条新闻的输出结构：
+   - title：陈述句，不超过 26 字，不要问号，不要“为什么/如何”
+   - lede：发生了什么，40~70 字，带最关键的数字
+   - points：固定 3 条：① 关键事实（数字/动作）② 为什么重要或意味着什么 ③ 接下来看什么（时间/节点/悬念）
+   - takeaway：3 条「对普通人有什么用」，要能执行（看什么指标、做什么判断）
+   - questions：3 条「值得琢磨的问题」，要有反常识的假设或悬念，不要复述事实
+5. 数字必须来自素材，不能编。
+严格输出 JSON（不要 markdown 代码块）：
 {"items":[{"event_id":"e1","title":"...","lede":"...","points":["...","...","..."],
-           "takeaway":["...","...","..."],
-           "questions":["...","...","..."]}, ...],
- "followup":{"event_id":"eX","title":"...","lede":"...","points":["...","...","..."],
-             "takeaway":["...","...","..."],
-             "questions":["...","...","..."]}}"""
+           "takeaway":["...","...","..."],"questions":["...","...","..."]}, ...],
+ "followup":{"event_id":"eX","title":"...","lede":"...","points":["..."],"takeaway":["..."],"questions":["..."]}}"""
 
 
 def load_env_dict() -> dict:
@@ -79,13 +83,13 @@ def build_prompt(draft: dict) -> str:
     return "\n".join(lines)
 
 
-def call_llm(cfg: dict, prompt: str, timeout: int = 90) -> str:
+def call_llm(cfg: dict, prompt: str, timeout: int = 90, extra: str = "") -> str:
     url = cfg.get("LLM_BASE_URL", "https://api.deepseek.com/v1").rstrip("/") + "/chat/completions"
     body = json.dumps({
         "model": cfg.get("LLM_MODEL", "deepseek-chat"),
         "messages": [
             {"role": "system", "content": SYSTEM},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": prompt + ("\n\n" + extra if extra else "")},
         ],
         "temperature": 0.3,
         "response_format": {"type": "json_object"},
@@ -188,6 +192,27 @@ def main() -> int:
     raw = call_llm(cfg, prompt)
     llm = parse_json_block(raw)
     brief = merge(draft, llm)
+
+    from jargon import strong_jargon_hits
+
+    def all_text(b: dict) -> str:
+        parts = []
+        for it in b.get("items", []):
+            parts.append(it.get("title", "") + it.get("lede", ""))
+            parts.extend(p[1] for p in it.get("points", []))
+        fu = b.get("followup") or {}
+        parts.append(fu.get("title", "") + fu.get("lede", ""))
+        return "".join(parts)
+
+    if strong_jargon_hits(all_text(brief)) >= 4:
+        print("  官话太多，要求模型重写一遍……")
+        raw2 = call_llm(cfg, prompt, extra=(
+            "上一版官话太多。请把每条都改写成具体的人话："
+            "不许出现“高质量发展/深入实施/动能向新/结构向优/统筹推进/释放潜能/赋能/抓手”等词，"
+            "把套话换成具体的行业、数字、人群、动作。数字仍必须来自素材。"))
+        brief2 = merge(draft, parse_json_block(raw2))
+        if strong_jargon_hits(all_text(brief2)) < strong_jargon_hits(all_text(brief)):
+            brief = brief2
     Path(args.out).write_text(json.dumps(brief, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"已改写并写入 {args.out}")
     for it in brief["items"]:

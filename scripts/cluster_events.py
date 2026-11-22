@@ -31,6 +31,8 @@ import math
 import re
 import sys
 import tomllib
+
+from jargon import jargon_hits
 from collections import Counter
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -606,6 +608,14 @@ def main() -> int:
         cat, cat_labels, cat_counts = category_of(title_blob, body_blob, weights)
         cat_weight = max(weights.get(cat, 20), 1) / 100
         scale = 1 + 0.25 * math.log2(1 + len(members))
+        blob = " ".join(articles[i]["text"][:2000] for i in members)
+        opinion_hits = sum(1 for m in ("认为", "指出", "表示", "预计", "担忧", "分析", "评论",
+                                       "警告", "said", "according to", "analyst", "argued", "warned")
+                           if m in blob)
+        jarg = jargon_hits(title_blob + blob)
+        analysis_factor = 1 + 0.12 * min(opinion_hits, 4)   # 有人分析 → 加分
+        plain_factor = 1 - 0.08 * min(jarg, 5)              # 官话越多 → 降权
+
         ages = [age_hours(articles[i].get("published", "")) for i in members]
         known = [a for a in ages if a >= 0]
         if known and min(known) > 48:
@@ -634,9 +644,10 @@ def main() -> int:
             "id": None,
             "category": cat,
             "tags": cat_labels,
-            "score": round(cat_weight * scale * fresh * diversity * 100, 2),
+            "score": round(cat_weight * scale * fresh * diversity * analysis_factor * plain_factor * 100, 2),
             "article_count": len(members),
             "source_count": n_sources,
+            "readability": {"opinion": opinion_hits, "jargon": jarg},
             "source_names": sorted({articles[i].get("source", "") for i in members if articles[i].get("source")}),
             "freshness": round(fresh, 3),
             "representative_title": rep_title,

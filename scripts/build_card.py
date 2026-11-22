@@ -25,6 +25,8 @@ import json
 import re
 import sys
 from datetime import datetime
+
+from jargon import strong_jargon_hits
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -207,6 +209,9 @@ def validate(brief: dict, events: dict | None) -> tuple[list[str], list[str]]:
                 errors.append(f"出处重复：{url}")
             seen_urls.add(url)
         blob = it.get("lede", "") + "".join(p[1] for p in it.get("points", []))
+        jarg = strong_jargon_hits(it.get("title", "") + blob)
+        if jarg >= 3:
+            warns.append(f"第 {i} 条官话太多（{jarg} 处套话），建议改成具体的人话")
         if not (it.get("web") or {}).get("sources"):
             if number_re.search(blob):
                 errors.append(f"第 {i} 条正文有具体数字但没有出处（{number_re.search(blob).group(0)}）")
