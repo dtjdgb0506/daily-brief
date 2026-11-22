@@ -45,7 +45,7 @@ STOP_BIGRAMS = {
     "没有", "什么", "怎么", "如果", "而且", "并且", "同时", "目前", "表示", "认为",
 }
 
-CATEGORY_LEXICON = {
+DEFAULT_LEXICON = {
     "tech": [
         "AI", "人工智能", "大模型", "模型", "芯片", "半导体", "英伟达", "NVIDIA", "OpenAI",
         "Anthropic", "Claude", "GPT", "算力", "数据中心", "机器人", "自动驾驶", "量子",
@@ -65,8 +65,8 @@ CATEGORY_LEXICON = {
     ],
 }
 
-# 实体别名：同一实体的中英文/繁简体写法，用于跨语言、跨来源合并同一事件
-ENTITY_ALIASES = {
+# 实体别名：同一实体的中英文/繁简体写法（config/entities.toml 可覆盖）
+DEFAULT_ALIASES = {
     "people": {
         "黄仁勋": ["黄仁勋", "黃仁勳", "Jensen Huang"],
         "特朗普": ["特朗普", "川普", "Trump"],
@@ -83,6 +83,42 @@ ENTITY_ALIASES = {
         "亚马逊": ["亚马逊", "Amazon", "AWS"],
     },
 }
+
+
+# 运行时可被 config/ 覆盖的词表与别名
+LEXICON: dict[str, list[str]] = {k: list(v) for k, v in DEFAULT_LEXICON.items()}
+TITLE_RULES: dict[str, list[str]] = {}
+ENTITY_ALIASES: dict[str, dict[str, list[str]]] = {
+    "people": {k: list(v) for k, v in DEFAULT_ALIASES["people"].items()},
+    "companies": {k: list(v) for k, v in DEFAULT_ALIASES["companies"].items()},
+}
+
+
+def load_config_tables(profile: dict) -> None:
+    """从 config/lexicon.toml + entities.toml 覆盖默认词表；watch 里的对象自动补别名。"""
+    global LEXICON, TITLE_RULES, ENTITY_ALIASES
+    lex_path = ROOT / "config" / "lexicon.toml"
+    if lex_path.exists():
+        with lex_path.open("rb") as f:
+            data = tomllib.load(f)
+        for cat, block in data.get("lexicon", {}).items():
+            LEXICON[cat] = list(block.get("words", []))
+        TITLE_RULES = {k: list(v) for k, v in data.get("title_rules", {}).items()}
+    watch = profile.get("watch", {})
+    for canon in watch.get("people", []):
+        ENTITY_ALIASES["people"].setdefault(canon, [canon])
+    for canon in watch.get("companies", []):
+        ENTITY_ALIASES["companies"].setdefault(canon, [canon])
+    ent_path = ROOT / "config" / "entities.toml"
+    if ent_path.exists():
+        with ent_path.open("rb") as f:
+            data = tomllib.load(f)
+        for kind in ("people", "companies"):
+            for canon, aliases in data.get(kind, {}).items():
+                current = ENTITY_ALIASES[kind].setdefault(canon, [canon])
+                for a in aliases:
+                    if a not in current:
+                        current.append(a)
 
 SOURCE_SUFFIX = re.compile(
     r"\s*(?:[_|｜]\s*[^_|｜]{0,30}.*"
@@ -186,6 +222,10 @@ def load_articles(raw_dir: Path) -> list[dict]:
             continue
         text_path = js.with_suffix(".txt")
         text = text_path.read_text(encoding="utf-8", errors="ignore") if text_path.exists() else ""
+        title = meta.get("title", "") or js.stem
+        # 抓取失败/只剩导航的稿子不要：标题太短、正文太短、标题就是站名
+        if len(title.strip()) < 6 or len(text.strip()) < 120:
+            continue
         published = meta.get("published", "") or ""
         if not published:
             try:
@@ -332,15 +372,66 @@ def display_keywords(tokens: list[str], limit: int = 6) -> list[str]:
     return out
 
 
-def category_of(tokens: Counter, weights: dict) -> tuple[str, dict]:
-    counts = {}
-    for cat, words in CATEGORY_LEXICON.items():
-        counts[cat] = sum(tokens.get(w.lower(), 0) for w in words if w.lower() in tokens)
+def category_of(title_blob: str, body_blob: str, weights: dict) -> tuple[str, list[str], dict]:
+    """一个事件可以有多个类别标签，排序时按权重最高的那个算。
+
+    标题命中给 3 分、正文给 1 分；[title_rules] 里的动作词命中标题额外 +3。
+    直接数词在原文里出现的次数（而不是 bigram 词表），避免“英伟达”这种 3 字词永远匹配不上。
+    """
+    t_low, b_low = title_blob.lower(), body_blob.lower()
+    counts: dict[str, int] = {}
+    for cat, words in LEXICON.items():
+        counts[cat] = sum(t_low.count(w.lower()) * 3 + b_low.count(w.lower()) for w in words)
+    for cat, words in TITLE_RULES.items():
+        hits = sum(1 for w in words if w.lower() in t_low)
+        counts[cat] = counts.get(cat, 0) + hits * 3
     if not any(counts.values()):
-        return "other", counts
-    weighted = {c: counts[c] * max(weights.get(c, 1), 1) for c in counts}
-    best = max(weighted, key=weighted.get)
-    return best, weighted
+        return "other", [], counts
+    # 类别只按“证据多少”判断（权重只用于排序打分，否则 tech 权重 50 会让一切归科技）
+    order = sorted((c for c in counts if counts[c] > 0), key=lambda c: counts[c], reverse=True)
+    return order[0], order[:2], counts
+
+
+def age_hours(published: str, now: datetime | None = None) -> float:
+    now = now or datetime.now()
+    try:
+        dt = datetime.fromisoformat(published).replace(tzinfo=None)
+    except (TypeError, ValueError):
+        return 0.0
+    return max(0.0, (now - dt).total_seconds() / 3600)
+
+
+def freshness_factor(published_ages: list[float], half_life: float) -> float:
+    if not published_ages:
+        return 1.0
+    age = min(published_ages)  # 以事件里最新的一篇算新鲜度
+    return max(0.6, 0.5 ** (age / max(half_life, 1)))
+
+
+def pick_with_quota(events: list[dict], top: int, quota: int) -> list[dict]:
+    """先按得分取前 N，再处理“同一类太多”：把超配额类别里分数最低的换成别类最高分的。"""
+    picked = list(events[:top])
+    if quota <= 0:
+        return picked
+    for _ in range(2):
+        counts: Counter = Counter(e["category"] for e in picked)
+        worst = max(counts, key=counts.get)
+        if counts[worst] <= quota:
+            break
+        same = [e for e in picked if e["category"] == worst]
+        if len(same) <= 1:
+            break
+        drop = min(same, key=lambda e: e["score"])
+        pool = [e for e in events if e not in picked]
+        if not pool:
+            break
+        pool.sort(key=lambda e: (e["category"] == worst, -e["score"]))
+        if pool[0]["score"] < drop["score"] * 0.7:
+            break  # 换来的比换掉的差太多，宁可不换，别为了多样性牺牲质量
+        picked.remove(drop)
+        picked.append(pool[0])
+    picked.sort(key=lambda e: e["score"], reverse=True)
+    return picked
 
 
 def main() -> int:
@@ -351,7 +442,8 @@ def main() -> int:
     parser.add_argument("--dir", default=str(ROOT / "output" / "raw"))
     parser.add_argument("--fixture", default=None)
     parser.add_argument("--top", type=int, default=None)
-    parser.add_argument("--threshold", type=float, default=0.30)
+    parser.add_argument("--max-per-category", type=int, default=None)
+    parser.add_argument("--threshold", type=float, default=None, help="默认取 profile.toml [cluster].threshold")
     parser.add_argument("--window-hours", type=int, default=24, help="只看这个时间窗内的稿件")
     parser.add_argument("--history-days", type=int, default=7, help="过去几天算“前七天”")
     parser.add_argument("--date", default=None, help="运行日期（默认今天），用于归档路径")
@@ -362,7 +454,11 @@ def main() -> int:
     args = parser.parse_args()
 
     profile = load_profile()
+    load_config_tables(profile)
     weights = profile.get("weights", {})
+    cluster_cfg = profile.get("cluster", {})
+    if args.threshold is None:
+        args.threshold = float(cluster_cfg.get("threshold", 0.30))
     top = args.top or int(profile.get("delivery", {}).get("items", 5))
     run_date = args.date or datetime.now().date().isoformat()
     cutoff = datetime.now() - timedelta(hours=args.window_hours)
@@ -411,13 +507,20 @@ def main() -> int:
         clusters.setdefault(dsu.find(i), []).append(i)
 
     events = []
+    half_life = float(cluster_cfg.get("freshness_half_life_hours", 24))
     for members in clusters.values():
         cat_tokens: Counter = Counter()
         for i in members:
             cat_tokens.update(docs[i])
-        cat, cat_counts = category_of(cat_tokens, weights)
+        title_blob = " ".join(articles[i]["title"] for i in members)
+        body_blob = " ".join(articles[i]["text"][:3000] for i in members)
+        cat, cat_labels, cat_counts = category_of(title_blob, body_blob, weights)
         cat_weight = max(weights.get(cat, 20), 1) / 100
         scale = 1 + 0.25 * math.log2(1 + len(members))
+        ages = [age_hours(articles[i].get("published", "")) for i in members]
+        fresh = freshness_factor(ages, half_life)
+        n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
+        diversity = 1 + 0.1 * min(n_sources, 3)
         members_sorted = sorted(members, key=lambda i: -len(articles[i]["text"]))
         rep = members_sorted[0]
         person_aliases = [a for al in ENTITY_ALIASES["people"].values() for a in al]
@@ -436,8 +539,11 @@ def main() -> int:
         events.append({
             "id": None,
             "category": cat,
-            "score": round(cat_weight * scale * 100, 2),
+            "tags": cat_labels,
+            "score": round(cat_weight * scale * fresh * diversity * 100, 2),
             "article_count": len(members),
+            "source_count": n_sources,
+            "freshness": round(fresh, 3),
             "representative_title": rep_title,
             "keywords": display_keywords([w for w, _ in Counter(cat_tokens).most_common(24)]),
             "article_ids": members,
@@ -462,14 +568,15 @@ def main() -> int:
 
     # 主推永远是今天得分最高的 N 条（哪怕它本身是某个旧故事的延续）；
     # 第六点从“没挤进主推、但和前七天事件对得上”的事件里挑一条最重要的。
-    main = events[:top]
+    main = pick_with_quota(events, top, int(cluster_cfg.get("max_per_category", 3)))
     main_ids = {e["id"] for e in main}
     follow_candidates = sorted(
         [e for e in events if e["is_followup"] and e["id"] not in main_ids],
         key=lambda e: e["importance"],
         reverse=True,
     )
-    follow = next((c for c in follow_candidates if c["importance"] >= 0.4), None)
+    follow_min = float(cluster_cfg.get("followup_min_importance", 0.4))
+    follow = next((c for c in follow_candidates if c["importance"] >= follow_min), None)
 
     warnings = []
     if len(main) < top:

@@ -1,14 +1,27 @@
 """发送一封 HTML 邮件（复用同一套 .env 配置）。
 
-用法: python scripts/send_html.py --subject "..." --html output/xxx.html [--to 地址] [--text 纯文本]
+用法:
+  python scripts/send_html.py --subject "..." --html output/card-2026-11-22.html
+  python scripts/send_html.py --subject "..." --html x.html --to a@b.com --cc c@d.com
+  python scripts/send_html.py --subject "..." --html x.html --dry-run
+
+特性:
+  - 自动补 Date / Message-ID 头（很多邮箱缺这两个会更容易被判垃圾）
+  - 465 SSL 失败时自动回退 587 STARTTLS
+  - 失败重试 3 次（间隔 2s / 4s）
+  - --dry-run 只打印，不连服务器
 """
+
+from __future__ import annotations
 
 import argparse
 import re
 import smtplib
 import ssl
 import sys
+import time
 from email.message import EmailMessage
+from email.utils import formatdate, make_msgid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,12 +48,65 @@ def html_to_text(markup: str) -> str:
     return text.strip()
 
 
+def build_message(cfg: dict, subject: str, html: str, text: str | None,
+                  to_addr: str, cc: str | None) -> EmailMessage:
+    sender = cfg.get("MAIL_FROM", cfg["MAIL_USER"])
+    from_name = cfg.get("MAIL_FROM_NAME", "每日情报")
+
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = f'"{from_name}" <{sender}>'
+    msg["To"] = to_addr
+    if cc:
+        msg["Cc"] = cc
+    msg["Date"] = formatdate(localtime=True)
+    msg["Message-ID"] = make_msgid(domain="dailybrief.local")
+    msg.set_content(text or html_to_text(html))
+    msg.add_alternative(html, subtype="html")
+    return msg
+
+
+def deliver(cfg: dict, msg: EmailMessage, dry_run: bool) -> None:
+    if dry_run:
+        print(f"[dry-run] 将发送给 {msg['To']}，主题：{msg['Subject']}")
+        return
+
+    host = cfg["MAIL_SMTP_HOST"]
+    last_error: Exception | None = None
+    for attempt in range(1, 4):
+        for mode, port in (("ssl", int(cfg.get("MAIL_SMTP_PORT", 465))),
+                           ("starttls", int(cfg.get("MAIL_SMTP_PORT_STARTTLS", 587)))):
+            try:
+                ctx = ssl.create_default_context()
+                if mode == "ssl":
+                    with smtplib.SMTP_SSL(host, port, context=ctx, timeout=30) as server:
+                        server.login(cfg["MAIL_USER"], cfg["MAIL_PASS"])
+                        server.send_message(msg)
+                else:
+                    with smtplib.SMTP(host, port, timeout=30) as server:
+                        server.starttls(context=ctx)
+                        server.login(cfg["MAIL_USER"], cfg["MAIL_PASS"])
+                        server.send_message(msg)
+                print(f"发送成功（{mode}:{port}，第 {attempt} 次尝试）")
+                return
+            except (smtplib.SMTPException, OSError) as exc:
+                last_error = exc
+                print(f"  {mode}:{port} 失败：{type(exc).__name__}: {exc}")
+        time.sleep(2 ** attempt)
+    raise RuntimeError(f"3 次重试都失败：{last_error}")
+
+
 def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--subject", required=True)
     parser.add_argument("--html", required=True)
     parser.add_argument("--to", default=None)
-    parser.add_argument("--text", default=None)
+    parser.add_argument("--cc", default=None)
+    parser.add_argument("--text", default=None, help="纯文本正文（默认由 HTML 自动生成）")
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
     cfg = load_env(ROOT / ".env")
@@ -50,21 +116,10 @@ def main() -> int:
     html = html_path.read_text(encoding="utf-8")
 
     to_addr = args.to or cfg["MAIL_TO"]
-    sender = cfg.get("MAIL_FROM", cfg["MAIL_USER"])
-    from_name = cfg.get("MAIL_FROM_NAME", "每日情报")
-
-    msg = EmailMessage()
-    msg["Subject"] = args.subject
-    msg["From"] = f'"{from_name}" <{sender}>'
-    msg["To"] = to_addr
-    msg.set_content(args.text or html_to_text(html))
-    msg.add_alternative(html, subtype="html")
-
-    ctx = ssl.create_default_context()
-    with smtplib.SMTP_SSL(cfg["MAIL_SMTP_HOST"], int(cfg["MAIL_SMTP_PORT"]), context=ctx, timeout=30) as server:
-        server.login(cfg["MAIL_USER"], cfg["MAIL_PASS"])
-        server.send_message(msg)
-    print(f"发送成功 -> {to_addr} | 主题: {args.subject}")
+    msg = build_message(cfg, args.subject, html, args.text, to_addr, args.cc)
+    deliver(cfg, msg, args.dry_run)
+    if not args.dry_run:
+        print(f"发送成功 -> {to_addr} | 主题: {args.subject}")
     return 0
 
 

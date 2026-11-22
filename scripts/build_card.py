@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -119,7 +120,7 @@ WEB_HEAD = """<!doctype html>
 
 WEB_FOOT = """  <div class="foot">
     每日情报 · 网页版 · {date} · 5 条新闻 + 1 条后续 · 所有事实与数字均来自上方链接原文。<br>
-    生成于 {gen}
+    生成于 {gen} · <a href="../" style="color:#1d4ed8;text-decoration:none;">← 往期回顾</a>
   </div>
   </div>
 </div>
@@ -157,6 +158,8 @@ def validate(brief: dict, events: dict | None) -> tuple[list[str], list[str]]:
         errors.append(f"新闻只有 {len(items)} 条，太少")
 
     seen_urls: set[str] = set()
+    seen_titles: set[str] = set()
+    number_re = re.compile(r"\d+(?:\.\d+)?\s*(?:%|亿|万|美元|倍)")
     event_ids = set()
     if events:
         event_ids = {e["id"] for e in events.get("events", [])}
@@ -167,6 +170,9 @@ def validate(brief: dict, events: dict | None) -> tuple[list[str], list[str]]:
             errors.append(f"第 {i} 条没有标题")
         elif title.strip().endswith(BAD_TITLE_END):
             errors.append(f"第 {i} 条标题是问句（{title}），要改成概括事件的陈述句")
+        if title in seen_titles:
+            errors.append(f"第 {i} 条标题和第 {i-1} 条重复：{title}")
+        seen_titles.add(title)
         if len(title) > 40:
             warns.append(f"第 {i} 条标题 {len(title)} 字，邮件里会折行，建议压到 30 字内")
         if not it.get("lede"):
@@ -184,8 +190,12 @@ def validate(brief: dict, events: dict | None) -> tuple[list[str], list[str]]:
             elif url in seen_urls:
                 errors.append(f"出处重复：{url}")
             seen_urls.add(url)
+        blob = it.get("lede", "") + "".join(p[1] for p in it.get("points", []))
         if not (it.get("web") or {}).get("sources"):
-            warns.append(f"第 {i} 条没有出处")
+            if number_re.search(blob):
+                errors.append(f"第 {i} 条正文有具体数字但没有出处（{number_re.search(blob).group(0)}）")
+            else:
+                warns.append(f"第 {i} 条没有出处")
 
     fu = brief.get("followup")
     if fu:
@@ -204,6 +214,48 @@ def render_points(points: list, font_size: float = 14.5, border: str = "#e8edf3"
             f'<strong style="color:#0f172a;">{esc(label)}</strong>{esc(text)}</td></tr>'
         )
     return f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{"".join(rows)}</table>'
+
+ARCHIVE_TMPL = """<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>每日情报 · 往期</title>
+<style>
+  body{{margin:0;background:#eef1f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;color:#1e293b}}
+  .wrap{{max-width:640px;margin:0 auto;padding:20px 10px 60px}}
+  .head{{background:#0b1220;border-radius:14px 14px 0 0;padding:22px 26px;color:#93a3bd}}
+  .head .kicker{{font-size:11px;letter-spacing:3px;font-weight:700;color:#7c8aa5}}
+  .head h1{{margin:8px 0 0;font-size:20px;color:#fff}}
+  .card{{background:#fff;border-radius:0 0 14px 14px;padding:10px 26px 24px}}
+  .row{{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid #e8edf3;text-decoration:none;color:inherit}}
+  .row:last-child{{border-bottom:0}}
+  .row b{{font-size:15px;color:#0f172a}}
+  .row span{{font-size:13px;color:#64748b;text-align:right}}
+  .row:hover b{{color:#1d4ed8}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><div class="kicker">DAILY BRIEF</div><h1>往期</h1></div>
+  <div class="card">{rows}</div>
+</div>
+</body>
+</html>
+"""
+
+
+def render_archive(entries: list[tuple[str, str, int, int]]) -> str:
+    if not entries:
+        rows = '<div class="row"><b>还没有往期</b></div>'
+    else:
+        rows = "".join(
+            f'<a class="row" href="./{d}/"><b>{d}</b>'
+            f'<span>{esc(title)[:24]} · {n} 条' + (f' + {f} 条后续' if f else "") + '</span></a>'
+            for d, title, n, f in entries
+        )
+    return ARCHIVE_TMPL.format(rows=rows)
 
 
 def render_card(brief: dict, link_prefix: str) -> str:
@@ -394,6 +446,9 @@ def main() -> int:
     out_dir = ROOT / "output"
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    if "example.com" in base:
+        print("  ⚠ web_base 还是占位符 example.com——正式发信前改 config/profile.toml")
+
     web = render_web(brief)
     (site_dir / "index.html").write_text(web, encoding="utf-8")
     send_card = render_card(brief, f"{base}/{date}/")
@@ -401,6 +456,27 @@ def main() -> int:
 
     rel = render_card(brief, "index.html")
     (site_dir / "card-preview.html").write_text(rel, encoding="utf-8")
+
+    # 元数据 + 往期索引
+    meta = {
+        "date": date,
+        "doc_title": brief.get("doc_title", ""),
+        "items": len(brief.get("items", [])),
+        "followup": 1 if brief.get("followup") else 0,
+        "built_at": datetime.now().isoformat(timespec="seconds"),
+    }
+    (site_dir / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    entries = []
+    for d in sorted((p.name for p in (ROOT / "site").iterdir() if p.is_dir()), reverse=True):
+        mf = ROOT / "site" / d / "meta.json"
+        if not mf.exists():
+            continue
+        try:
+            m = json.loads(mf.read_text(encoding="utf-8-sig"))
+        except json.JSONDecodeError:
+            continue
+        entries.append((d, m.get("doc_title", ""), int(m.get("items", 0)), int(m.get("followup", 0))))
+    (ROOT / "site" / "index.html").write_text(render_archive(entries), encoding="utf-8")
     print(f"网页版: {site_dir / 'index.html'}")
     print(f"发送用卡片: {out_dir / f'card-{date}.html'}（链接 {base}/{date}/#pN）")
     print(f"本地预览: {site_dir / 'card-preview.html'}")

@@ -1,0 +1,19 @@
+# 实体别名表：key 是规范名，数组里是各种写法（简体/繁体/英文）。
+# 注意：TOML 的裸 key 只允许 ASCII，中文 key 必须加引号。
+# cluster_events.py 用它把不同媒体的同一实体并到一起。
+# profile.toml 的 [watch] 里出现、但这里没配的，自动用名字本身当别名。
+
+[people]
+"黄仁勋" = ["黄仁勋", "黃仁勳", "Jensen Huang"]
+"特朗普" = ["特朗普", "川普", "Trump"]
+"鲍威尔" = ["鲍威尔", "Powell"]
+"马斯克" = ["马斯克", "Musk"]
+
+[companies]
+"英伟达" = ["英伟达", "輝達", "辉达", "NVIDIA", "Nvidia"]
+"OpenAI" = ["OpenAI"]
+"Anthropic" = ["Anthropic", "Claude"]
+"谷歌" = ["谷歌", "Google"]
+"微软" = ["微软", "Microsoft"]
+"台积电" = ["台积电", "TSMC"]
+"亚马逊" = ["亚马逊", "Amazon", "AWS"]
