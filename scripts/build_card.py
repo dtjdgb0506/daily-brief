@@ -54,7 +54,7 @@ CARD_HEAD = """<!doctype html>
 CARD_FOOT = """<tr><td style="padding:28px 26px 26px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e2e8f0;">
   <tr><td style="padding-top:14px;font-size:12px;line-height:1.9;color:#94a3b8;">
-    每天 07:30 发出 · 5 条新闻 + 1 条后续 · 点标题进网页版看完整时间线和出处。<br>
+    每天 07:30 发出 · 5 条新闻 + 1 条后续 · 时间线和出处都在这封邮件里。<br>
     生成于 {gen} · 校验通过。
   </td></tr>
   </table>
@@ -292,9 +292,13 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             f'border-radius:999px;padding:4px 10px;font-weight:700;">{esc(it.get("tag", ""))}</span>'
         )
         fs = 24 if idx == 1 else 21
+        title_inner = esc(it.get("title", ""))
+        if link_prefix:
+            title_inner = (f'<a href="{link_prefix}#p{idx}" '
+                           f'style="color:#0f172a;text-decoration:none;">{title_inner}</a>')
         out.append(
             f'<{h} style="margin:12px 0 10px;font-size:{fs}px;line-height:1.4;color:#0f172a;font-weight:700;">'
-            f'<a href="{link_prefix}#p{idx}" style="color:#0f172a;text-decoration:none;">{esc(it.get("title", ""))}</a></{h}>'
+            f'{title_inner}</{h}>'
         )
         out.append(
             f'<p style="margin:0 0 8px;font-size:15px;line-height:1.8;color:#1e293b;font-weight:600;">'
@@ -319,11 +323,14 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
                 f'style="font-size:13.5px;line-height:1.8;color:#334155;">{rows}</table>'
             )
-        hint = it.get("detail_hint", "")
-        out.append(
-            f'<a href="{link_prefix}#p{idx}" style="display:inline-block;margin-top:10px;font-size:13.5px;'
-            f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(hint)} →</a>'
-        )
+        if link_prefix:
+            hint = it.get("detail_hint", "")
+            out.append(
+                f'<a href="{link_prefix}#p{idx}" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(hint)} →</a>'
+            )
+        elif email_detail:
+            out.append(render_item_detail(it))
         out.append("</td></tr>")
 
     fu = brief.get("followup")
@@ -349,17 +356,44 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
                 f'<div style="margin-top:12px;font-size:12.5px;color:#9a3412;">'
                 f'来自 {esc(hist.get("date", ""))} 的事件：{esc(hist.get("title", ""))}</div>'
             )
-        out.append(
-            f'<a href="{link_prefix}#f1" style="display:inline-block;margin-top:10px;font-size:13.5px;'
-            f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(fu.get("detail_hint", ""))} →</a>'
-        )
+        if link_prefix:
+            out.append(
+                f'<a href="{link_prefix}#f1" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(fu.get("detail_hint", ""))} →</a>'
+            )
+        elif email_detail:
+            out.append(render_item_detail(fu))
         out.append("</td></tr>")
-
-    if email_detail:
-        out.append(render_email_details(brief))
 
     out.append(CARD_FOOT.format(gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
     return "\n".join(out)
+
+
+
+def render_item_detail(item: dict) -> str:
+    """邮件自包含模式：时间线 + 出处直接跟在新闻下面。"""
+    w = item.get("web") or {}
+    parts = []
+    if w.get("timeline"):
+        rows = "".join(
+            f'<tr><td style="padding:2px 10px 2px 0;white-space:nowrap;vertical-align:top;'
+            f'font-size:12px;color:#64748b;">{esc(d)}</td>'
+            f'<td style="padding:2px 0;font-size:12.5px;line-height:1.75;color:#475569;">{esc(txt)}</td></tr>'
+            for d, txt in w["timeline"][:8]
+        )
+        parts.append(
+            '<div style="margin-top:12px;padding:10px 12px;background:#f8fafc;border-radius:10px;">'
+            '<div style="font-size:11px;letter-spacing:2px;color:#94a3b8;font-weight:700;margin-bottom:6px;">时间线</div>'
+            f'<table role="presentation" cellpadding="0" cellspacing="0">{rows}</table></div>'
+        )
+    if w.get("sources"):
+        links = " · ".join(
+            f'<a href="{esc(s.get("url", ""))}" style="color:#1d4ed8;text-decoration:none;">'
+            f'{esc(s.get("label", "")[:38])}</a>'
+            for s in w["sources"][:5]
+        )
+        parts.append(f'<div style="margin-top:8px;font-size:11.5px;line-height:1.9;color:#94a3b8;">出处：{links}</div>')
+    return "".join(parts)
 
 
 def render_email_details(brief: dict) -> str:
@@ -545,7 +579,7 @@ def main() -> int:
         entries.append((d, m.get("doc_title", ""), int(m.get("items", 0)), int(m.get("followup", 0))))
     (ROOT / "site" / "index.html").write_text(render_archive(entries), encoding="utf-8")
     print(f"网页版: {site_dir / 'index.html'}")
-    print(f"发送用卡片: {out_dir / f'card-{date}.html'}（邮件自带详情，标题跳段内锚点）")
+    print(f"发送用卡片: {out_dir / f'card-{date}.html'}（详情已内联，无需点链接）")
     print(f"本地预览: {site_dir / 'card-preview.html'}")
     return 0
 
