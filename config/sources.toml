@@ -60,26 +60,10 @@ url = "https://www.chinanews.com.cn/rss/finance.xml"
 category = "finance"
 
 [[feed]]
-name = "Nikkei Asia"
-url = "https://asia.nikkei.com/rss/feed/nar"
-category = "finance"
-
-[[feed]]
-name = "Economist"
-url = "https://www.economist.com/finance-and-economics/rss.xml"
-category = "finance"
-
-[[feed]]
 name = "FT World"
 url = "https://www.ft.com/world?format=rss"
 category = "finance"
 
-[[feed]]
-name = "WSJ World"
-url = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
-category = "finance"
-
-# —— 政治 / 国际 ——
 [[feed]]
 name = "新华网-国际"
 url = "http://www.xinhuanet.com/world/news_world.xml"
@@ -116,11 +100,6 @@ url = "https://www.aljazeera.com/xml/rss/all.xml"
 category = "politics"
 
 [[feed]]
-name = "DW World"
-url = "https://rss.dw.com/rdf/rss-en-world"
-category = "politics"
-
-[[feed]]
 name = "France24"
 url = "https://www.france24.com/en/rss"
 category = "politics"
@@ -137,11 +116,6 @@ url = "https://foreignpolicy.com/feed/"
 category = "politics"
 
 [[feed]]
-name = "Foreign Affairs"
-url = "https://www.foreignaffairs.com/rss.xml"
-category = "politics"
-
-[[feed]]
 name = "Project Syndicate"
 url = "https://www.project-syndicate.org/rss"
 category = "politics"
@@ -152,16 +126,73 @@ url = "https://thediplomat.com/feed/"
 category = "politics"
 
 [[feed]]
-name = "CSIS"
-url = "https://www.csis.org/analysis/feed"
-category = "politics"
-
-[[feed]]
-name = "Brookings"
-url = "https://www.brookings.edu/feed/"
-category = "politics"
-
-[[feed]]
 name = "War on the Rocks"
 url = "https://warontherocks.com/feed/"
+category = "politics"
+
+
+# —— 国际源补充（第二轮） ——
+[[feed]]
+name = "Economist"
+url = "https://www.economist.com/latest/rss.xml"
+category = "politics"
+
+[[feed]]
+name = "Foreign Affairs"
+url = "https://www.foreignaffairs.com/rss/all"
+category = "politics"
+
+[[feed]]
+name = "Atlantic Council"
+url = "https://www.atlanticcouncil.org/feed/"
+category = "politics"
+
+[[feed]]
+name = "Carnegie"
+url = "https://carnegieendowment.org/rss/solr/?fa=publications"
+category = "politics"
+
+[[feed]]
+name = "RAND"
+url = "https://www.rand.org/pubs/articles.xml"
+category = "politics"
+
+[[feed]]
+name = "Politico"
+url = "https://www.politico.com/rss/politicopicks.xml"
+category = "politics"
+
+[[feed]]
+name = "Defense One"
+url = "https://www.defenseone.com/rss/all/"
+category = "politics"
+
+[[feed]]
+name = "Straits Times"
+url = "https://www.straitstimes.com/news/world/rss.xml"
+category = "politics"
+
+[[feed]]
+name = "CNA"
+url = "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml"
+category = "politics"
+
+[[feed]]
+name = "Reuters World"
+url = "https://www.reuters.com/arc/outboundfeeds/rss/?outputType=xml"
+category = "politics"
+
+[[feed]]
+name = "NPR World"
+url = "https://feeds.npr.org/1004/rss.xml"
+category = "politics"
+
+[[feed]]
+name = "Nikkei Asia"
+url = "https://asia.nikkei.com/rss/feed/nar2"
+category = "politics"
+
+[[feed]]
+name = "DW World"
+url = "https://rss.dw.com/rdf/rss-en-all"
 category = "politics"
