@@ -551,7 +551,7 @@ def main() -> int:
 
     web = render_web(brief)
     (site_dir / "index.html").write_text(web, encoding="utf-8")
-    prefix = f"{base}/{date}/" if base else ""
+    prefix = f"{base}/{date}/index.html" if base else ""
     send_card = render_card(brief, prefix, email_detail=not base)
     (out_dir / f"card-{date}.html").write_text(send_card, encoding="utf-8")
 

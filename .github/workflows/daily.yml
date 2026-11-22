@@ -9,11 +9,9 @@ on:
   schedule:
     - cron: "30 23 * * *"
   workflow_dispatch:
-  push:
-    branches: [master]
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: daily-brief
@@ -62,6 +60,18 @@ jobs:
       - name: 失败通知
         if: failure()
         run: python scripts/notify_failure.py || true
+
+      - name: 提交网页版（供 raw.githack 托管）
+        run: |
+          git config user.name "dailybrief"
+          git config user.email "dailybrief@local"
+          git add site/
+          if ! git diff --cached --quiet; then
+            git commit -m "网页版 $(date +%F)"
+            git push
+          else
+            echo "网页版没有变化"
+          fi
 
       - name: 保留产物
         uses: actions/upload-artifact@v4

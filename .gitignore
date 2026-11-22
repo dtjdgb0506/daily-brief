@@ -4,7 +4,6 @@ __pycache__/
 data/*.db
 .venv/
 output/
-site/
 logs/
 state/
 config/brief.draft.json
