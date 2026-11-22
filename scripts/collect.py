@@ -118,12 +118,31 @@ def parse_feed(xml_text: str) -> list[dict]:
     return items
 
 
+def pick_todo(candidates: list[dict], limit: int, per_feed: int) -> list[dict]:
+    """每个源最多取 per_feed 篇（按发布时间新→旧），再整体按时间排序截断。
+
+    旧逻辑是严格轮转、每个源每轮只取 1 篇：抓 40 篇时 49 个源里有一半一篇都轮不到，
+    而像 The Hill 这种一次给 58 条候选的源，也只会抓 1 条。结果是“候选池 245 条、
+    正文只有 40 篇”，大事很可能根本没被抓到。
+    """
+    by_feed: dict[str, list[dict]] = {}
+    for c in candidates:
+        by_feed.setdefault(c.get("feed", "?"), []).append(c)
+    picked: list[dict] = []
+    for items in by_feed.values():
+        items.sort(key=lambda c: c.get("published") or "", reverse=True)
+        picked.extend(items[:per_feed])
+    picked.sort(key=lambda c: c.get("published") or "", reverse=True)
+    return picked[:limit]
+
+
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--fetch", type=int, default=0, help="抓多少篇正文（0=只出候选）")
+    parser.add_argument("--per-feed", type=int, default=4, help="每个源最多抓几篇正文（默认 4）")
     parser.add_argument("--since-hours", type=int, default=48)
     parser.add_argument("--date", default=None, help="入库日期目录，默认今天")
     parser.add_argument("--day", default=None, help="只抓这一天的候选（YYYY-MM-DD），默认不限制")
@@ -186,20 +205,7 @@ def main() -> int:
     print(f"候选清单: {out}" if not args.dry_run else "(dry-run，未写清单)")
 
     if args.fetch and candidates and not args.dry_run:
-        # 按源轮转取正文，避免 IT之家一家占满 30 个名额
-        by_feed: dict[str, list[dict]] = {}
-        for c in candidates:
-            by_feed.setdefault(c.get("feed", "?"), []).append(c)
-        todo, i = [], 0
-        while len(todo) < args.fetch:
-            added = False
-            for items in by_feed.values():
-                if i < len(items) and len(todo) < args.fetch:
-                    todo.append(items[i])
-                    added = True
-            if not added:
-                break
-            i += 1
+        todo = pick_todo(candidates, args.fetch, args.per_feed)
         print(f"\n抓正文 {len(todo)} 篇 ...")
         ok = 0
         for it in todo:

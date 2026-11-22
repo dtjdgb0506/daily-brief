@@ -164,5 +164,30 @@ class TestQualityFilter(unittest.TestCase):
         self.assertTrue(data["selected"], "至少应选出 1 条")
 
 
+class TestCollectQuota(unittest.TestCase):
+    """抓正文配额：每个源最多 per_feed 篇，再按时间取最新的。"""
+
+    def test_per_feed_cap_and_recency(self):
+        cands = []
+        for feed in ("A", "B"):
+            for i in range(10):
+                cands.append({
+                    "feed": feed,
+                    "url": f"https://example.com/{feed}/{i}",
+                    "title": f"{feed}{i}",
+                    "published": f"2026-11-21T{i:02d}:00:00+08:00",
+                })
+        todo = collect.pick_todo(cands, limit=6, per_feed=3)
+        self.assertEqual(len(todo), 6)
+        self.assertEqual(sum(1 for t in todo if t["feed"] == "A"), 3)
+        self.assertEqual(sum(1 for t in todo if t["feed"] == "B"), 3)
+        self.assertEqual({t["title"] for t in todo if t["feed"] == "A"}, {"A9", "A8", "A7"})
+
+    def test_limit_never_exceeded(self):
+        cands = [{"feed": "A", "url": f"https://example.com/{i}", "title": str(i),
+                  "published": "2026-11-21T10:00:00+08:00"} for i in range(5)]
+        self.assertEqual(len(collect.pick_todo(cands, limit=3, per_feed=4)), 3)
+
+
 if __name__ == "__main__":
     unittest.main()

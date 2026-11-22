@@ -121,7 +121,7 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 
 1. **07:30** GitHub Actions 触发 `daily.yml`
 2. 计算内容日 = 昨天（`--same-day` 才用当天）
-3. `collect.py --fetch 40 --day 昨天` 抓昨天的正文
+3. `collect.py --fetch 150 --day 昨天` 抓昨天的正文（每个源最多取 4 篇最新的，49 个源都能轮到）
 4. `cluster_events.py --content-day 昨天`：只要昨天发布、48 小时内、有日期的稿子；**先过滤软新闻**（展会/活动/签约/旅游/券商研报），再按“源质量 × 硬新闻信号 × 类别权重 × 时效”打分；**主推 5 条 = 5 个新事件**，与过去 7 天重合的事件单独作为第 6 条「后续」
 5. 没有人工稿时：`make_brief.py` → `llm_polish.py` 生成自动稿
 6. `build_card.py` 校验并渲染；`deploy_cloudbase.py` 部署到腾讯云；`send_html.py` 发给两个人
@@ -149,7 +149,7 @@ python scripts/run_daily.py
 ### 只跑某一天（比如补发）
 
 ```bash
-python scripts/collect.py --fetch 40 --day 2026-11-21
+python scripts/collect.py --fetch 150 --day 2026-11-21
 python scripts/cluster_events.py --content-day 2026-11-21
 python scripts/make_brief.py --date 2026-11-21 --out config/brief.draft.json
 python scripts/llm_polish.py --in config/brief.draft.json --out config/brief.json
