@@ -104,6 +104,15 @@ def parse_feed(xml_text: str) -> list[dict]:
                 m = re.search(r"(20\d{2})[-/年](\d{1,2})[-/月](\d{1,2})", date_s)
                 if m:
                     published = "-".join(f"{int(x):02d}" for x in m.groups()) + "T00:00:00+08:00"
+        if not published and link:
+            m = re.search(r"/(20\d{2})-?(\d{2})/(\d{2})/", link) or re.search(r"/(20\d{2})(\d{2})(\d{2})/", link)
+            if m:
+                y, mo, d = (int(x) for x in m.groups())
+                try:
+                    from datetime import date as _date
+                    published = _date(y, mo, d).isoformat() + "T00:00:00+08:00"
+                except ValueError:
+                    pass
         if title and link:
             items.append({"title": title, "url": link, "published": published})
     return items

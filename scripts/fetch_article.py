@@ -133,7 +133,17 @@ def extract_published(html: str, url: str = "") -> str:
             return date(y, mo, d).isoformat()
         except ValueError:
             return ""
-    # 再退：URL 里的 /20261121/
+    # 再退：URL 里的日期（新华网 /2026-11/22/、/2026/11/22/、新浪 /20261122/、/t20261122_）
+    for pat in (r"/(20\d{2})-(\d{2})/(\d{2})/", r"/(20\d{2})/(\d{2})-(\d{2})/",
+                r"/(20\d{2})/(\d{1,2})/(\d{1,2})/",
+                r"/(20\d{2})(\d{2})(\d{2})/", r"t(20\d{2})(\d{2})(\d{2})_"):
+        m = re.search(pat, url)
+        if m:
+            y, mo, d = (int(x) for x in m.groups())
+            try:
+                return date(y, mo, d).isoformat()
+            except ValueError:
+                continue
     m = re.search(r"/(20\d{2})(\d{2})(\d{2})/", url)
     if m:
         y, mo, d = (int(x) for x in m.groups())

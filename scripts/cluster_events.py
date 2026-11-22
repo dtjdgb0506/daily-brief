@@ -247,11 +247,9 @@ def load_articles(raw_dir: Path) -> list[dict]:
         if text.count("|") >= 15 or text.count("首页") >= 4:
             continue
         published = meta.get("published", "") or ""
+        # 没有发布日期的稿子直接不要：宁缺毋滥，避免把旧闻当今天
         if not published:
-            try:
-                published = datetime.fromtimestamp(js.stat().st_mtime).isoformat(timespec="seconds")
-            except OSError:
-                published = ""
+            continue
         articles.append({
             "url": meta.get("url", ""),
             "title": norm_title(meta.get("title", "") or js.stem),
@@ -264,11 +262,10 @@ def load_articles(raw_dir: Path) -> list[dict]:
 
 
 def within_window(article: dict, cutoff: datetime) -> bool:
-    pub = article.get("published") or ""
-    try:
-        return datetime.fromisoformat(pub).replace(tzinfo=None) >= cutoff.replace(tzinfo=None)
-    except (TypeError, ValueError):
-        return True
+    age = age_hours(article.get("published") or "")
+    if age < 0:
+        return True  # 无日期：先放行，后面按“未知”罚分
+    return age <= (datetime.now() - cutoff).total_seconds() / 3600 + 1
 
 
 def load_history(archive_dir: Path, days: int, today: str) -> list[dict]:
@@ -417,7 +414,7 @@ def age_hours(published: str, now: datetime | None = None) -> float:
     try:
         dt = datetime.fromisoformat(published).replace(tzinfo=None)
     except (TypeError, ValueError):
-        return 0.0
+        return -1.0  # 日期未知，不算“新的”
     return max(0.0, (now - dt).total_seconds() / 3600)
 
 
@@ -425,7 +422,7 @@ def freshness_factor(published_ages: list[float], half_life: float) -> float:
     if not published_ages:
         return 1.0
     age = min(published_ages)  # 以事件里最新的一篇算新鲜度
-    return max(0.6, 0.5 ** (age / max(half_life, 1)))
+    return max(0.25, 0.5 ** (age / max(half_life, 1)))
 
 
 def pick_balanced(events: list[dict], top: int, weights: dict) -> list[dict]:
@@ -564,7 +561,10 @@ def main() -> int:
         cat_weight = max(weights.get(cat, 20), 1) / 100
         scale = 1 + 0.25 * math.log2(1 + len(members))
         ages = [age_hours(articles[i].get("published", "")) for i in members]
-        fresh = freshness_factor(ages, half_life)
+        known = [a for a in ages if a >= 0]
+        if known and min(known) > 48:
+            continue  # 这件事最新的一篇都两天前了，不算今天新闻
+        fresh = freshness_factor([a if a >= 0 else 36.0 for a in ages], half_life)
         n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
         diversity = 1 + 0.1 * min(n_sources, 3)
         members_sorted = sorted(members, key=lambda i: -len(articles[i]["text"]))

@@ -25,5 +25,5 @@ topics = ["娱乐", "体育", "明星八卦", "彩票", "星座"]
 [cluster]
 threshold = 0.30              # 文本相似度阈值（人物+公司相同会直接合并）
 max_per_category = 3          # 前 5 条里同一类别最多几条，避免全是科技
-freshness_half_life_hours = 24  # 时效衰减：每过 24 小时，得分乘 0.5
+freshness_half_life_hours = 12  # 时效衰减：每过 24 小时，得分乘 0.5
 followup_min_importance = 0.4   # 第六点（后续）的最低重要性分
