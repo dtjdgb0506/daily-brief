@@ -40,7 +40,7 @@ def load_env() -> dict:
 def tcb_cmd() -> list[str]:
     if NODE.exists() and PNPM.exists():
         return [str(NODE), str(PNPM), "--package=@cloudbase/cli", "dlx", "tcb"]
-    return ["npx", "--yes", "@cloudbase/cli@latest"]
+    return ["npx", "--yes", "--package=@cloudbase/cli", "tcb"]
 
 
 def run(cmd: list[str]) -> int:
