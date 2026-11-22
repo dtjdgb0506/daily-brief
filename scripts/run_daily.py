@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime
@@ -42,6 +43,16 @@ def run_step(name: str, args: list[str], log_path: Path) -> tuple[bool, str]:
     print(out.rstrip())
     log([f"===== {name} =====", out.rstrip(), f"exit={proc.returncode}"], log_path)
     return proc.returncode == 0, out
+
+
+def llm_configured() -> bool:
+    env = ROOT / ".env"
+    if not env.exists():
+        return bool(os.environ.get("LLM_API_KEY"))
+    for line in env.read_text(encoding="utf-8").splitlines():
+        if line.strip().startswith("LLM_API_KEY="):
+            return bool(line.split("=", 1)[1].strip())
+    return bool(os.environ.get("LLM_API_KEY"))
 
 
 def load_sent() -> dict:
@@ -113,6 +124,15 @@ def main() -> int:
             return 1
         brief_path = draft
         print("  ⚠ 用的是自动初稿（抽取式），建议抽查后再发。")
+        if llm_configured():
+            ok, _ = run_step("模型改写", ["scripts/llm_polish.py",
+                                         "--in", str(draft),
+                                         "--out", str(ROOT / "config" / "brief.json")], log_path)
+            if ok:
+                brief_path = ROOT / "config" / "brief.json"
+                print("  ✓ 已用模型改写成正式稿")
+            else:
+                print("  ⚠ 模型改写失败，继续用抽取式初稿")
 
     ok, _ = run_step("出卡", ["scripts/build_card.py", "--date", date, "--brief", str(brief_path)], log_path)
     if not ok:

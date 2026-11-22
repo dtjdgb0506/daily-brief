@@ -28,6 +28,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+try:
+    from extract_main import extract_main_text  # 同目录
+except ImportError:  # 作为包被导入时
+    from .extract_main import extract_main_text  # type: ignore[no-redef]
+
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
@@ -154,7 +159,9 @@ def canonical(url: str) -> str:
 def extract(html: str, url: str = "") -> dict:
     p = TextExtractor()
     p.feed(html)
-    text = html_lib.unescape(p.text())
+    fallback = html_lib.unescape(p.text())
+    main = extract_main_text(html, url)
+    text = main if len(main) >= 200 else fallback
     return {
         "title": p.title.strip()[:120],
         "text": text,

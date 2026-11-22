@@ -111,3 +111,30 @@ class TestMakeBrief(unittest.TestCase):
         brief = json.loads(out.read_text(encoding="utf-8"))
         errs, _ = build_card.validate(brief, None)
         self.assertEqual(errs, [])
+
+class TestLlmPolish(unittest.TestCase):
+    def test_parse_json_block(self):
+        import llm_polish
+        raw = "```json\n{\"a\": 1}\n```"
+        self.assertEqual(llm_polish.parse_json_block(raw), {"a": 1})
+
+    def test_merge_rejects_bad_items(self):
+        import llm_polish
+        draft = {"items": [
+            {"event_id": f"e{i}", "title": f"old{i}", "lede": "", "points": [], "web": {}}
+            for i in range(1, 5)
+        ], "followup": None}
+        llm = {"items": [
+            {"event_id": "e1", "title": "new1?", "lede": "lede", "points": ["a", "b", "c"]},
+            {"event_id": "e2", "title": "new2", "lede": "lede", "points": ["a", "b", "c"]},
+            {"event_id": "e3", "title": "new3", "lede": "lede", "points": ["a", "b", "c"]},
+            {"event_id": "e4", "title": "", "lede": "lede", "points": ["a"]},
+        ]}
+        out = llm_polish.merge(draft, llm)
+        self.assertEqual(len(out["items"]), 3)
+        self.assertEqual(out["items"][0]["title"], "new1")
+        self.assertFalse(out["draft"])
+
+
+if __name__ == "__main__":
+    unittest.main()

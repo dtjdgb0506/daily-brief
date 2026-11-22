@@ -44,6 +44,26 @@ collect.py → cluster_events.py → （写 brief.json）→ build_card.py → s
 - 标题重复、出处 URL 重复、缺 URL → 失败
 - 条数不是配置的 5 条、标题超 40 字 → 告警
 
+## 接大模型改写（可选）
+
+`.env` 里加三行（OpenAI 兼容接口都行）：
+
+```
+LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_API_KEY=sk-...
+LLM_MODEL=deepseek-chat
+```
+
+之后 `run_daily.py --auto-brief` 会自动：抽取初稿 → 模型改写 → 出卡。也可以手动：
+
+```bash
+python scripts/make_brief.py
+python scripts/llm_polish.py            # 初稿 -> config/brief.json
+python scripts/llm_polish.py --dry-run  # 只打印 prompt
+```
+
+没配 key 时自动跳过模型改写，用抽取式初稿兜底。
+
 ## 测试
 
 ```bash
@@ -82,6 +102,7 @@ powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
 - 聚类是启发式的：同一天两件事同时涉及同一个人和同一家公司，会被并成一条。
 - 采集源仍然偏科技：能用的政治源正文抓不干净（见上），所以今天 top5 仍可能全 tech；
   类别配额只在“有别的类可用且分差不超过 30%”时才换，不会为了多样性塞垃圾。
-- 自动初稿是抽取式的，导语/要点是原文句子直搬，只能兜底，不建议长期直接发。
+- 自动初稿是抽取式的，导语/要点是原文句子直搬；接了大模型改写才算能日常直接发。
+- 网页版支持暗黑模式（`prefers-color-scheme`）；邮件里仍是浅色，Outlook 兼容没专门处理。
 - `web_base` 现在是占位符，正式发信前改成你自己的托管地址；`site/` 整个目录可直接丢 GitHub Pages。
 - 暗黑模式、Outlook 兼容还没做；163 单日发送数有限，目前只发自己。

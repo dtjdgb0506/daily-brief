@@ -105,6 +105,18 @@ WEB_HEAD = """<!doctype html>
   .top{{display:block;margin-top:14px;font-size:12.5px;color:#94a3b8;text-decoration:none}}
   .foot{{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.9;color:#94a3b8}}
   .history{{display:inline-block;font-size:12.5px;color:#9a3412;background:#fff7ed;border-radius:8px;padding:6px 10px;margin:0 0 14px}}
+  @media(prefers-color-scheme:dark){{
+    body{{background:#0b1220}}
+    .card{{background:#111827}}
+    article{{border-color:#1f2937}}
+    article h2,.lede{{color:#e5e7eb}}
+    .tl{{border-color:#1f2937}} .tl li{{color:#cbd5e1}} .tl b{{color:#fff}}
+    .box{{background:#1f2937;color:#cbd5e1}}
+    .box.warn{{background:#3f2a15;color:#fdba74}}
+    .sec h3,.src{{color:#94a3b8}}
+    .history{{background:#3f2a15;color:#fdba74}}
+    .foot{{color:#64748b}}
+  }}
   @media(max-width:480px){{article h2{{font-size:21px}}.lede{{font-size:15.5px}}.card{{padding-left:18px;padding-right:18px}}}}
 </style>
 </head>
