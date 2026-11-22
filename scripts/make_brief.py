@@ -105,6 +105,28 @@ def pick_timeline(texts: list[str], limit: int = 8) -> list[list[str]]:
     return [[a, b] for a, b in found]
 
 
+
+OPINION_MARKERS = ("认为", "指出", "表示", "预计", "担忧", "分析", "评论", "警告",
+                   "判断", "质疑", "直言", "坦言", "称", "坦言", "觉得")
+
+
+def pick_opinions(texts: list[str], exclude: list[str], limit: int = 6) -> list[str]:
+    """从同事件的多篇稿子里摘“观点句”，让自动生成的详情页也有多方分析。"""
+    picked: list[str] = []
+    for text in texts:
+        for s in sentences(text):
+            if s in exclude or s in picked:
+                continue
+            if not any(m in s for m in OPINION_MARKERS):
+                continue
+            if len(s) < 20 or len(s) > 110:
+                continue
+            picked.append(s.rstrip("，,、 "))
+            if len(picked) >= limit:
+                return picked
+    return picked
+
+
 def build_item(event: dict, texts: dict[str, str], idx: int) -> dict:
     titles = event.get("titles", [event.get("representative_title", "")])
     urls = event.get("urls", [])
@@ -119,6 +141,7 @@ def build_item(event: dict, texts: dict[str, str], idx: int) -> dict:
     lede = pick_lede(body_pool)
     points = pick_points(body_pool)
     timeline = pick_timeline(body_pool)
+    opinions = pick_opinions(body_pool, [p[1] for p in points])
     sources = [
         {"label": titles[k][:36] or f"来源 {k+1}", "url": urls[k]}
         for k in order if urls[k]
@@ -130,8 +153,11 @@ def build_item(event: dict, texts: dict[str, str], idx: int) -> dict:
         "title": clean_title(event.get("representative_title", titles[0])),
         "lede": lede[:150],
         "points": points,
-        "detail_hint": "时间线 · 出处",
-        "web": {"timeline": timeline, "blocks": [], "sources": sources},
+        "detail_hint": "分析 · 时间线 · 出处",
+        "web": {"timeline": timeline,
+                "blocks": ([{"title": "各方观点（自动摘录）", "type": "box", "lines": opinions}]
+                           if opinions else []),
+                "sources": sources},
     }
 
 

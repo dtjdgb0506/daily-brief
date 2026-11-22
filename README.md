@@ -78,6 +78,15 @@ python scripts/cluster_events.py --fixture tests/fixture_articles.json \
 powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
 ```
 
+## 详情页托管（国内可开）
+
+每个事件生成一个 Markdown 页，提交到仓库 `briefs/<日期>/p1.md …`，邮件里的「看详细」直接指过去。
+GitHub 会把 Markdown 渲染成网页，`github.com` 国内可直连（不需要 VPN）。
+样例：https://github.com/dtjdgb0506/daily-brief/blob/master/briefs/2026-11-22/p1.md
+
+每页包含：时间线 → 多方分析（三种解读 / 看空看多 / 支持与质疑）→ 出处链接。
+`make_brief.py` 还会从同一事件的多篇稿子里自动摘「各方观点」，保证自动生成的页面也有分析。
+
 ## 三个“没人/没服务器”时怎么办
 
 **1. 采集源**：`config/sources.toml` 现在 8 个源（IT之家 / Solidot / 华尔街见闻 / 界面新闻 /
