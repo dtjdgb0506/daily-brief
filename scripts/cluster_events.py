@@ -39,6 +39,8 @@ ROOT = Path(__file__).resolve().parent.parent
 CJK = re.compile(r"[\u4e00-\u9fff]+")
 LATIN = re.compile(r"[A-Za-z][A-Za-z0-9.+-]{1,}")
 
+JUNK_TITLES = {"学习进行时", "微视频", "视频", "专题", "图解", "直播", "海报", "首页", "滚动新闻", "图片新闻"}
+
 STOP_BIGRAMS = {
     "的的", "了了", "是是", "这一", "一个", "我们", "他们", "可以", "因为", "所以",
     "但是", "已经", "还是", "就是", "以及", "对于", "关于", "通过", "进行", "这个",
@@ -426,28 +428,42 @@ def freshness_factor(published_ages: list[float], half_life: float) -> float:
     return max(0.6, 0.5 ** (age / max(half_life, 1)))
 
 
-def pick_with_quota(events: list[dict], top: int, quota: int) -> list[dict]:
-    """先按得分取前 N，再处理“同一类太多”：把超配额类别里分数最低的换成别类最高分的。"""
-    picked = list(events[:top])
-    if quota <= 0:
-        return picked
-    for _ in range(2):
-        counts: Counter = Counter(e["category"] for e in picked)
-        worst = max(counts, key=counts.get)
-        if counts[worst] <= quota:
+def pick_balanced(events: list[dict], top: int, weights: dict) -> list[dict]:
+    """名额按“当天实际有哪些类别”动态分配：没有科技就多给政治/财经，
+    每个类别内部按得分取，不会为了凑数把同一件事拆开。"""
+    by_cat: dict[str, list[dict]] = {}
+    for e in events:
+        by_cat.setdefault(e["category"], []).append(e)
+    cats = [c for c in by_cat if by_cat[c]]
+    if not cats:
+        return []
+    def wgt(c: str) -> int:
+        # “综合/其他”给最低权重：只在没有科技/政治/财经可用时才进来
+        return 1 if c == "other" else max(weights.get(c, 10), 1)
+
+    total_w = sum(wgt(c) for c in cats)
+    raw = {c: top * wgt(c) / total_w for c in cats}
+    alloc = {c: min(int(raw[c]), len(by_cat[c])) for c in cats}
+    used = sum(alloc.values())
+
+    # 余下名额：按“小数部分”从大到小补，且不超过该类别实际条数
+    frac_order = sorted(cats, key=lambda c: (raw[c] - int(raw[c]), weights.get(c, 10)), reverse=True)
+    while used < top:
+        progressed = False
+        for c in frac_order:
+            if alloc[c] < len(by_cat[c]) and used < top:
+                alloc[c] += 1
+                used += 1
+                progressed = True
+        if not progressed:
             break
-        same = [e for e in picked if e["category"] == worst]
-        if len(same) <= 1:
-            break
-        drop = min(same, key=lambda e: e["score"])
-        pool = [e for e in events if e not in picked]
-        if not pool:
-            break
-        pool.sort(key=lambda e: (e["category"] == worst, -e["score"]))
-        if pool[0]["score"] < drop["score"] * 0.7:
-            break  # 换来的比换掉的差太多，宁可不换，别为了多样性牺牲质量
-        picked.remove(drop)
-        picked.append(pool[0])
+
+    picked: list[dict] = []
+    for c in cats:
+        picked.extend(by_cat[c][: alloc[c]])
+    if len(picked) < top:
+        rest = [e for e in events if e not in picked]
+        picked.extend(rest[: top - len(picked)])
     picked.sort(key=lambda e: e["score"], reverse=True)
     return picked
 
@@ -566,6 +582,8 @@ def main() -> int:
             key=lambda i: sum(cosine(vectors[i], vectors[j]) for j in members if j != i) / max(len(members) - 1, 1),
         )
         rep_title = articles[rep_idx]["title"]
+        if len(rep_title.strip()) < 8 or rep_title.strip() in JUNK_TITLES:
+            continue  # 栏目名/视频页标题，不是一条真新闻
         events.append({
             "id": None,
             "category": cat,
@@ -599,7 +617,7 @@ def main() -> int:
 
     # 主推永远是今天得分最高的 N 条（哪怕它本身是某个旧故事的延续）；
     # 第六点从“没挤进主推、但和前七天事件对得上”的事件里挑一条最重要的。
-    main = pick_with_quota(events, top, int(cluster_cfg.get("max_per_category", 3)))
+    main = pick_balanced(events, top, weights)
     main_ids = {e["id"] for e in main}
     follow_candidates = sorted(
         [e for e in events if e["is_followup"] and e["id"] not in main_ids],
