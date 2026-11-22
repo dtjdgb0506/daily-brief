@@ -30,12 +30,15 @@ SYSTEM = """你是中文科技/财经日报的编辑。给你 5 条新闻（已�
 请为每条写：一个能概括事件的陈述句标题（不超过 26 字，绝对不要问句、不要“为什么/如何”开头）、
 一句话导语（40~70 字，信息量足）、三条要点（每条约 40~70 字，要点里的数字必须来自给定材料）。
 每条再给 3 条「对普通人的启示 / 能学到什么 / 怎么用」——要具体、可执行，不要“保持关注”这种空话。
+另外给 3 条「值得琢磨的问题」：要有反常识的假设或悬念（例如“他是不是故意借绯闻保命”），不要复述事实。
 再为“后续”那条写同样结构的内容。
 严格输出 JSON，不要 markdown 代码块，格式：
 {"items":[{"event_id":"e1","title":"...","lede":"...","points":["...","...","..."],
-           "takeaway":["...","...","..."]}, ...],
+           "takeaway":["...","...","..."],
+           "questions":["...","...","..."]}, ...],
  "followup":{"event_id":"eX","title":"...","lede":"...","points":["...","...","..."],
-             "takeaway":["...","...","..."]}}"""
+             "takeaway":["...","...","..."],
+             "questions":["...","...","..."]}}"""
 
 
 def load_env_dict() -> dict:
@@ -125,9 +128,13 @@ def merge(draft: dict, llm: dict) -> dict:
         base["lede"] = str(item.get("lede", "")).strip()[:150]
         base["points"] = [[f"{i} · ", p] for i, p in enumerate(points, 1)]
         take = [str(x).strip() for x in item.get("takeaway", []) if str(x).strip()][:4]
+        questions = [str(x).strip() for x in item.get("questions", []) if str(x).strip()][:4]
+        blocks = [b for b in base.get("web", {}).get("blocks", []) if b.get("type") not in ("takeaway", "question")]
         if take:
-            blocks = [b for b in base.get("web", {}).get("blocks", []) if b.get("type") != "takeaway"]
             blocks.append({"title": "普通人能学到什么 / 怎么用", "type": "takeaway", "lines": take})
+        if questions:
+            blocks.append({"title": "值得琢磨的几个问题", "type": "question", "lines": questions})
+        if blocks:
             base.setdefault("web", {})["blocks"] = blocks
         out_items.append(base)
     if len(out_items) < 3:
