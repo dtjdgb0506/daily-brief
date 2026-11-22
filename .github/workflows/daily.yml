@@ -1,0 +1,92 @@
+name: 每日情报
+
+# 每天北京时间 07:30 跑一次（UTC 23:30），电脑关机也不影响。
+# 需要在本仓库 Settings → Secrets and variables → Actions 里配好：
+#   MAIL_SMTP_HOST / MAIL_SMTP_PORT / MAIL_USER / MAIL_PASS / MAIL_FROM / MAIL_FROM_NAME / MAIL_TO
+#   LLM_BASE_URL / LLM_API_KEY / LLM_MODEL（可选，没有就只用抽取式初稿）
+# Pages 需要 Settings → Pages → Source 选 "GitHub Actions"。
+
+on:
+  schedule:
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安装依赖
+        run: pip install lxml
+
+      - name: 写 .env（从 Secrets）
+        env:
+          MAIL_SMTP_HOST: ${{ secrets.MAIL_SMTP_HOST }}
+          MAIL_SMTP_PORT: ${{ secrets.MAIL_SMTP_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_FROM_NAME: ${{ secrets.MAIL_FROM_NAME }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: |
+          {
+            echo "MAIL_SMTP_HOST=$MAIL_SMTP_HOST"
+            echo "MAIL_SMTP_PORT=$MAIL_SMTP_PORT"
+            echo "MAIL_USER=$MAIL_USER"
+            echo "MAIL_PASS=$MAIL_PASS"
+            echo "MAIL_FROM=$MAIL_FROM"
+            echo "MAIL_FROM_NAME=$MAIL_FROM_NAME"
+            echo "MAIL_TO=$MAIL_TO"
+            [ -n "$LLM_BASE_URL" ] && echo "LLM_BASE_URL=$LLM_BASE_URL"
+            [ -n "$LLM_MODEL" ] && echo "LLM_MODEL=$LLM_MODEL"
+            [ -n "$LLM_API_KEY" ] && echo "LLM_API_KEY=$LLM_API_KEY"
+          } > .env
+          echo ".env 已写入（内容不打印）"
+
+      - name: 采集 → 聚类 → 出卡 → 发信
+        run: python scripts/run_daily.py --auto-brief
+
+      - name: 保留产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: brief-${{ github.run_id }}
+          path: |
+            site/
+            output/card-*.html
+            logs/
+          if-no-files-found: warn
+
+      - name: 上传 Pages 产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: daily
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -24,23 +24,33 @@ name = "界面新闻"
 url = "https://a.jiemian.com/index.php?m=article&a=rss"
 category = "finance"
 
+[[feed]]
+name = "人民网-财经"
+url = "http://www.people.com.cn/rss/finance.xml"
+category = "finance"
+
+[[feed]]
+name = "中新网-财经"
+url = "https://www.chinanews.com.cn/rss/finance.xml"
+category = "finance"
+
 # —— 政治 / 国际 ——
+[[feed]]
+name = "新华网-国际"
+url = "http://www.xinhuanet.com/world/news_world.xml"
+category = "politics"
+
+[[feed]]
+name = "人民网-国际"
+url = "http://www.people.com.cn/rss/world.xml"
+category = "politics"
+
+[[feed]]
+name = "中新网-国际"
+url = "https://www.chinanews.com.cn/rss/world.xml"
+category = "politics"
+
 [[feed]]
 name = "新华网-时政"
 url = "http://www.xinhuanet.com/politics/news_politics.xml"
-category = "politics"
-
-[[feed]]
-name = "人民网-时政"
-url = "http://www.people.com.cn/rss/politics.xml"
-category = "politics"
-
-[[feed]]
-name = "中国新闻网"
-url = "https://www.chinanews.com.cn/rss/scroll-news.xml"
-category = "politics"
-
-[[feed]]
-name = "联合国新闻"
-url = "https://news.un.org/feed/subscribe/zh/news/all/rss.xml"
 category = "politics"

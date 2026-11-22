@@ -5,11 +5,16 @@
 # 卸载：
 #   Unregister-ScheduledTask -TaskName "每日情报" -Confirm:$false
 
+# 注意：Windows 任务计划只能在本机开机/睡眠时跑。
+# 关机也要推 → 用 GitHub Actions（见 README「电脑关机也要推」）。
+# 睡眠时想叫醒电脑跑：加 -WakeToRun
+
 param(
     [string]$TaskName = "每日情报",
     [string]$Time = "07:30",
     [string]$Python = "",
-    [string]$WorkDir = ""
+    [string]$WorkDir = "",
+    [switch]$WakeToRun
 )
 
 $ErrorActionPreference = "Stop"
@@ -37,9 +42,16 @@ $action = New-ScheduledTaskAction -Execute $Python `
     -Argument "`"$runner`"" `
     -WorkingDirectory $WorkDir
 $trigger = New-ScheduledTaskTrigger -Daily -At $Time
-$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopIfGoingOnBatteries `
-    -AllowStartIfOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 30) `
-    -RestartCount 2 -RestartInterval (New-TimeSpan -Minutes 5)
+$settingsArgs = @{
+    StartWhenAvailable = $true
+    DontStopIfGoingOnBatteries = $true
+    AllowStartIfOnBatteries = $true
+    ExecutionTimeLimit = (New-TimeSpan -Minutes 30)
+    RestartCount = 2
+    RestartInterval = (New-TimeSpan -Minutes 5)
+}
+if ($WakeToRun) { $settingsArgs["WakeToRun"] = $true }
+$settings = New-ScheduledTaskSettingsSet @settingsArgs
 
 Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger -Settings $settings `
     -Description "每日情报：采集 → 聚类 → 出卡 → 发信" -Force | Out-Null

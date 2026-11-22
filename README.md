@@ -97,6 +97,23 @@ powershell -ExecutionPolicy Bypass -File scripts/install_task.ps1
   （脚本会顺手把 `web_base` 写进 profile.toml；第一次还要在仓库 Settings → Pages 里把 Source 设成 `gh-pages`）
 - 定时：`scripts/install_task.ps1`（注册每天 07:30 的 Windows 计划任务，跑 `run_daily.py`）
 
+## 电脑关机也要推 → GitHub Actions
+
+Windows 任务计划只能在本机开机/睡眠时跑。要关机也推，把整条流水线搬到 GitHub Actions：
+
+1. 先登录并建仓库（一次性）：
+   ```powershell
+   gh auth login
+   powershell -ExecutionPolicy Bypass -File scripts/setup_github.ps1
+   ```
+   脚本会：建仓库 → 推代码 → 把 `.env` 里的 MAIL_*/LLM_* 写进 Actions Secrets →
+   打开 Pages → 把 `web_base` 改成 `https://<你>.github.io/<仓库>`。
+2. 之后每天 **07:30（北京时间）** GitHub 自己跑（`.github/workflows/daily.yml`，cron `30 23 * * *`），
+   出卡、发信、把网页版部署到 Pages。电脑关不关都不影响。
+3. 第一次去仓库 Actions 页点一次 **Run workflow**，确认能发信。
+
+也可以只要云端定时、不要 Pages：不跑 setup 脚本的 Pages 步骤，手动在仓库 Settings → Pages 里选 “GitHub Actions”。
+
 ## 已知边界
 
 - 聚类是启发式的：同一天两件事同时涉及同一个人和同一家公司，会被并成一条。
