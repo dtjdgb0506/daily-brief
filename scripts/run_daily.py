@@ -69,6 +69,17 @@ def save_sent(data: dict) -> None:
     STATE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def save_card_for_send(date: str, card: Path, subject: str) -> None:
+    """把出好的卡片和主题存进 state/cards/，供准点发送任务直接读取。"""
+    card_dir = ROOT / "state" / "cards"
+    card_dir.mkdir(parents=True, exist_ok=True)
+    (card_dir / f"{date}.html").write_text(card.read_text(encoding="utf-8"), encoding="utf-8")
+    (card_dir / f"{date}.json").write_text(
+        json.dumps({"date": date, "subject": subject}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -145,6 +156,9 @@ def main() -> int:
             else:
                 print("  ⚠ 模型改写失败，继续用抽取式初稿")
 
+    # 统一读一遍最终 brief（主题要从 doc_title 来）
+    brief = json.loads(Path(brief_path).read_text(encoding="utf-8-sig"))
+
     # 4. 备用：发布到 telegra.ph（默认关闭；国内要 VPN，仅 TELEGRAPH_PUBLISH=1 时启用）
     import os as _os
     if _os.environ.get("TELEGRAPH_PUBLISH") == "1":
@@ -166,9 +180,14 @@ def main() -> int:
         print(f"✗ 找不到 {card}")
         return 1
 
+    # 把出好的卡片和主题存进 state/，供 07:30 的“发送”任务准点取用
+    subject = f"每日情报 {date[5:].replace('-', '·')}｜{brief.get('doc_title', '')[:24]}"
+    save_card_for_send(date, card, subject)
+
     # 5. 部署网页版（配了腾讯云 CloudBase 才部署；邮件里的链接指向它）
     env_text = (ROOT / ".env").read_text(encoding="utf-8") if (ROOT / ".env").exists() else ""
-    if "TCB_ENV_ID" in env_text or _os.environ.get("TCB_ENV_ID"):
+    if (not _os.environ.get("SKIP_DEPLOY")
+            and ("TCB_ENV_ID" in env_text or _os.environ.get("TCB_ENV_ID"))):
         ok, _ = run_step("部署网页版", ["scripts/deploy_cloudbase.py"], log_path)
         if not ok:
             print("  ⚠ 网页版部署失败：回退成“邮件内联详情”，保证这封邮件能看")
@@ -184,9 +203,9 @@ def main() -> int:
         return 0
     if args.dry_run or args.no_send:
         print(f"\n▶ 发信: 跳过（{'dry-run' if args.dry_run else '--no-send'}），卡片在 {card}")
+        print(f"  已存到 state/cards/{date}.html，07:30 的发送任务会直接用它")
         return 0
 
-    subject = f"每日情报 {date[5:].replace('-', '·')}｜{brief.get('doc_title', '')[:24]}"
     ok, _ = run_step("发信", ["scripts/send_html.py", "--subject", subject, "--html", str(card)], log_path)
     if not ok:
         print("✗ 发信失败，详见日志")

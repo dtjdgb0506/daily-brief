@@ -13,6 +13,9 @@ python scripts/run_daily.py --auto-brief  # 没人写 brief 时用抽取式初�
 python scripts/run_daily.py --force       # 强制重发
 ```
 
+云端是**两段式**：`prepare.yml` 在北京时间 06:50 先跑「抓取→出卡→部署网页」，把卡片存进 `state/cards/`；
+`daily.yml` 在 07:30 只跑 `send_from_state.py` 发信（10~20 秒）。这样 07:30 能准点收到，抓慢了也有 40 分钟缓冲。
+
 产物：`logs/<日期>.log`、`output/card-<日期>.html`、`site/<日期>/index.html`、`site/index.html`（往期）。
 
 ## 配置（改配置不用改代码）

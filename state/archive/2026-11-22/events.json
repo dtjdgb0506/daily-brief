@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-11-22T18:21:57",
+  "generated_at": "2026-11-22T22:31:51",
   "run_date": "2026-11-22",
   "window_hours": 24,
   "content_day": "2026-11-21",
   "history_days": 7,
-  "source": "D:\\DSH\\推送系统\\output\\raw（2026-11-21 当天：20/39 篇）",
-  "article_total": 20,
-  "event_total": 20,
+  "source": "D:\\DSH\\推送系统\\output\\raw（2026-11-21 当天：55/128 篇）",
+  "article_total": 55,
+  "event_total": 39,
   "selected": [
     "e1",
     "e2",
-    "e5",
-    "e7",
-    "e15"
+    "e3",
+    "e4",
+    "e8"
   ],
   "followup": null,
   "warnings": [],
@@ -21,37 +21,45 @@
       "id": "e1",
       "category": "tech",
       "tags": [
-        "tech",
-        "finance"
+        "tech"
       ],
-      "score": 21.5,
-      "article_count": 1,
-      "source_count": 1,
+      "score": 35.29,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 3,
+      "source_count": 2,
       "readability": {
-        "opinion": 3,
-        "jargon": 1
+        "opinion": 2,
+        "jargon": 0
       },
       "source_names": [
-        "中新网-财经"
+        "NPR World",
+        "The Verge"
       ],
       "freshness": 0.25,
-      "representative_title": "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网",
+      "representative_title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in",
       "keywords": [
-        "教育创",
-        "创新职",
-        "职普融通",
-        "报告",
-        "上海",
-        "年度报"
+        "the",
+        "toforobots",
+        "thatalks",
+        "on",
+        "and",
+        "in"
       ],
       "article_ids": [
-        12
+        5,
+        30,
+        45
       ],
       "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735892.shtml"
+        "https://www.theverge.com/tech/1039554/un-regulations-killer-robots",
+        "https://www.npr.org/2026/11/21/g-s1-154914/nations-at-un-talks-on-ai-killer-robots-agree-to-more-talks-but-no-firm-commitment-to-rein-them-in",
+        "https://www.npr.org/2026/11/21/nx-s1-6047916/killer-robots-un-drones"
       ],
       "titles": [
-        "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网"
+        "The UN fails to agree on rules regulating ‘killer robots’",
+        "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in",
+        "Killer robots: The race to control weapons that can decide who lives or dies"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -59,38 +67,48 @@
     },
     {
       "id": "e2",
-      "category": "tech",
+      "category": "politics",
       "tags": [
-        "tech"
+        "politics",
+        "finance"
       ],
-      "score": 19.25,
-      "article_count": 1,
-      "source_count": 1,
+      "score": 29.91,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 3,
+      "source_count": 2,
       "readability": {
         "opinion": 1,
         "jargon": 0
       },
       "source_names": [
-        "中新网-财经"
+        "NPR World",
+        "The Hill"
       ],
       "freshness": 0.25,
-      "representative_title": "数万家智能工厂背后，AI到底改变了什么？-中新网",
+      "representative_title": "Trump lands significant victories in media defamation cases",
       "keywords": [
-        "智能工",
-        "制造",
-        "工厂背后",
-        "ai",
-        "能制",
-        "数万家智"
+        "theurope",
+        "tofore",
+        "and",
+        "trump",
+        "in",
+        "thathey"
       ],
       "article_ids": [
-        9
+        4,
+        11,
+        39
       ],
       "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735913.shtml"
+        "https://thehill.com/opinion/white-house/6234303-nytimes-bbc-court-victories/",
+        "https://thehill.com/homenews/administration/6235181-trump-executive-privilege-congress-investigations-order/",
+        "https://www.npr.org/2026/11/21/nx-s1-6047379/military-analyst-phillips-obrien-on-ukraine-and-europe-being-left-out-of-trumps-talks"
       ],
       "titles": [
-        "数万家智能工厂背后，AI到底改变了什么？-中新网"
+        "Trump lands significant victories in media defamation cases",
+        "New Trump executive order limits how Congress gets agency info",
+        "Military analyst Phillips O’Brien on Ukraine and Europe being left out of Trump's talks"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -102,34 +120,36 @@
       "tags": [
         "tech"
       ],
-      "score": 19.25,
+      "score": 28.62,
+      "source_tier": "tech",
+      "hard_news": 1.08,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 1,
+        "opinion": 0,
         "jargon": 0
       },
       "source_names": [
-        "中新网-财经"
+        "TechCrunch"
       ],
       "freshness": 0.25,
-      "representative_title": "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网",
+      "representative_title": "Startup sues Apple in India over tap-to-share contacts feature",
       "keywords": [
-        "产业携",
-        "材料产",
-        "湖南",
-        "先进制",
-        "豫湘产",
-        "制造前"
+        "the",
+        "inamedrop",
+        "apple",
+        "and",
+        "tof",
+        "startupatentap-to-share"
       ],
       "article_ids": [
-        17
+        50
       ],
       "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735889.shtml"
+        "https://techcrunch.com/2026/11/20/startup-sues-apple-in-india-over-tap-to-share-contacts-feature/"
       ],
       "titles": [
-        "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网"
+        "Startup sues Apple in India over tap-to-share contacts feature"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -141,34 +161,36 @@
       "tags": [
         "tech"
       ],
-      "score": 17.19,
+      "score": 27.22,
+      "source_tier": "cn",
+      "hard_news": 1.08,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 0,
+        "opinion": 1,
         "jargon": 0
       },
       "source_names": [
-        "中新网-财经"
+        "爱范儿"
       ],
       "freshness": 0.25,
-      "representative_title": "秋假+赏秋热潮叠加 地方文旅消费迎来新机遇-中新网",
+      "representative_title": "刚刚，曝黎曼猜想被证明，Claude 立大功",
       "keywords": [
-        "秋假期",
-        "孩子们",
-        "体验",
-        "研学生",
-        "赏秋",
-        "鱼灯"
+        "数学家",
+        "研究",
+        "证明",
+        "黎曼猜",
+        "猜想",
+        "claude"
       ],
       "article_ids": [
-        0
+        6
       ],
       "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735912.shtml"
+        "https://www.ifanr.com/1690750?utm_source=rss&utm_medium=rss&utm_campaign="
       ],
       "titles": [
-        "秋假+赏秋热潮叠加 地方文旅消费迎来新机遇-中新网"
+        "刚刚，曝黎曼猜想被证明，Claude 立大功"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -176,38 +198,40 @@
     },
     {
       "id": "e5",
-      "category": "politics",
+      "category": "tech",
       "tags": [
-        "politics"
+        "tech"
       ],
-      "score": 14.02,
+      "score": 27.22,
+      "source_tier": "cn",
+      "hard_news": 1.08,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 3,
+        "opinion": 1,
         "jargon": 0
       },
       "source_names": [
-        "中新网-国际"
+        "Solidot"
       ],
       "freshness": 0.25,
-      "representative_title": "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网",
+      "representative_title": "人类数学家匆忙发布广义黎曼猜想的证明手稿",
       "keywords": [
-        "伊朗普称无法接",
-        "协议",
-        "特朗想达",
-        "达成的",
-        "的协",
-        "永远不会拥有核武器"
+        "数学家匆",
+        "证明手",
+        "手稿",
+        "人类数",
+        "黎曼猜想的证",
+        "匆忙发表"
       ],
       "article_ids": [
-        16
+        25
       ],
       "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735660.shtml"
+        "https://www.solidot.org/story?sid=85952"
       ],
       "titles": [
-        "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网"
+        "人类数学家匆忙发布广义黎曼猜想的证明手稿"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -219,46 +243,9 @@
       "tags": [
         "tech"
       ],
-      "score": 13.06,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 3
-      },
-      "source_names": [
-        "中新网-财经"
-      ],
-      "freshness": 0.25,
-      "representative_title": "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网",
-      "keywords": [
-        "人才发",
-        "汽车产",
-        "产业人",
-        "出海",
-        "智能网联新",
-        "大会在"
-      ],
-      "article_ids": [
-        4
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735888.shtml"
-      ],
-      "titles": [
-        "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e7",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 12.79,
+      "score": 25.08,
+      "source_tier": "cn",
+      "hard_news": 0.95,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -266,26 +253,67 @@
         "jargon": 0
       },
       "source_names": [
-        "中新网-国际"
+        "快科技"
       ],
       "freshness": 0.25,
-      "representative_title": "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网",
+      "representative_title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来",
       "keywords": [
-        "丹麦驱",
-        "俄罗斯武",
-        "驱逐俄表",
-        "武官",
-        "适当回应",
-        "示将"
+        "星芒品",
+        "华为",
+        "品牌",
+        "ai",
+        "科技术",
+        "产品体"
       ],
       "article_ids": [
-        5
+        43
       ],
       "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735674.shtml"
+        "https://news.mydrivers.com/1/1167/1167587.htm"
       ],
       "titles": [
-        "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网"
+        "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e7",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 24.77,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "NPR World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Anthropic worker claims to have solved a Holy Grail of math problems with the help of AI",
+      "keywords": [
+        "the",
+        "ofor",
+        "to",
+        "in",
+        "and",
+        "anthropiclaims"
+      ],
+      "article_ids": [
+        54
+      ],
+      "urls": [
+        "https://www.npr.org/2026/11/21/g-s1-154922/anthropic-worker-claims-to-have-solved-a-holy-grail-of-math-problems-with-the-help-of-ai"
+      ],
+      "titles": [
+        "Anthropic worker claims to have solved a Holy Grail of math problems with the help of AI"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -295,49 +323,11 @@
       "id": "e8",
       "category": "politics",
       "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 12.79,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网",
-      "keywords": [
-        "深圳",
-        "总统",
-        "合作",
-        "中国总",
-        "总理",
-        "中新社记"
-      ],
-      "article_ids": [
-        13
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735832.shtml"
-      ],
-      "titles": [
-        "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e9",
-      "category": "politics",
-      "tags": [
         "politics"
       ],
-      "score": 11.55,
+      "score": 24.17,
+      "source_tier": "cn",
+      "hard_news": 1.08,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -358,7 +348,7 @@
         "媒体称沙"
       ],
       "article_ids": [
-        8
+        23
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-21/10735663.shtml"
@@ -371,51 +361,14 @@
       "importance": 0.0
     },
     {
-      "id": "e10",
+      "id": "e9",
       "category": "politics",
       "tags": [
         "politics"
       ],
-      "score": 11.55,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网",
-      "keywords": [
-        "日本研",
-        "进核三原",
-        "潜艇及为",
-        "原则",
-        "无核动力潜",
-        "引进"
-      ],
-      "article_ids": [
-        14
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735659.shtml"
-      ],
-      "titles": [
-        "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e11",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 10.31,
+      "score": 23.02,
+      "source_tier": "cn",
+      "hard_news": 1.08,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -436,7 +389,7 @@
         "mq-1"
       ],
       "article_ids": [
-        2
+        13
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-21/10735843.shtml"
@@ -449,13 +402,55 @@
       "importance": 0.0
     },
     {
-      "id": "e12",
-      "category": "politics",
+      "id": "e10",
+      "category": "tech",
       "tags": [
-        "politics",
-        "finance"
+        "tech"
       ],
-      "score": 10.31,
+      "score": 21.53,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 3,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "为勒索软件受害者提供解密服务的公司只是付钱给勒索软件组织",
+      "keywords": [
+        "勒索软件受",
+        "受害者提供解",
+        "解密服",
+        "公司只",
+        "服务的",
+        "给勒"
+      ],
+      "article_ids": [
+        44
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=85950"
+      ],
+      "titles": [
+        "为勒索软件受害者提供解密服务的公司只是付钱给勒索软件组织"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e11",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 20.67,
+      "source_tier": "tech",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -463,26 +458,67 @@
         "jargon": 0
       },
       "source_names": [
-        "中新网-财经"
+        "Wired"
       ],
       "freshness": 0.25,
-      "representative_title": "“拖堂”的气候大会给全世界算了笔账-中新网",
+      "representative_title": "A Space Probe Returns to Asteroids Where NASA Tested Planetary Defense Systems",
       "keywords": [
-        "中国家",
-        "气候大",
-        "大会给全世",
-        "全球",
-        "世界算了笔账",
-        "拖堂"
+        "the",
+        "ofor",
+        "inasan",
+        "to",
+        "andefense",
+        "will"
       ],
       "article_ids": [
-        7
+        18
       ],
       "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-21/10735906.shtml"
+        "https://www.wired.com/story/a-space-probe-returns-to-astroids-where-nasa-tested-planetary-defense-systems/"
       ],
       "titles": [
-        "“拖堂”的气候大会给全世界算了笔账-中新网"
+        "A Space Probe Returns to Asteroids Where NASA Tested Planetary Defense Systems"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e12",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.65,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 3,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网",
+      "keywords": [
+        "伊朗普称无法接",
+        "协议",
+        "特朗想达",
+        "达成的",
+        "的协",
+        "永远不会拥有核武器"
+      ],
+      "article_ids": [
+        46
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735660.shtml"
+      ],
+      "titles": [
+        "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -490,36 +526,40 @@
     },
     {
       "id": "e13",
-      "category": "other",
-      "tags": [],
-      "score": 8.53,
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 2,
+        "opinion": 1,
         "jargon": 0
       },
       "source_names": [
-        "中新网-国际"
+        "The Hill"
       ],
       "freshness": 0.25,
-      "representative_title": "“讲中国故事”暨印尼摄影家赴福建采风成果展在雅加达举行-中新网",
+      "representative_title": "Nancy Pelosi reflects on political career ahead of retirement: 'They made me the villain'",
       "keywords": [
-        "中国故",
-        "印尼摄",
-        "摄影家赴福",
-        "文化",
-        "故事",
-        "讲中"
+        "the",
+        "pelosinancy",
+        "hereflects",
+        "on",
+        "of",
+        "to"
       ],
       "article_ids": [
-        11
+        28
       ],
       "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735636.shtml"
+        "https://thehill.com/homenews/house/6235202-nancy-pelosi-congress-retirement/"
       ],
       "titles": [
-        "“讲中国故事”暨印尼摄影家赴福建采风成果展在雅加达举行-中新网"
+        "Nancy Pelosi reflects on political career ahead of retirement: 'They made me the villain'"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -527,9 +567,137 @@
     },
     {
       "id": "e14",
-      "category": "other",
-      "tags": [],
-      "score": 8.53,
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "The Hill"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China",
+      "keywords": [
+        "the",
+        "andealsaid",
+        "lutnick",
+        "ofor",
+        "cottonvidian",
+        "on"
+      ],
+      "article_ids": [
+        42
+      ],
+      "urls": [
+        "https://thehill.com/policy/technology/6235143-senator-warned-commerce-lutnick-nvidia-chips/"
+      ],
+      "titles": [
+        "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e15",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 20.0,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Defense One"
+      ],
+      "freshness": 0.25,
+      "representative_title": "The military lacks an ‘overarching plan’ to improve munition stockpiles—partly because it’s no one’s job",
+      "keywords": [
+        "the",
+        "tofor",
+        "andefense",
+        "that",
+        "munitiono",
+        "an"
+      ],
+      "article_ids": [
+        10
+      ],
+      "urls": [
+        "https://www.defenseone.com/threats/2026/11/military-lacks-munitions-plan/417390/"
+      ],
+      "titles": [
+        "The military lacks an ‘overarching plan’ to improve munition stockpiles—partly because it’s no one’s job"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e16",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 19.81,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 3,
+        "jargon": 1
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网",
+      "keywords": [
+        "教育创",
+        "创新职",
+        "职普融通",
+        "报告",
+        "上海",
+        "年度报"
+      ],
+      "article_ids": [
+        33
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735892.shtml"
+      ],
+      "titles": [
+        "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e17",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 19.75,
+      "source_tier": "cn",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -540,136 +708,23 @@
         "中新网-国际"
       ],
       "freshness": 0.25,
-      "representative_title": "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网",
+      "representative_title": "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网",
       "keywords": [
-        "委内瑞拉",
-        "中国捐",
-        "清理",
-        "中方",
-        "重型机械",
-        "废墟"
+        "深圳",
+        "总统",
+        "合作",
+        "中国总",
+        "总理",
+        "中新社记"
       ],
       "article_ids": [
-        18
+        37
       ],
       "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735909.shtml"
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735832.shtml"
       ],
       "titles": [
-        "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e15",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 7.7,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "探访秘鲁钱凯港：跨越太平洋的发展新机遇-中新网",
-      "keywords": [
-        "钱凯港口",
-        "秘鲁钱",
-        "太平洋的",
-        "发展新机",
-        "机遇",
-        "的发"
-      ],
-      "article_ids": [
-        3
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735662.shtml"
-      ],
-      "titles": [
-        "探访秘鲁钱凯港：跨越太平洋的发展新机遇-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e16",
-      "category": "other",
-      "tags": [],
-      "score": 7.7,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网",
-      "keywords": [
-        "病例两",
-        "菲律宾霍",
-        "增加",
-        "卫生部吁保",
-        "报告",
-        "安全"
-      ],
-      "article_ids": [
-        10
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735864.shtml"
-      ],
-      "titles": [
-        "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e17",
-      "category": "other",
-      "tags": [],
-      "score": 7.7,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网",
-      "keywords": [
-        "机场发生客",
-        "菲律宾达",
-        "达沃国际机紧",
-        "客机",
-        "紧急迫降",
-        "安全撤"
-      ],
-      "article_ids": [
-        15
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-21/10735857.shtml"
-      ],
-      "titles": [
-        "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网"
+        "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网"
       ],
       "is_followup": false,
       "followup_of": null,
@@ -677,12 +732,297 @@
     },
     {
       "id": "e18",
-      "category": "finance",
+      "category": "tech",
       "tags": [
-        "finance",
         "tech"
       ],
-      "score": 6.88,
+      "score": 19.66,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "快科技"
+      ],
+      "freshness": 0.25,
+      "representative_title": "钛杯、钛锅火了！真能抑菌吗 先别急着下单--快科技--科技改变未来",
+      "keywords": [
+        "科技改",
+        "保温杯",
+        "抑菌吗",
+        "快科",
+        "钛杯",
+        "qq"
+      ],
+      "article_ids": [
+        24
+      ],
+      "urls": [
+        "https://news.mydrivers.com/1/1167/1167584.htm"
+      ],
+      "titles": [
+        "钛杯、钛锅火了！真能抑菌吗 先别急着下单--快科技--科技改变未来"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e19",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 19.66,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "数万家智能工厂背后，AI到底改变了什么？-中新网",
+      "keywords": [
+        "智能工",
+        "制造",
+        "工厂背后",
+        "ai",
+        "能制",
+        "数万家智"
+      ],
+      "article_ids": [
+        26
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735913.shtml"
+      ],
+      "titles": [
+        "数万家智能工厂背后，AI到底改变了什么？-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e20",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 19.66,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "夜空中的人造卫星轨迹",
+      "keywords": [
+        "卫星轨",
+        "轨迹",
+        "夜空中的",
+        "的人造卫",
+        "所有",
+        "照片"
+      ],
+      "article_ids": [
+        53
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=85953"
+      ],
+      "titles": [
+        "夜空中的人造卫星轨迹"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e21",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 19.56,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 1
+      },
+      "source_names": [
+        "快科技"
+      ],
+      "freshness": 0.25,
+      "representative_title": "我国多地鼓励一周休2.5天模式：刺激大家多出去消费！--快科技--科技改变未来",
+      "keywords": [
+        "科技",
+        "休假",
+        "消费",
+        "快科",
+        "多地鼓",
+        "鼓励一周休"
+      ],
+      "article_ids": [
+        52
+      ],
+      "urls": [
+        "https://news.mydrivers.com/1/1167/1167586.htm"
+      ],
+      "titles": [
+        "我国多地鼓励一周休2.5天模式：刺激大家多出去消费！--快科技--科技改变未来"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e22",
+      "category": "other",
+      "tags": [],
+      "score": 19.18,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "人类免疫系统衰老在 40 岁和 60 岁后会加速",
+      "keywords": [
+        "衰老在",
+        "免疫系统衰",
+        "细胞",
+        "加速",
+        "人类免",
+        "岁后会加"
+      ],
+      "article_ids": [
+        2
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=85954"
+      ],
+      "titles": [
+        "人类免疫系统衰老在 40 岁和 60 岁后会加速"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e23",
+      "category": "other",
+      "tags": [],
+      "score": 19.18,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "地球 28 光年外发现一个三星系统",
+      "keywords": [
+        "矮星系",
+        "系统",
+        "发现一颗",
+        "红矮",
+        "地球",
+        "光年外"
+      ],
+      "article_ids": [
+        16
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=85955"
+      ],
+      "titles": [
+        "地球 28 光年外发现一个三星系统"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e24",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 19.09,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Defense One"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Europeans, with Ukraine’s help, brace for more Russian attacks",
+      "keywords": [
+        "tofor",
+        "theuropean",
+        "and",
+        "ukraine",
+        "naton",
+        "russian"
+      ],
+      "article_ids": [
+        21
+      ],
+      "urls": [
+        "https://www.defenseone.com/threats/2026/11/europeans-ukraines-help-brace-more-russian-attacks/417389/"
+      ],
+      "titles": [
+        "Europeans, with Ukraine’s help, brace for more Russian attacks"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e25",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 18.72,
+      "source_tier": "cn",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -703,7 +1043,7 @@
         "创新高分答卷"
       ],
       "article_ids": [
-        6
+        20
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-21/10735855.shtml"
@@ -716,12 +1056,495 @@
       "importance": 0.0
     },
     {
-      "id": "e19",
+      "id": "e26",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 18.72,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "爱范儿"
+      ],
+      "freshness": 0.25,
+      "representative_title": "美股一夜崩盘，AI 泡沫真要破了？",
+      "keywords": [
+        "ai",
+        "市场",
+        "投资本",
+        "英伟达",
+        "科技",
+        "下跌约"
+      ],
+      "article_ids": [
+        35
+      ],
+      "urls": [
+        "https://www.ifanr.com/1690789?utm_source=rss&utm_medium=rss&utm_campaign="
+      ],
+      "titles": [
+        "美股一夜崩盘，AI 泡沫真要破了？"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e27",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 18.35,
+      "source_tier": "tech",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "TechCrunch"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Alaska, your next governor is a Wikipedia nerd",
+      "keywords": [
+        "the",
+        "tofor",
+        "and",
+        "wikipedialaskamandat",
+        "is",
+        "inexthathis"
+      ],
+      "article_ids": [
+        36
+      ],
+      "urls": [
+        "https://techcrunch.com/2026/11/21/alaska-your-next-governor-is-a-wikipedia-nerd/"
+      ],
+      "titles": [
+        "Alaska, your next governor is a Wikipedia nerd"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e28",
+      "category": "other",
+      "tags": [],
+      "score": 18.31,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网",
+      "keywords": [
+        "病例两",
+        "菲律宾霍",
+        "增加",
+        "卫生部吁保",
+        "报告",
+        "安全"
+      ],
+      "article_ids": [
+        29
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735864.shtml"
+      ],
+      "titles": [
+        "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e29",
+      "category": "other",
+      "tags": [],
+      "score": 18.31,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网",
+      "keywords": [
+        "机场发生客",
+        "菲律宾达",
+        "达沃国际机紧",
+        "客机",
+        "紧急迫降",
+        "安全撤"
+      ],
+      "article_ids": [
+        40
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735857.shtml"
+      ],
+      "titles": [
+        "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e30",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 18.29,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网",
+      "keywords": [
+        "丹麦驱",
+        "俄罗斯武",
+        "驱逐俄表",
+        "武官",
+        "适当回应",
+        "示将"
+      ],
+      "article_ids": [
+        19
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735674.shtml"
+      ],
+      "titles": [
+        "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e31",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 17.45,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网",
+      "keywords": [
+        "日本研",
+        "进核三原",
+        "潜艇及为",
+        "原则",
+        "无核动力潜",
+        "引进"
+      ],
+      "article_ids": [
+        38
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735659.shtml"
+      ],
+      "titles": [
+        "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e32",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 16.62,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "“拖堂”的气候大会给全世界算了笔账-中新网",
+      "keywords": [
+        "中国家",
+        "气候大",
+        "大会给全世",
+        "全球",
+        "世界算了笔账",
+        "拖堂"
+      ],
+      "article_ids": [
+        22
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735906.shtml"
+      ],
+      "titles": [
+        "“拖堂”的气候大会给全世界算了笔账-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e33",
+      "category": "other",
+      "tags": [],
+      "score": 15.81,
+      "source_tier": "tech",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "The Verge"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Amazon is complaining about NYC Council on shipping labels, too",
+      "keywords": [
+        "amazonycouncilabels",
+        "ishipping",
+        "complaining",
+        "aboutoo",
+        "on"
+      ],
+      "article_ids": [
+        3
+      ],
+      "urls": [
+        "https://www.theverge.com/tech/1039564/amazon-nyc-council-packages-shipping-label"
+      ],
+      "titles": [
+        "Amazon is complaining about NYC Council on shipping labels, too"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e34",
+      "category": "other",
+      "tags": [],
+      "score": 15.81,
+      "source_tier": "tech",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "The Verge"
+      ],
+      "freshness": 0.25,
+      "representative_title": "The FBI and USDA were reportedly hacked",
+      "keywords": [
+        "the",
+        "fbi",
+        "and",
+        "usda",
+        "were",
+        "reportedly"
+      ],
+      "article_ids": [
+        48
+      ],
+      "urls": [
+        "https://www.theverge.com/tech/1039543/fbi-usda-hacked"
+      ],
+      "titles": [
+        "The FBI and USDA were reportedly hacked"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e35",
+      "category": "other",
+      "tags": [],
+      "score": 15.75,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网",
+      "keywords": [
+        "委内瑞拉",
+        "中国捐",
+        "清理",
+        "中方",
+        "重型机械",
+        "废墟"
+      ],
+      "article_ids": [
+        49
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735909.shtml"
+      ],
+      "titles": [
+        "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e36",
+      "category": "other",
+      "tags": [],
+      "score": 15.03,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网",
+      "keywords": [
+        "产业携",
+        "材料产",
+        "湖南",
+        "先进制",
+        "豫湘产",
+        "制造前"
+      ],
+      "article_ids": [
+        47
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735889.shtml"
+      ],
+      "titles": [
+        "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e37",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 14.23,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 3
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网",
+      "keywords": [
+        "人才发",
+        "汽车产",
+        "产业人",
+        "出海",
+        "智能网联新",
+        "大会在"
+      ],
+      "article_ids": [
+        17
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735888.shtml"
+      ],
+      "titles": [
+        "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e38",
       "category": "finance",
       "tags": [
         "finance"
       ],
-      "score": 5.23,
+      "score": 11.84,
+      "source_tier": "cn",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -742,7 +1565,7 @@
         "宏观"
       ],
       "article_ids": [
-        1
+        7
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-21/10735911.shtml"
@@ -755,12 +1578,14 @@
       "importance": 0.0
     },
     {
-      "id": "e20",
+      "id": "e39",
       "category": "finance",
       "tags": [
         "finance"
       ],
-      "score": 5.23,
+      "score": 11.84,
+      "source_tier": "cn",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -781,7 +1606,7 @@
         "我国消"
       ],
       "article_ids": [
-        19
+        51
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-21/10735914.shtml"

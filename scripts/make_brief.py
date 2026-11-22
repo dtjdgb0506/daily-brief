@@ -25,7 +25,7 @@ from cluster_events import load_articles, norm_title  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 
 TAG_NAMES = {"tech": "科技", "finance": "财经", "politics": "政治", "other": "综合"}
-SENT_SPLIT = re.compile(r"(?<=[。！？；])")
+SENT_SPLIT = re.compile(r"(?<=[。！？；])|(?<=[.!?])\s+")
 
 
 def load_json(path: Path):

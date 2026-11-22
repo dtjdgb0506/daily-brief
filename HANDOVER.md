@@ -100,6 +100,7 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 | `scripts/build_card.py` | 校验（问句标题/重复 URL/数字无出处/官话）+ 渲染卡片与网页 |
 | `scripts/deploy_cloudbase.py` | 部署 `site/` 到腾讯云 CloudBase |
 | `scripts/send_html.py` | 发信：一人一封、Date/Message-ID、重试、465/587 双通道 |
+| `scripts/send_from_state.py` | 准点发信：读 `state/cards/<日期>.html` 直接发，不抓取不生成（07:30 用） |
 | `scripts/notify_failure.py` | 流水线失败时发“今天没发成”提醒 |
 | `scripts/run_daily.py` | 主流程编排（日志/幂等/前一天/失败回退） |
 | `scripts/jargon.py` | 官话检测词表 |
@@ -118,15 +119,17 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 
 ---
 
-## 四、每天发生什么（自动流程）
+## 四、每天发生什么（自动流程，两段式）
 
-1. **07:30** GitHub Actions 触发 `daily.yml`
+1. **06:50（北京时间）** GitHub Actions 触发 `prepare.yml`
 2. 计算内容日 = 昨天（`--same-day` 才用当天）
 3. `collect.py --fetch 150 --day 昨天` 抓昨天的正文（每个源最多取 4 篇最新的，49 个源都能轮到）
-4. `cluster_events.py --content-day 昨天`：只要昨天发布、48 小时内、有日期的稿子；**先过滤软新闻**（展会/活动/签约/旅游/券商研报），再按“源质量 × 硬新闻信号 × 类别权重 × 时效”打分；**主推 5 条 = 5 个新事件**，与过去 7 天重合的事件单独作为第 6 条「后续」
+4. `cluster_events.py --content-day 昨天`：只要昨天发布、48 小时内、有日期的稿子；**先过滤软新闻**（展会/活动/签约/旅游/购物/娱乐/券商研报），再按“重要性 × 兴趣”打分；**主推 5 条 = 5 个新事件**，与过去 7 天重合的事件单独作为第 6 条「后续」
 5. 没有人工稿时：`make_brief.py` → `llm_polish.py` 生成自动稿
-6. `build_card.py` 校验并渲染；`deploy_cloudbase.py` 部署到腾讯云；`send_html.py` 发给两个人
-7. 任一步失败：`notify_failure.py` 发失败提醒
+6. `build_card.py` 校验并渲染；`deploy_cloudbase.py` 部署网页版；卡片和主题存进 `state/cards/<日期>.html`（**这一轮不发信**）
+7. **07:30** 触发 `daily.yml`：只跑 `send_from_state.py`，读 `state/cards/` 直接发信（10~20 秒）
+8. 06:50 那轮没准备出来时，07:30 会回退成“现跑一遍全流程”
+9. 任一步失败：`notify_failure.py` 发失败提醒
 
 **幂等**：`state/sent.json` 记录当天是否已发；这个文件**已入仓库**，CI 每次发完会自动 commit + push（`daily.yml` 最后一步），所以同一天手动重跑不会重复发（`--force` 可强制）。邮件 Message-ID 也用「主题+收件人」做种子，即使真发两遍，客户端也会折叠。
 **日志**：`logs/<推送日>.log`，云端可在 Actions 运行记录里看。
@@ -210,7 +213,7 @@ GitHub → Actions →「每日情报」→ Run workflow。
 5. **境外源依赖 GitHub 出口**：本机（国内）直连会超时，本地跑只能抓到约 22 个源（多为国内 + 部分国际站）。CI 上能抓 49 个。
 6. **软新闻过滤会误杀**：行业峰会、产品发布会、政策吹风会这类标题可能被当成“活动稿”过滤掉；如果发现好新闻被漏，把词加进 `scripts/cluster_events.py` 的 `SOFT_PATTERNS` 例外或调整。
 7. **部分源不可用**：Reuters、Nikkei、Foreign Affairs、Politico 等有反爬/付费墙（Politico、Nikkei、Foreign Affairs 已重新加入，云端能不能出稿以 `check_sources.py` 为准）；Nature 的 RSS 有时返回空。
-8. **GitHub Actions 定时可能延迟几分钟**，属正常。
+8. **GitHub Actions 定时可能延迟几分钟**：06:50 那轮有 40 分钟缓冲，07:30 只发信、延迟很小；极端情况（排队/漏跑）会由 07:30 的回退逻辑现跑一遍。
 9. **某天事件不足 5 条时只发实际条数**（宁少不重，不拆事件凑数）。
 10. **每天会多一个机器 commit**：CI 发完信把 `state/sent.json` 提交回仓库（`[skip ci]`），这是防重复发的代价。
 11. 邮件里的详情链接会先经过腾讯云中间页（见第 1 条）。

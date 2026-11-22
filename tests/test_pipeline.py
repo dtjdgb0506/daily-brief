@@ -189,5 +189,18 @@ class TestCollectQuota(unittest.TestCase):
         self.assertEqual(len(collect.pick_todo(cands, limit=3, per_feed=4)), 3)
 
 
+class TestSendFromState(unittest.TestCase):
+    """准点发送任务：没有准备好的卡片时必须报错（让工作流回退到现跑）。"""
+
+    def test_missing_card_returns_error(self):
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "send_from_state.py"),
+             "--date", "1999-01-01", "--dry-run"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn("没有准备好的卡片", proc.stdout + proc.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
