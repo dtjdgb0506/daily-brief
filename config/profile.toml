@@ -12,6 +12,7 @@ web_base = "https://daily-brief-d4ggl7ududb678762-1538638844.tcloudbaseapp.com" 
 tech = 50                   # 科技
 politics = 30               # 国际政治
 finance = 20                # 财经
+other = 8                   # 兜底类别（不应和上面三类同权）
 # 娱乐 / 体育 默认屏蔽
 
 [watch]

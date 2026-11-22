@@ -5,6 +5,18 @@
 > 代码仓库：https://github.com/dtjdgb0506/daily-brief （public）
 > 线上地址：https://daily-brief-d4ggl7ududb678762-1538638844.tcloudbaseapp.com
 
+## 最后核验（`python scripts/verify_handover.py` 自动生成，2026-11-22 18:42）
+
+| 项目 | 实测 |
+|---|---|
+| 单元测试 | ✅ 12/12 全部通过 |
+| 卡片占位符 | ✅ 没有 example.com 残留 |
+| 线上站点 | HTTP 200 |
+| 最近一次 Actions | 需本机网络能访问 api.github.com；以 Actions 页面为准 |
+| 发信状态 | 本地还没有 `state/sent.json`（本地从未真发；云端是否发过看 Actions 记录） |
+| 采集源 | 49 个源（core 25 / cn 9 / analysis 9 / tech 6） |
+| 网页往期 | 2 期（2026-11-21 ~ 2026-11-22） |
+
 ---
 
 ## 一、这套系统是干什么的
@@ -30,11 +42,14 @@
 ## 二、整体架构
 
 ```
-RSS 源（25 个，含 15 个国际源）
+RSS 源（49 个：国际权威 25 / 国际科技 6 / 深度分析 9 / 国内主流 9）
         │  collect.py：按 URL 去重、48h 时间窗、只抓“前一天”的正文
         ▼
 output/raw/<推送日>/   （每篇稿子存正文 + 发布日期 + 来源）
         │  cluster_events.py：按事件聚类、去重、打分、选 5 条 + 1 条后续
+        │    · 软新闻过滤（展会/活动/签约/旅游/券商研报 → 直接不要）
+        │    · 源质量分层（core 1.30 / tech 1.15 / analysis 1.10 / cn 0.95）
+        │    · 硬新闻信号（决策/人物/数字才算大事）
         ▼
 output/events.json / events.md
         │  make_brief.py：抽取式初稿（标题/导语/要点/时间线/出处/观点句）
@@ -62,8 +77,8 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 | 文件 | 作用 |
 |---|---|
 | `config/profile.toml` | 条数、类别权重、关注人物/公司、网页版地址、聚类阈值、时效半衰期、后续门槛 |
-| `config/sources.toml` | 采集源（RSS），一行一个源，现 25 个 |
-| `config/lexicon.toml` | 类别词表 + 标题规则（中英文），决定一条新闻算科技/财经/政治 |
+| `config/sources.toml` | 采集源（RSS），一行一个源，现 49 个；每个源带 `tier`（core/tech/analysis/cn/local），tier 决定质量权重 |
+| `config/lexicon.toml` | 类别词表 + 标题规则 + 排除词（中英文），决定一条新闻算科技/财经/政治 |
 | `config/entities.toml` | 实体别名（中英/繁体），用于把不同媒体的同一事件合并 |
 | `config/brief.json` | 当天的人工稿（可选；没有就走自动稿） |
 | `config/brief.draft.json` | 自动初稿（忽略，不入库） |
@@ -76,7 +91,9 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 | `scripts/collect.py` | 收 RSS → 候选清单 → 抓正文入库（`--day` 只抓某一天） |
 | `scripts/fetch_article.py` | 单篇抓取；提取发布日期（meta/正文/URL 三层）；正文清洗 |
 | `scripts/extract_main.py` | lxml 内容块打分，抽主内容（解决“只抓到导航条”） |
-| `scripts/cluster_events.py` | 事件聚类、去重、打分、动态名额分配、7 天后续识别 |
+| `scripts/cluster_events.py` | 事件聚类、去重、打分、动态名额分配、7 天后续识别；软新闻过滤 + 源分层 + 硬新闻信号 |
+| `scripts/check_sources.py` | 并发检查每个源能不能用、出多少条（`--timeout/--workers/--only`） |
+| `scripts/verify_handover.py` | 交接文档自检：单测/占位符/线上站点/Actions/发信状态/源数量 |
 | `scripts/make_brief.py` | 抽取式初稿 |
 | `scripts/llm_polish.py` | 调 DeepSeek 改写成“人话 + 分析”，禁官话，官话过多自动重写 |
 | `scripts/build_card.py` | 校验（问句标题/重复 URL/数字无出处/官话）+ 渲染卡片与网页 |
@@ -105,12 +122,12 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 1. **07:30** GitHub Actions 触发 `daily.yml`
 2. 计算内容日 = 昨天（`--same-day` 才用当天）
 3. `collect.py --fetch 40 --day 昨天` 抓昨天的正文
-4. `cluster_events.py --content-day 昨天`：只要昨天发布、48 小时内、有日期的稿子；聚类打分；**5 条必须是 5 个不同事件**；名额按当天实际类别动态分配
+4. `cluster_events.py --content-day 昨天`：只要昨天发布、48 小时内、有日期的稿子；**先过滤软新闻**（展会/活动/签约/旅游/券商研报），再按“源质量 × 硬新闻信号 × 类别权重 × 时效”打分；**主推 5 条 = 5 个新事件**，与过去 7 天重合的事件单独作为第 6 条「后续」
 5. 没有人工稿时：`make_brief.py` → `llm_polish.py` 生成自动稿
 6. `build_card.py` 校验并渲染；`deploy_cloudbase.py` 部署到腾讯云；`send_html.py` 发给两个人
 7. 任一步失败：`notify_failure.py` 发失败提醒
 
-**幂等**：`state/sent.json` 记录当天是否已发，重跑不会重复发（`--force` 可强制）。
+**幂等**：`state/sent.json` 记录当天是否已发；这个文件**已入仓库**，CI 每次发完会自动 commit + push（`daily.yml` 最后一步），所以同一天手动重跑不会重复发（`--force` 可强制）。邮件 Message-ID 也用「主题+收件人」做种子，即使真发两遍，客户端也会折叠。
 **日志**：`logs/<推送日>.log`，云端可在 Actions 运行记录里看。
 
 ---
@@ -187,13 +204,15 @@ GitHub → Actions →「每日情报」→ Run workflow。
 
 1. **腾讯云测试域名有 3 秒中间页**（“页面访问提示”）。去掉它只能绑自定义域名，需要域名 + ICP 备案（1–3 周、约 ¥150/年）；当前决定先不管。
 2. **免费环境 2027-05-22 到期**，需每 6 个月手动续期，否则环境回收、所有链接失效。
-3. **网页版归档索引只列当天**：CI 每次构建的 `site/` 只有当天，根页“往期”只有最新一期；旧日期页面还在云上但入口缺失。
+3. **网页版归档索引只列最近两期**：CI 每次构建的 `site/` 只有当天，根页“往期”靠本地 build 累积；旧的详情页还在云上，但入口会缺。
 4. **模型可能把数字写错**：提示词要求数字来自素材，但只做了“有出处”的校验，没有逐条核对。
-5. **境外源依赖 GitHub 出口**：本机（国内）直连会超时，本地跑只能抓到国内源。
-6. **部分源抓不到**：Reuters、Nikkei、Foreign Affairs、Politico 等反爬/付费墙，已移除；新华网/人民网 RSS 在海外出口是 0 条，已移除。
-7. **GitHub Actions 定时可能延迟几分钟**，属正常。
-8. **某天事件不足 5 条时只发实际条数**（宁少不重，不拆事件凑数）。
-9. 邮件里的详情链接会先经过腾讯云中间页（见第 1 条）。
+5. **境外源依赖 GitHub 出口**：本机（国内）直连会超时，本地跑只能抓到约 22 个源（多为国内 + 部分国际站）。CI 上能抓 49 个。
+6. **软新闻过滤会误杀**：行业峰会、产品发布会、政策吹风会这类标题可能被当成“活动稿”过滤掉；如果发现好新闻被漏，把词加进 `scripts/cluster_events.py` 的 `SOFT_PATTERNS` 例外或调整。
+7. **部分源不可用**：Reuters、Nikkei、Foreign Affairs、Politico 等有反爬/付费墙（Politico、Nikkei、Foreign Affairs 已重新加入，云端能不能出稿以 `check_sources.py` 为准）；Nature 的 RSS 有时返回空。
+8. **GitHub Actions 定时可能延迟几分钟**，属正常。
+9. **某天事件不足 5 条时只发实际条数**（宁少不重，不拆事件凑数）。
+10. **每天会多一个机器 commit**：CI 发完信把 `state/sent.json` 提交回仓库（`[skip ci]`），这是防重复发的代价。
+11. 邮件里的详情链接会先经过腾讯云中间页（见第 1 条）。
 
 ---
 
@@ -222,6 +241,12 @@ python scripts/run_daily.py --dry-run
 # 只检查源能不能用
 python scripts/collect.py --dry-run
 
+# 并发检查每个源的可用性（比上面快，且逐个报数量）
+python scripts/check_sources.py --timeout 8 --workers 16
+
+# 交接文档自检（把文档和实际状态对一遍）
+python scripts/verify_handover.py
+
 # 按昨天跑但只到校验
 python scripts/run_daily.py --dry-run --auto-brief
 
@@ -243,7 +268,7 @@ python scripts/print_brief.py config/brief.json
 2. **归档索引**：把历史日期写进一个小 JSON 并每天提交，根页就能列出全部往期
 3. **数字核对**：模型输出的数字与素材做二次比对，不符就回退
 4. **换子账号密钥**：降低腾讯云主账号密钥风险
-5. **内容源继续扩**：财新/第一财经/彭博等（部分需付费或翻墙）
+5. **继续扩国际源**：已从 25 个扩到 49 个（国际权威 25 / 国际科技 6 / 深度分析 9）；下一步补财新、彭博、路透镜像等，加源后先跑 `check_sources.py` 或云端 `test-sources` 看能不能出稿
 6. **把 `brief.json` 的人工稿流程固化**：目前自动稿已可用，但有重大事件时手写一版质量更高
 
 ---
@@ -254,4 +279,5 @@ python scripts/print_brief.py config/brief.json
 - 同天：接入腾讯云 CloudBase 托管、GitHub Actions 云端定时、DeepSeek 改写
 - 同天：修复旧闻冒充今天、无关新闻误合并、官话过多等问题
 - 同天：改为「推前一天新闻」+「每条独立详情页」+「分析/问题/启示」结构
+- 同天（晚）：修复幂等（状态入仓 + CI 自动提交 + Message-ID 去重）、5+1 结构、选题质量（软新闻过滤/源分层/硬新闻信号/兜底类别降权）、国际源扩到 49 个
 - 当前状态：**已上线，每天 07:30 自动推送，双收件人**

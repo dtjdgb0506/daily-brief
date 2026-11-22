@@ -15,13 +15,14 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import smtplib
 import ssl
 import sys
 import time
 from email.message import EmailMessage
-from email.utils import formatdate, make_msgid
+from email.utils import formatdate
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -60,7 +61,10 @@ def build_message(cfg: dict, subject: str, html: str, text: str | None,
     if cc:
         msg["Cc"] = cc
     msg["Date"] = formatdate(localtime=True)
-    msg["Message-ID"] = make_msgid(domain="dailybrief.local")
+    # 幂等：同一天 + 同一主题 + 同一收件人 → 相同 Message-ID。
+    # 即使重复运行、真的发了两遍，邮箱也会把第二封折叠成一封，而不是两条未读。
+    token = hashlib.sha1(f"{subject}|{to_addr}".encode("utf-8")).hexdigest()[:12]
+    msg["Message-ID"] = f"<daily-brief-{token}@dailybrief.local>"
     msg.set_content(text or html_to_text(html))
     msg.add_alternative(html, subtype="html")
     return msg

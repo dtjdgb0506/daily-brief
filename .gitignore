@@ -1,11 +1,11 @@
-﻿.env
+.env
 __pycache__/
 *.pyc
 data/*.db
 .venv/
 output/
 logs/
-state/
+state/*.tmp
 config/brief.draft.json
 site/
 briefs/

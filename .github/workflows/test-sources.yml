@@ -1,6 +1,6 @@
 name: 采集源自检
 
-# 手动触发：只跑 collect --dry-run，检查每个源在 GitHub（美国）出口下能拿到多少条，不发信。
+# 手动触发：并发检查每个源在 GitHub（美国）出口下能拿到多少条，不发信。
 on:
   workflow_dispatch:
 
@@ -17,4 +17,4 @@ jobs:
           python-version: "3.12"
       - run: pip install lxml
       - name: 检查各源
-        run: python scripts/collect.py --dry-run --since-hours 48
+        run: python scripts/check_sources.py --timeout 10 --workers 12

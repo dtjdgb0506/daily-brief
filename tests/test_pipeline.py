@@ -136,5 +136,33 @@ class TestLlmPolish(unittest.TestCase):
         self.assertFalse(out["draft"])
 
 
+class TestQualityFilter(unittest.TestCase):
+    """选题质量回归：展会/活动稿不能进日报，硬新闻要保留。"""
+
+    def test_soft_news_detection(self):
+        import cluster_events as ce
+        self.assertTrue(ce.is_soft_news("2026年广西林木展吸引国际头部企业及境外采购商"))
+        self.assertTrue(ce.is_soft_news("CHINA ROCK 科技创新工业展览会在成都启幕"))
+        self.assertTrue(ce.is_soft_news("某市举行招商签约仪式"))
+        self.assertFalse(ce.is_soft_news("美国参议院通过新一轮芯片出口管制法案"))
+        self.assertFalse(ce.is_soft_news("英伟达发布新一代 GPU，算力提升 40%"))
+
+    def test_quality_fixture_excludes_exhibitions(self):
+        out = Path(tempfile.mkdtemp())
+        cmd = [
+            sys.executable, str(ROOT / "scripts" / "cluster_events.py"),
+            "--fixture", str(ROOT / "tests" / "fixture_quality.json"),
+            "--date", "2026-11-22", "--no-archive", "--out", str(out),
+        ]
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        data = json.loads((out / "events.json").read_text(encoding="utf-8-sig"))
+        titles = [e["representative_title"] for e in data["events"]]
+        self.assertTrue(titles, "真新闻不应该被过滤光")
+        for title in titles:
+            self.assertNotIn("展", title, f"展会稿不应进事件列表：{title}")
+        self.assertTrue(data["selected"], "至少应选出 1 条")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -43,6 +43,58 @@ LATIN = re.compile(r"[A-Za-z][A-Za-z0-9.+-]{1,}")
 
 JUNK_TITLES = {"学习进行时", "微视频", "视频", "专题", "图解", "直播", "海报", "首页", "滚动新闻", "图片新闻"}
 
+# 软新闻：展会、活动、签约、招商这类稿子，再“新”也不是大事，直接不要。
+SOFT_PATTERNS = [
+    r"展[会览销]", r"博览会", r"展览会", r"开幕", r"揭牌", r"启动仪式", r"签约", r"招商",
+    r"招聘", r"促销", r"节庆", r"庆典", r"大赛", r"竞赛", r"联赛", r"演唱会", r"研讨会",
+    r"评选", r"榜单", r"盘点", r"游记", r"美食", r"通车", r"试运营", r"投产", r"开工", r"竣工",
+    # 文旅/生活类
+    r"旅游", r"游客", r"打卡", r"美景", r"风光", r"探访", r"民俗", r"非遗", r"古都",
+    r"历史文化魅力", r"古镇", r"民宿", r"温泉", r"养生", r"减肥", r"星座", r"情感",
+    r"婚礼", r"萌宠", r"八卦", r"景区", r"文旅",
+    # 券商研报/盘面点评（不是新闻事件）
+    r"建议关注", r"研报", r"目标价", r"涨停", r"早盘", r"尾盘", r"个股", r"券商",
+    r"^[^：]{2,8}(证券|基金|研究院|研究所)：",
+]
+SOFT_NEWS_RE = re.compile("|".join(SOFT_PATTERNS))
+
+# 硬新闻信号：标题里有人物/机构动作、决策、数字，才算“值得看的大事”。
+HARD_NEWS_WORDS = [
+    "辞职", "罢免", "解职", "上任", "任命", "宣布", "签署", "通过", "否决", "判决",
+    "起诉", "逮捕", "制裁", "禁令", "法案", "财政", "利率", "降息", "加息", "通胀",
+    "空袭", "袭击", "停火", "谈判", "峰会", "选举", "投票", "财报", "营收", "收购",
+    "并购", "上市", "IPO", "破产", "裁员", "调查", "监管", "出口", "管制", "关税",
+    "resign", "appoint", "fire", "election", "sanction", "tariff", "ban", "sue",
+    "investigat", "approve", "reject", "deal", "merger", "layoff", "earnings",
+]
+
+# 源质量权重：国际权威 > 国际科技/深度分析 > 国内主流 > 地方稿
+TIER_FACTOR = {"core": 1.30, "tech": 1.15, "analysis": 1.10, "cn": 0.95, "local": 0.55}
+
+
+def is_soft_news(title: str) -> bool:
+    """展会/活动/签约/招商类标题 → 软新闻，不该进日报。"""
+    t = title or ""
+    if SOFT_NEWS_RE.search(t):
+        return True
+    # 标题里带“展”但没有硬新闻信号（发展/展望这类词先剔掉）
+    stripped = re.sub(r"(发展|展望|展示|展现|开展|扩展|拓展|进展|展开|展出)", "", t)
+    if "展" in stripped and not any(w in t for w in HARD_NEWS_WORDS):
+        return True
+    if "论坛" in t and not any(w in t for w in HARD_NEWS_WORDS):
+        return True
+    return False
+
+
+def hard_news_factor(title: str) -> float:
+    """有硬新闻信号加分；只有数字给中性；什么都没有就降权。"""
+    t = (title or "").lower()
+    if any(w in t for w in HARD_NEWS_WORDS):
+        return 1.08
+    if re.search(r"\d", t):
+        return 0.95
+    return 0.78
+
 STOP_BIGRAMS = {
     "的的", "了了", "是是", "这一", "一个", "我们", "他们", "可以", "因为", "所以",
     "但是", "已经", "还是", "就是", "以及", "对于", "关于", "通过", "进行", "这个",
@@ -96,11 +148,36 @@ ENTITY_ALIASES: dict[str, dict[str, list[str]]] = {
     "people": {k: list(v) for k, v in DEFAULT_ALIASES["people"].items()},
     "companies": {k: list(v) for k, v in DEFAULT_ALIASES["companies"].items()},
 }
+SOURCE_TIERS: dict[str, str] = {}
+CATEGORY_EXCLUDE: dict[str, list[str]] = {}
+WATCH_TERMS: list[str] = []
+
+
+def watch_factor(titles: list[str]) -> float:
+    """命中 watch 名单（公司/人物/话题）的事件适度加分：同样是大事，先看你在意的。"""
+    if not WATCH_TERMS:
+        return 1.0
+    blob = " ".join(titles).lower()
+    hits = sum(1 for w in WATCH_TERMS if w.lower() in blob)
+    return 1 + 0.08 * min(hits, 3)
+
+
+def load_source_tiers() -> dict[str, str]:
+    """从 config/sources.toml 读每个源的 tier（core/tech/analysis/cn/local）。"""
+    path = ROOT / "config" / "sources.toml"
+    if not path.exists():
+        return {}
+    try:
+        with path.open("rb") as f:
+            feeds = tomllib.load(f).get("feed", [])
+    except (OSError, tomllib.TOMLDecodeError):
+        return {}
+    return {f.get("name", ""): f.get("tier", "cn") for f in feeds if f.get("name")}
 
 
 def load_config_tables(profile: dict) -> None:
     """从 config/lexicon.toml + entities.toml 覆盖默认词表；watch 里的对象自动补别名。"""
-    global LEXICON, TITLE_RULES, ENTITY_ALIASES
+    global LEXICON, TITLE_RULES, ENTITY_ALIASES, CATEGORY_EXCLUDE, WATCH_TERMS
     lex_path = ROOT / "config" / "lexicon.toml"
     if lex_path.exists():
         with lex_path.open("rb") as f:
@@ -108,11 +185,20 @@ def load_config_tables(profile: dict) -> None:
         for cat, block in data.get("lexicon", {}).items():
             LEXICON[cat] = list(block.get("words", []))
         TITLE_RULES = {k: list(v) for k, v in data.get("title_rules", {}).items()}
+        CATEGORY_EXCLUDE = {
+            cat: list(block.get("words", []))
+            for cat, block in data.get("exclude", {}).items()
+        }
     watch = profile.get("watch", {})
     for canon in watch.get("people", []):
         ENTITY_ALIASES["people"].setdefault(canon, [canon])
     for canon in watch.get("companies", []):
         ENTITY_ALIASES["companies"].setdefault(canon, [canon])
+    WATCH_TERMS = [
+        *watch.get("companies", []),
+        *watch.get("people", []),
+        *watch.get("topics", []),
+    ]
     ent_path = ROOT / "config" / "entities.toml"
     if ent_path.exists():
         with ent_path.open("rb") as f:
@@ -438,6 +524,11 @@ def category_of(title_blob: str, body_blob: str, weights: dict) -> tuple[str, li
     for cat, words in TITLE_RULES.items():
         hits = sum(1 for w in words if w.lower() in t_low)
         counts[cat] = counts.get(cat, 0) + hits * 3
+    # 排除词：说明它其实不是该类别的大事（例如“科技展览会”不是科技新闻）
+    for cat, words in CATEGORY_EXCLUDE.items():
+        if cat in counts:
+            deduct = sum(t_low.count(w.lower()) * 3 + b_low.count(w.lower()) for w in words)
+            counts[cat] = max(0, counts[cat] - deduct)
     if not any(counts.values()):
         return "other", [], counts
     # 类别只按“证据多少”判断（权重只用于排序打分，否则 tech 权重 50 会让一切归科技）
@@ -502,6 +593,7 @@ def pick_balanced(events: list[dict], top: int, weights: dict) -> list[dict]:
 
 
 def main() -> int:
+    global SOURCE_TIERS
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -523,6 +615,7 @@ def main() -> int:
 
     profile = load_profile()
     load_config_tables(profile)
+    SOURCE_TIERS = load_source_tiers()
     weights = profile.get("weights", {})
     cluster_cfg = profile.get("cluster", {})
     if args.threshold is None:
@@ -606,7 +699,9 @@ def main() -> int:
         title_blob = " ".join(articles[i]["title"] for i in members)
         body_blob = " ".join(articles[i]["text"][:3000] for i in members)
         cat, cat_labels, cat_counts = category_of(title_blob, body_blob, weights)
-        cat_weight = max(weights.get(cat, 20), 1) / 100
+        # “其他”只是兜底类别，不该和科技/政治/财经同权
+        default_w = 8 if cat == "other" else 20
+        cat_weight = max(weights.get(cat, default_w), 1) / 100
         scale = 1 + 0.25 * math.log2(1 + len(members))
         blob = " ".join(articles[i]["text"][:2000] for i in members)
         opinion_hits = sum(1 for m in ("认为", "指出", "表示", "预计", "担忧", "分析", "评论",
@@ -640,11 +735,21 @@ def main() -> int:
         rep_title = articles[rep_idx]["title"]
         if len(rep_title.strip()) < 8 or rep_title.strip() in JUNK_TITLES:
             continue  # 栏目名/视频页标题，不是一条真新闻
+        if is_soft_news(rep_title):
+            continue  # 展会/活动/签约/招商类稿子：再新也不是大事
+        hard_f = hard_news_factor(rep_title)
+        tiers = [SOURCE_TIERS.get(articles[i].get("source", ""), "cn") for i in members]
+        best_tier = max(tiers, key=lambda t: TIER_FACTOR.get(t, 1.0)) if tiers else "cn"
+        tier_f = TIER_FACTOR.get(best_tier, 1.0)
+        w_f = watch_factor([articles[i]["title"] for i in members])
         events.append({
             "id": None,
             "category": cat,
             "tags": cat_labels,
-            "score": round(cat_weight * scale * fresh * diversity * analysis_factor * plain_factor * 100, 2),
+            "score": round(cat_weight * scale * fresh * diversity * analysis_factor
+                           * plain_factor * hard_f * tier_f * w_f * 100, 2),
+            "source_tier": best_tier,
+            "hard_news": round(hard_f, 2),
             "article_count": len(members),
             "source_count": n_sources,
             "readability": {"opinion": opinion_hits, "jargon": jarg},
@@ -672,9 +777,10 @@ def main() -> int:
         )
         e["importance"] = followup_importance(e, matched, weights) if matched else 0.0
 
-    # 主推永远是今天得分最高的 N 条（哪怕它本身是某个旧故事的延续）；
-    # 第六点从“没挤进主推、但和前七天事件对得上”的事件里挑一条最重要的。
-    main = pick_balanced(events, top, weights)
+    # 主推 = 今天的“新事件”；与历史重合的事件单独放“后续”，
+    # 避免同一件事既当主推又当后续，也保证“5 条新闻 + 1 条后续”的结构稳定。
+    main_pool = [e for e in events if not e["is_followup"]]
+    main = pick_balanced(main_pool, top, weights)
     main_ids = {e["id"] for e in main}
     follow_candidates = sorted(
         [e for e in events if e["is_followup"] and e["id"] not in main_ids],
@@ -685,16 +791,43 @@ def main() -> int:
     follow = next((c for c in follow_candidates if c["importance"] >= follow_min), None)
 
     warnings = []
+    filled = 0
+    if len(main) < top:
+        # 新事件不够：用“后续事件”补进主推，保证每天有东西看；后续就不再单列。
+        for e in follow_candidates:
+            if len(main) >= top:
+                break
+            if e["id"] not in main_ids:
+                main.append(e)
+                main_ids.add(e["id"])
+                filled += 1
+        main.sort(key=lambda e: e["score"], reverse=True)
+        if follow is not None and follow["id"] in main_ids:
+            follow = None
+    if filled:
+        warnings.append(f"当天新事件不足 {top} 条，已用 {filled} 条历史后续补进主推（卡片会标注“延续”）。")
     if len(main) < top:
         warnings.append(
-            f"当天只识别出 {len(main)} 个新的独立事件，不足 {top} 条：新闻高度集中于同一事件，"
-            f"应按事件而非稿件凑数（宁可发 {len(main)} 条，也不要把一件事拆成多条）。"
+            f"当天只识别出 {len(main)} 个独立事件，不足 {top} 条：宁可少发，也不拆事件凑数。"
         )
     if follow_candidates and not follow:
         warnings.append(
             f"有 {len(follow_candidates)} 个事件与历史重合，但重要性都没过线（最高 "
             f"{follow_candidates[0]['importance']}），今天不放“后续”。"
         )
+
+    # 当日质量自检：选出来的东西是不是“国际源覆盖、像硬新闻”
+    selected_sources = {s for e in main for s in e.get("source_names", [])}
+    known_sources = [s for s in selected_sources if s in SOURCE_TIERS]
+    core_sources = [s for s in known_sources if SOURCE_TIERS.get(s) == "core"]
+    soft_selected = [e for e in main if is_soft_news(e["representative_title"])]
+    if soft_selected:
+        warnings.append(
+            f"有 {len(soft_selected)} 条疑似软新闻进了主推"
+            f"（{soft_selected[0]['representative_title'][:20]}），请检查过滤规则。"
+        )
+    if main and known_sources and not core_sources:
+        warnings.append("今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。")
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
