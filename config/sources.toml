@@ -29,17 +29,6 @@ url = "https://www.tmtpost.com/rss.xml"
 category = "tech"
 
 [[feed]]
-name = "新华网-科技"
-url = "http://www.xinhuanet.com/tech/news_tech.xml"
-category = "tech"
-
-[[feed]]
-name = "人民网-科技"
-url = "http://www.people.com.cn/rss/it.xml"
-category = "tech"
-
-# —— 财经 ——
-[[feed]]
 name = "华尔街见闻"
 url = "https://dedicated.wallstreetcn.com/rss.xml"
 category = "finance"
@@ -47,11 +36,6 @@ category = "finance"
 [[feed]]
 name = "界面新闻"
 url = "https://a.jiemian.com/index.php?m=article&a=rss"
-category = "finance"
-
-[[feed]]
-name = "人民网-财经"
-url = "http://www.people.com.cn/rss/finance.xml"
 category = "finance"
 
 [[feed]]
@@ -65,23 +49,8 @@ url = "https://www.ft.com/world?format=rss"
 category = "finance"
 
 [[feed]]
-name = "新华网-国际"
-url = "http://www.xinhuanet.com/world/news_world.xml"
-category = "politics"
-
-[[feed]]
-name = "人民网-国际"
-url = "http://www.people.com.cn/rss/world.xml"
-category = "politics"
-
-[[feed]]
 name = "中新网-国际"
 url = "https://www.chinanews.com.cn/rss/world.xml"
-category = "politics"
-
-[[feed]]
-name = "新华网-时政"
-url = "http://www.xinhuanet.com/politics/news_politics.xml"
 category = "politics"
 
 [[feed]]
@@ -130,7 +99,6 @@ name = "War on the Rocks"
 url = "https://warontherocks.com/feed/"
 category = "politics"
 
-
 # —— 国际源补充（第二轮） ——
 [[feed]]
 name = "Economist"
@@ -138,28 +106,8 @@ url = "https://www.economist.com/latest/rss.xml"
 category = "politics"
 
 [[feed]]
-name = "Foreign Affairs"
-url = "https://www.foreignaffairs.com/rss/all"
-category = "politics"
-
-[[feed]]
 name = "Atlantic Council"
 url = "https://www.atlanticcouncil.org/feed/"
-category = "politics"
-
-[[feed]]
-name = "Carnegie"
-url = "https://carnegieendowment.org/rss/solr/?fa=publications"
-category = "politics"
-
-[[feed]]
-name = "RAND"
-url = "https://www.rand.org/pubs/articles.xml"
-category = "politics"
-
-[[feed]]
-name = "Politico"
-url = "https://www.politico.com/rss/politicopicks.xml"
 category = "politics"
 
 [[feed]]
@@ -178,21 +126,6 @@ url = "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml"
 category = "politics"
 
 [[feed]]
-name = "Reuters World"
-url = "https://www.reuters.com/arc/outboundfeeds/rss/?outputType=xml"
-category = "politics"
-
-[[feed]]
 name = "NPR World"
 url = "https://feeds.npr.org/1004/rss.xml"
-category = "politics"
-
-[[feed]]
-name = "Nikkei Asia"
-url = "https://asia.nikkei.com/rss/feed/nar2"
-category = "politics"
-
-[[feed]]
-name = "DW World"
-url = "https://rss.dw.com/rdf/rss-en-all"
 category = "politics"
