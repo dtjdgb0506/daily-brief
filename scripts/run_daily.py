@@ -20,7 +20,7 @@ import json
 import os
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -82,6 +82,7 @@ def main() -> int:
     parser.add_argument("--fetch", type=int, default=30, help="采集后抓多少篇正文")
     parser.add_argument("--auto-brief", action="store_true", help="当天没有 brief 时用 make_brief.py 生成自动初稿")
     parser.add_argument("--window-hours", type=int, default=24)
+    parser.add_argument("--same-day", action="store_true", help="默认推前一天的新闻；加这个才推当天")
     args = parser.parse_args()
 
     date = args.date
@@ -89,19 +90,28 @@ def main() -> int:
     started = datetime.now()
     print(f"每日情报 · {date} · {started:%H:%M:%S}")
 
-    # 1. 采集
+    # 1. 采集（先算内容日：默认前一天）
+    content_day = date if args.same_day else (
+        datetime.fromisoformat(date) - timedelta(days=1)).date().isoformat()
+    print(f"  内容日：{content_day}（{'当天' if args.same_day else '前一天'}）")
     if not args.no_collect:
-        ok, _ = run_step("采集", ["scripts/collect.py", "--fetch", str(args.fetch)], log_path)
+        ok, _ = run_step("采集", ["scripts/collect.py", "--fetch", str(args.fetch),
+                                 "--day", content_day], log_path)
         if not ok:
             print("  ⚠ 采集失败，继续用现有 raw 数据")
     else:
         print("\n▶ 采集: 跳过（--no-collect）")
 
-    # 2. 聚类（含“前七天后续”）
-    ok, _ = run_step("聚类", ["scripts/cluster_events.py", "--window-hours", str(args.window_hours)], log_path)
+    # 2. 聚类（默认取“昨天”全天的新闻：分析文章需要时间，早上能看到昨日+分析）
+    ok, _ = run_step("聚类", ["scripts/cluster_events.py", "--content-day", content_day,
+                             "--window-hours", str(args.window_hours)], log_path)
     if not ok:
-        print("✗ 聚类失败，终止")
-        return 1
+        print(f"  ⚠ {content_day} 没有稿子，回退到最近 {args.window_hours}h（保证每天能发）")
+        ok, _ = run_step("聚类（回退）", ["scripts/cluster_events.py",
+                                       "--window-hours", str(args.window_hours)], log_path)
+        if not ok:
+            print("✗ 聚类失败，终止")
+            return 1
 
     # 3. 出卡：优先用人工稿；没有/过期时可以自动生成初稿
     brief_path = ROOT / "config" / "brief.json"

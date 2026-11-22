@@ -218,12 +218,14 @@ def main() -> int:
         followup = fu
 
     date = args.date or data.get("run_date") or datetime.now().date().isoformat()
+    content_day = data.get("content_day") or date
     brief = {
         "date": date,
+        "content_day": content_day,
         "draft": True,
         "doc_title": items[0]["title"] if items else "每日情报",
-        "preheader": f"今天 {len(items)} 条新闻" + (" + 1 条后续" if followup else "") + "（自动初稿）",
-        "meta": f"{date} · {len(items)} 条新闻" + (" + 1 条后续" if followup else "") + " · 自动初稿",
+        "preheader": f"{content_day} 的 {len(items)} 条新闻" + (" + 1 条后续" if followup else "") + "，含各方分析",
+        "meta": f"{date} 推送 · 内容为 {content_day} 的新闻" + (" + 1 条后续" if followup else ""),
         "items": items,
         "followup": followup,
     }

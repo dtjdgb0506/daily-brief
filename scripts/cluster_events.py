@@ -476,6 +476,7 @@ def main() -> int:
     parser.add_argument("--max-per-category", type=int, default=None)
     parser.add_argument("--threshold", type=float, default=None, help="默认取 profile.toml [cluster].threshold")
     parser.add_argument("--window-hours", type=int, default=24, help="只看这个时间窗内的稿件")
+    parser.add_argument("--content-day", default=None, help="只看这一天的稿子（YYYY-MM-DD），优先于 --window-hours")
     parser.add_argument("--history-days", type=int, default=7, help="过去几天算“前七天”")
     parser.add_argument("--date", default=None, help="运行日期（默认今天），用于归档路径")
     parser.add_argument("--history-dir", default=str(ROOT / "output" / "archive"), help="历史事件归档目录")
@@ -499,8 +500,12 @@ def main() -> int:
         src_desc = args.fixture
     else:
         articles_all = load_articles(Path(args.dir))
-        articles = [a for a in articles_all if within_window(a, cutoff)]
-        src_desc = f"{args.dir}（{args.window_hours}h 内：{len(articles)}/{len(articles_all)} 篇）"
+        if args.content_day:
+            articles = [a for a in articles_all if (a.get("published") or "")[:10] == args.content_day]
+            src_desc = f"{args.dir}（{args.content_day} 当天：{len(articles)}/{len(articles_all)} 篇）"
+        else:
+            articles = [a for a in articles_all if within_window(a, cutoff)]
+            src_desc = f"{args.dir}（{args.window_hours}h 内：{len(articles)}/{len(articles_all)} 篇）"
 
     if not articles:
         print(f"没有可分析的稿件：{src_desc}")
@@ -645,6 +650,7 @@ def main() -> int:
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "run_date": run_date,
         "window_hours": args.window_hours,
+        "content_day": args.content_day or run_date,
         "history_days": args.history_days,
         "source": src_desc,
         "article_total": n,

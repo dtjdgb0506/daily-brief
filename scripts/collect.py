@@ -126,6 +126,7 @@ def main() -> int:
     parser.add_argument("--fetch", type=int, default=0, help="抓多少篇正文（0=只出候选）")
     parser.add_argument("--since-hours", type=int, default=48)
     parser.add_argument("--date", default=None, help="入库日期目录，默认今天")
+    parser.add_argument("--day", default=None, help="只抓这一天的候选（YYYY-MM-DD），默认不限制")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -169,6 +170,10 @@ def main() -> int:
         stats.append((name, kept, "ok"))
 
     candidates.sort(key=lambda c: c.get("published") or "", reverse=True)
+    if args.day:
+        same_day = [c for c in candidates if (c.get("published") or "")[:10] == args.day]
+        print(f"  {args.day} 当天的候选：{len(same_day)}/{len(candidates)} 条")
+        candidates = same_day
     day = args.date or now.date().isoformat()
     out = ROOT / "output" / "candidates" / f"{day}.json"
     if not args.dry_run:
