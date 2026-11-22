@@ -125,12 +125,13 @@ def main() -> int:
         brief_path = draft
         print("  ⚠ 用的是自动初稿（抽取式），建议抽查后再发。")
         if llm_configured():
+            auto_path = ROOT / "config" / "brief.auto.json"
             ok, _ = run_step("模型改写", ["scripts/llm_polish.py",
                                          "--in", str(draft),
-                                         "--out", str(ROOT / "config" / "brief.json")], log_path)
+                                         "--out", str(auto_path)], log_path)
             if ok:
-                brief_path = ROOT / "config" / "brief.json"
-                print("  ✓ 已用模型改写成正式稿")
+                brief_path = auto_path
+                print("  ✓ 已用模型改写（brief.auto.json，不动手写稿）")
             else:
                 print("  ⚠ 模型改写失败，继续用抽取式初稿")
 

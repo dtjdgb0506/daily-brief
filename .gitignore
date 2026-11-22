@@ -9,3 +9,5 @@ state/
 config/brief.draft.json
 site/
 briefs/
+config/brief.auto.json
+config/brief.published.json
