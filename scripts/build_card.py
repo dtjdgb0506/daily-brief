@@ -293,7 +293,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
         )
         fs = 24 if idx == 1 else 21
         title_inner = esc(it.get("title", ""))
-        item_link = it.get("detail_url") or (f"{link_prefix}/index.html#p{idx}" if link_prefix else "")
+        item_link = it.get("detail_url") or (f"{link_prefix}/p{idx}.html" if link_prefix else "")
         if item_link:
             title_inner = (f'<a href="{item_link}" '
                            f'style="color:#0f172a;text-decoration:none;">{title_inner}</a>')
@@ -341,7 +341,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             f'{esc(fu.get("section_title", "过去 7 天的重要后续"))}</div>'
             '</td></tr>'
         )
-        fu_link = fu.get("detail_url") or (f"{link_prefix}/index.html#f1" if link_prefix else "")
+        fu_link = fu.get("detail_url") or (f"{link_prefix}/f1.html" if link_prefix else "")
         title_html = esc(fu.get("title", ""))
         if fu_link:
             title_html = f'<a href="{fu_link}" style="color:#0f172a;text-decoration:none;">{title_html}</a>'
@@ -517,6 +517,40 @@ def render_email_details(brief: dict) -> str:
     return "\n".join(parts)
 
 
+
+def render_event_page(item: dict, date: str, section: str = "") -> str:
+    """一件事一个独立页面（带我们的卡片样式），不再用同页锚点。"""
+    parts = [WEB_HEAD.format(date=esc(date), doc_title=esc(item.get("title", "")))]
+    if section:
+        parts.append(f'<div style="font-size:12px;letter-spacing:2px;color:#9a3412;font-weight:700;margin:0 0 12px;">{esc(section)}</div>')
+    parts.append('<article id="p1">')
+    if item.get("tag"):
+        kind = TAG_CLASS.get(item.get("tag_kind", "tech"), "tech")
+        parts.append(f'<span class="tag {kind}">{esc(item.get("tag"))}</span>')
+    parts.append(f'<h2>{esc(item.get("title", ""))}</h2>')
+    if item.get("lede"):
+        parts.append(f'<p class="lede">{esc(item["lede"])}</p>')
+    w = item.get("web") or {}
+    if w.get("timeline"):
+        parts.append('<div class="sec"><h3>时间线</h3><ul class="tl">')
+        for d, txt in w["timeline"]:
+            parts.append(f"<li><b>{esc(d)}</b>{esc(txt)}</li>")
+        parts.append("</ul></div>")
+    for blk in w.get("blocks", []):
+        cls = "box warn" if blk.get("type") == "warn" else "box"
+        lines = "".join(f"<p>{esc(x)}</p>" for x in blk.get("lines", []))
+        parts.append(f'<div class="sec"><h3>{esc(blk.get("title", "分析"))}</h3><div class="{cls}">{lines}</div></div>')
+    if w.get("sources"):
+        links = " · ".join(
+            f'<a href="{esc(s.get("url", ""))}" target="_blank" rel="noopener">{esc(s.get("label", ""))}</a>'
+            for s in w["sources"]
+        )
+        parts.append(f'<div class="sec"><h3>出处</h3><p class="src">{links}</p></div>')
+    parts.append(f'<a class="top" href="index.html">← 返回本期全部事件</a></article>')
+    parts.append(WEB_FOOT.format(date=esc(date), gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
+    return "\n".join(parts)
+
+
 def render_web(brief: dict) -> str:
     parts = [WEB_HEAD.format(
         date=esc(brief.get("date", "")),
@@ -649,6 +683,14 @@ def main() -> int:
         entries.append((d, m.get("doc_title", ""), int(m.get("items", 0)), int(m.get("followup", 0))))
     (ROOT / "site" / "index.html").write_text(render_archive(entries), encoding="utf-8")
     md_paths = write_markdown_pages(brief, date)
+
+    # 单事件独立页面（邮件里每条指向各自的 pN.html）
+    for idx, it in enumerate(brief.get("items", []), 1):
+        (site_dir / f"p{idx}.html").write_text(render_event_page(it, date), encoding="utf-8")
+    if brief.get("followup"):
+        (site_dir / "f1.html").write_text(
+            render_event_page(brief["followup"], date, section="过去 7 天的重要后续"), encoding="utf-8"
+        )
     print(f"网页版: {site_dir / 'index.html'}")
     print(f"发送用卡片: {out_dir / f'card-{date}.html'}（详情已内联，无需点链接）")
     print(f"本地预览: {site_dir / 'card-preview.html'}")
