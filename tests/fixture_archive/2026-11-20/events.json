@@ -1,0 +1,23 @@
+﻿{
+  "generated_at": "2026-11-20T20:00:00",
+  "run_date": "2026-11-20",
+  "selected": ["e1"],
+  "events": [
+    {
+      "id": "e1",
+      "category": "finance",
+      "score": 82.0,
+      "article_count": 4,
+      "representative_title": "美股进入回调：纳指跌超5%，标普七连跌",
+      "keywords": ["纳指", "标普", "美股", "回调", "投资者", "英伟达", "黄金"],
+      "titles": [
+        "纳指跌超5%，标普七连跌，道指和标普500进入回调区间",
+        "英伟达暴泻14%，纳指抹去年内涨幅"
+      ],
+      "urls": ["https://example.com/a", "https://example.com/b"],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    }
+  ]
+}

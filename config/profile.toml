@@ -1,0 +1,23 @@
+# 每日情报 · 兴趣档
+# 想调口味就改这里，不用动代码。改完下次发送自动生效。
+
+[delivery]
+time = "07:30"              # 北京时间，daily
+timezone = "Asia/Shanghai"
+items = 5                   # 每天几条事件
+weekend_items = 3           # 周末条数（暂未启用）
+web_base = "https://example.com/brief"   # 网页版根地址：邮件里的链接会拼成 {web_base}/{日期}/#pN
+
+[weights]
+tech = 50                   # 科技
+politics = 30               # 国际政治
+finance = 20                # 财经
+# 娱乐 / 体育 默认屏蔽
+
+[watch]
+companies = ["OpenAI", "英伟达", "NVIDIA", "Anthropic", "谷歌", "微软", "台积电"]
+topics = ["中美关系", "美联储", "利率", "AI监管", "芯片出口管制", "半导体"]
+people = ["黄仁勋", "特朗普", "鲍威尔", "马斯克"]
+
+[block]
+topics = ["娱乐", "体育", "明星八卦", "彩票", "星座"]
