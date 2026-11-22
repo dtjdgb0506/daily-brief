@@ -143,6 +143,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fetch", type=int, default=0, help="抓多少篇正文（0=只出候选）")
     parser.add_argument("--per-feed", type=int, default=4, help="每个源最多抓几篇正文（默认 4）")
+    parser.add_argument("--feed-timeout", type=int, default=15, help="单个 RSS 源的超时秒数（本机被墙时可调小）")
     parser.add_argument("--since-hours", type=int, default=48)
     parser.add_argument("--date", default=None, help="入库日期目录，默认今天")
     parser.add_argument("--day", default=None, help="只抓这一天的候选（YYYY-MM-DD），默认不限制")
@@ -163,7 +164,7 @@ def main() -> int:
     for feed in feeds:
         name = feed.get("name", feed.get("url", "?"))
         try:
-            xml_text = fetch_feed(feed["url"])
+            xml_text = fetch_feed(feed["url"], timeout=args.feed_timeout)
         except Exception as exc:  # noqa: BLE001
             stats.append((name, 0, f"FAIL {type(exc).__name__}"))
             continue

@@ -80,7 +80,29 @@ EN_STOP = {
     "after", "before", "more", "than", "says", "said", "new", "who", "what", "when",
     "where", "why", "how", "can", "could", "would", "should", "may", "might", "amid",
     "against", "than", "then", "them", "these", "those", "still", "just", "like",
+    # 来源页脚的样板词：不清掉会把毫不相干的稿子粘到一起
+    "facebook", "page", "visit", "sign", "subscribe", "advertisement", "news",
+    "npr", "cnbc", "wsj", "reuters", "bloomberg", "guardian", "politico", "hill",
 }
+
+# 来源页脚样板：先清掉再算标题相似度（"Visit our Facebook page" 这类让 7 条无关稿子粘在一起）
+TITLE_BOILERPLATE = re.compile(
+    r"\s*(?:visit our facebook page|follow us on|sign up for|subscribe(?: to)?|"
+    r"read more|advertisement)\b.*$",
+    re.I,
+)
+TITLE_SOURCE_TAIL = re.compile(
+    r"\s*:\s*(?:NPR|CNBC|WSJ|BBC|CNN|AP|Reuters|Bloomberg|FT|Politico|The Hill)\s*$",
+    re.I,
+)
+
+
+def clean_title(title: str) -> str:
+    """去掉来源页脚/样板后缀，避免把不相干稿子粘在一起。"""
+    t = re.sub(r"\s+", " ", title or "")   # 先把换行/制表符压成空格
+    t = TITLE_BOILERPLATE.sub("", t)
+    t = TITLE_SOURCE_TAIL.sub("", t)
+    return re.sub(r"\s+", " ", t).strip()
 
 
 def english_topic_overlap(a: str, b: str) -> float:
@@ -251,7 +273,7 @@ SOURCE_SUFFIX = re.compile(
 
 
 def norm_title(title: str) -> str:
-    t = (title or "").strip()
+    t = clean_title(title)
     t = SOURCE_SUFFIX.sub("", t)
     t = re.sub(r"\s+", " ", t)
     return t.strip()
@@ -561,26 +583,37 @@ def display_keywords(tokens: list[str], limit: int = 6) -> list[str]:
 
 
 def category_of(title_blob: str, body_blob: str, weights: dict) -> tuple[str, list[str], dict]:
-    """一个事件可以有多个类别标签，排序时按权重最高的那个算。
+    """类别判定：标题有线索就信标题，标题没线索才看正文。
 
-    标题命中给 3 分、正文给 1 分；[title_rules] 里的动作词命中标题额外 +3。
-    直接数词在原文里出现的次数（而不是 bigram 词表），避免“英伟达”这种 3 字词永远匹配不上。
+    英文长文正文里 "AI/model/chip" 出现太多次，会把什么都抢成科技
+    （“特朗普会见习近平和普京”也被判成科技）。所以正文只在标题无信号时兜底。
     """
-    t_low, b_low = title_blob.lower(), body_blob.lower()
-    counts: dict[str, int] = {}
+    t_low, b_low = title_blob.lower(), body_blob.lower()[:2000]
+
+    def hits(blob: str, words: list[str]) -> int:
+        # 按“命中了多少个不同的词”算，不按出现次数：长文里 AI/chip 出现几十次
+        # 会把不相干的稿子也判成科技
+        return sum(1 for w in words if w and w.lower() in blob)
+
+    title_counts: dict[str, int] = {}
+    body_counts: dict[str, int] = {}
     for cat, words in LEXICON.items():
-        counts[cat] = sum(t_low.count(w.lower()) * 3 + b_low.count(w.lower()) for w in words)
+        title_counts[cat] = hits(t_low, words)
+        body_counts[cat] = hits(b_low, words)
     for cat, words in TITLE_RULES.items():
-        hits = sum(1 for w in words if w.lower() in t_low)
-        counts[cat] = counts.get(cat, 0) + hits * 3
+        title_counts[cat] = title_counts.get(cat, 0) + hits(t_low, words)
+
     # 排除词：说明它其实不是该类别的大事（例如“科技展览会”不是科技新闻）
     for cat, words in CATEGORY_EXCLUDE.items():
-        if cat in counts:
-            deduct = sum(t_low.count(w.lower()) * 3 + b_low.count(w.lower()) for w in words)
-            counts[cat] = max(0, counts[cat] - deduct)
+        title_counts[cat] = max(0, title_counts.get(cat, 0) - hits(t_low, words))
+        body_counts[cat] = max(0, body_counts.get(cat, 0) - hits(b_low, words))
+
+    if any(title_counts.values()):
+        counts = {c: v * 3 for c, v in title_counts.items()}
+    else:
+        counts = dict(body_counts)
     if not any(counts.values()):
         return "other", [], counts
-    # 类别只按“证据多少”判断（权重只用于排序打分，否则 tech 权重 50 会让一切归科技）
     order = sorted((c for c in counts if counts[c] > 0), key=lambda c: counts[c], reverse=True)
     return order[0], order[:2], counts
 
@@ -630,6 +663,8 @@ def main() -> int:
     parser.add_argument("--max-per-category", type=int, default=None)
     parser.add_argument("--threshold", type=float, default=None, help="默认取 profile.toml [cluster].threshold")
     parser.add_argument("--window-hours", type=int, default=24, help="只看这个时间窗内的稿件")
+    parser.add_argument("--max-age-hours", type=int, default=48,
+                        help="事件里最新一篇超过这个小时数就不算当天新闻（回溯旧日期时调大，如 240）")
     parser.add_argument("--content-day", default=None, help="只看这一天的稿子（YYYY-MM-DD），优先于 --window-hours")
     parser.add_argument("--history-days", type=int, default=7, help="过去几天算“前七天”")
     parser.add_argument("--date", default=None, help="运行日期（默认今天），用于归档路径")
@@ -682,20 +717,26 @@ def main() -> int:
             shared_comps = c_i & c_j
             ti, tj = articles[i]["title"].lower(), articles[j]["title"].lower()
 
-            def in_titles(canon: set, kind: str) -> bool:
+            def in_title(title: str, canon: set, kind: str) -> bool:
                 aliases = [a.lower() for c in canon for a in ENTITY_ALIASES[kind].get(c, [c])]
-                return any(a in ti or a in tj for a in aliases)
+                return any(a in title for a in aliases)
 
-            # 同一人物 + 同一公司，且其中一个真的出现在标题里才算同一事件
-            # （否则“顺带提到”会把不相干的稿子粘起来：例如特斯拉 FSD 提到英伟达）
+            # 同一人物 + 同一公司，且两边标题里都真的出现，才算同一事件。
+            # 旧写法只要“任一边标题出现”就并，导致正文提到特朗普的稿子全被粘到
+            # “特朗普见习近平”这一条上（7 条不相干的新闻被并成一条）。
             strong = bool(
                 shared_people and shared_comps
-                and in_titles(shared_people, "people")
-                and in_titles(shared_comps, "companies")
+                and in_title(ti, shared_people, "people")
+                and in_title(tj, shared_people, "people")
+                and in_title(ti, shared_comps, "companies")
+                and in_title(tj, shared_comps, "companies")
             )
             same_event = strong
             reason = "person+company" if strong else ""
-            if not same_event and shared_people and in_titles(shared_people, "people") and sim >= 0.15:
+            if (not same_event and shared_people
+                    and in_title(ti, shared_people, "people")
+                    and in_title(tj, shared_people, "people")
+                    and sim >= 0.15):
                 same_event, reason = True, "person+similarity"
             if not same_event and sim >= args.threshold:
                 # 正文相似还不够，标题也得有交集：中新网这类模板会让“完全无关的新闻”正文很像
@@ -746,7 +787,7 @@ def main() -> int:
 
         ages = [age_hours(articles[i].get("published", "")) for i in members]
         known = [a for a in ages if a >= 0]
-        if known and min(known) > 48:
+        if known and min(known) > args.max_age_hours:
             continue  # 这件事最新的一篇都两天前了，不算今天新闻
         fresh = freshness_factor([a if a >= 0 else 36.0 for a in ages], half_life)
         n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
