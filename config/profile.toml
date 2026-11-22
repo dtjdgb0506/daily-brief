@@ -6,7 +6,7 @@ time = "07:30"              # 北京时间，daily
 timezone = "Asia/Shanghai"
 items = 5                   # 每天几条事件
 weekend_items = 3           # 周末条数（暂未启用）
-web_base = "https://raw.githack.com/dtjdgb0506/daily-brief/master/site"   # 国内可达；指向仓库里的 site/<日期>/index.html
+web_base = "https://github.com/dtjdgb0506/daily-brief/blob/master/briefs"   # 每个事件一个 Markdown 页，GitHub 直接渲染，国内可开
 
 [weights]
 tech = 50                   # 科技

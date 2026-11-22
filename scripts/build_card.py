@@ -294,7 +294,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
         fs = 24 if idx == 1 else 21
         title_inner = esc(it.get("title", ""))
         if link_prefix:
-            title_inner = (f'<a href="{link_prefix}#p{idx}" '
+            title_inner = (f'<a href="{link_prefix}/p{idx}.md" '
                            f'style="color:#0f172a;text-decoration:none;">{title_inner}</a>')
         out.append(
             f'<{h} style="margin:12px 0 10px;font-size:{fs}px;line-height:1.4;color:#0f172a;font-weight:700;">'
@@ -326,8 +326,8 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
         if link_prefix:
             hint = it.get("detail_hint", "")
             out.append(
-                f'<a href="{link_prefix}#p{idx}" style="display:inline-block;margin-top:10px;font-size:13.5px;'
-                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(hint)} →</a>'
+                f'<a href="{link_prefix}/p{idx}.md" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细（分析 · 时间线 · 出处）→</a>'
             )
         elif email_detail:
             out.append(render_item_detail(it))
@@ -358,8 +358,8 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             )
         if link_prefix:
             out.append(
-                f'<a href="{link_prefix}#f1" style="display:inline-block;margin-top:10px;font-size:13.5px;'
-                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细：{esc(fu.get("detail_hint", ""))} →</a>'
+                f'<a href="{link_prefix}/f1.md" style="display:inline-block;margin-top:10px;font-size:13.5px;'
+                f'font-weight:700;color:#1d4ed8;text-decoration:none;">看详细（分析 · 时间线 · 出处）→</a>'
             )
         elif email_detail:
             out.append(render_item_detail(fu))
@@ -394,6 +394,62 @@ def render_item_detail(item: dict) -> str:
         )
         parts.append(f'<div style="margin-top:8px;font-size:11.5px;line-height:1.9;color:#94a3b8;">出处：{links}</div>')
     return "".join(parts)
+
+
+
+def render_markdown_page(item: dict, date: str, n: int, section: str = "") -> str:
+    """一个事件一页 Markdown，放在 GitHub 上直接渲染（国内能打开）。"""
+    title = item.get("title", "")
+    lines = [f"# {title}", ""]
+    if section:
+        lines += [f"> {section}", ""]
+    if item.get("lede"):
+        lines += [item["lede"], ""]
+
+    w = item.get("web") or {}
+    if w.get("timeline"):
+        lines += ["## 时间线", ""]
+        for d, txt in w["timeline"]:
+            lines.append(f"- **{d}** {txt}")
+        lines.append("")
+
+    for blk in w.get("blocks", []):
+        lines += [f"## {blk.get('title', '分析')}", ""]
+        for x in blk.get("lines", []):
+            lines.append(f"- {x}")
+        lines.append("")
+
+    if w.get("sources"):
+        lines += ["## 出处", ""]
+        for s in w["sources"]:
+            lines.append(f"- [{s.get('label', '')}]({s.get('url', '')})")
+        lines.append("")
+
+    lines += ["---", "", f"每日情报 · {date} · 第 {n} 条", ""]
+    return "\n".join(lines)
+
+
+def write_markdown_pages(brief: dict, date: str) -> list[Path]:
+    out_dir = ROOT / "briefs" / date
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for idx, it in enumerate(brief.get("items", []), 1):
+        path = out_dir / f"p{idx}.md"
+        path.write_text(render_markdown_page(it, date, idx), encoding="utf-8")
+        paths.append(path)
+    fu = brief.get("followup")
+    if fu:
+        path = out_dir / "f1.md"
+        path.write_text(render_markdown_page(fu, date, len(brief.get("items", [])) + 1,
+                                             section="过去 7 天的重要后续"), encoding="utf-8")
+        paths.append(path)
+    index = ["# 每日情报 · " + date, "", brief.get("doc_title", ""), ""]
+    for idx, it in enumerate(brief.get("items", []), 1):
+        index.append(f"- [第 {idx} 条：{it.get('title', '')}](p{idx}.md)")
+    if fu:
+        index.append(f"- [后续：{fu.get('title', '')}](f1.md)")
+    (out_dir / "index.md").write_text("\n".join(index) + "\n", encoding="utf-8")
+    return paths
 
 
 def render_email_details(brief: dict) -> str:
@@ -551,7 +607,7 @@ def main() -> int:
 
     web = render_web(brief)
     (site_dir / "index.html").write_text(web, encoding="utf-8")
-    prefix = f"{base}/{date}/index.html" if base else ""
+    prefix = f"{base}/{date}" if base else ""
     send_card = render_card(brief, prefix, email_detail=not base)
     (out_dir / f"card-{date}.html").write_text(send_card, encoding="utf-8")
 
@@ -578,9 +634,11 @@ def main() -> int:
             continue
         entries.append((d, m.get("doc_title", ""), int(m.get("items", 0)), int(m.get("followup", 0))))
     (ROOT / "site" / "index.html").write_text(render_archive(entries), encoding="utf-8")
+    md_paths = write_markdown_pages(brief, date)
     print(f"网页版: {site_dir / 'index.html'}")
     print(f"发送用卡片: {out_dir / f'card-{date}.html'}（详情已内联，无需点链接）")
     print(f"本地预览: {site_dir / 'card-preview.html'}")
+    print(f"单事件页: {len(md_paths)} 个 -> {ROOT / 'briefs' / date}")
     return 0
 
 

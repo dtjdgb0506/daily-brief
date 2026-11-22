@@ -61,11 +61,11 @@ jobs:
         if: failure()
         run: python scripts/notify_failure.py || true
 
-      - name: 提交网页版（供 raw.githack 托管）
+      - name: 提交网页版和单事件页（供 GitHub 直接打开）
         run: |
           git config user.name "dailybrief"
           git config user.email "dailybrief@local"
-          git add site/
+          git add site/ briefs/
           if ! git diff --cached --quiet; then
             git commit -m "网页版 $(date +%F)"
             git push
