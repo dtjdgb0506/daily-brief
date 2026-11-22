@@ -11,3 +11,4 @@ site/
 briefs/
 config/brief.auto.json
 config/brief.published.json
+config/brief.backfill.json
