@@ -54,8 +54,8 @@ CARD_HEAD = """<!doctype html>
 CARD_FOOT = """<tr><td style="padding:28px 26px 26px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e2e8f0;">
   <tr><td style="padding-top:14px;font-size:12px;line-height:1.9;color:#94a3b8;">
-    每天 07:30 发出 · 5 条新闻 + 1 条后续 · 时间线和出处都在这封邮件里。<br>
-    生成于 {gen} · 校验通过。
+    {note}<br>
+    生成于 {gen}
   </td></tr>
   </table>
 </td></tr>
@@ -135,7 +135,7 @@ WEB_HEAD = """<!doctype html>
 """
 
 WEB_FOOT = """  <div class="foot">
-    每日情报 · 网页版 · {date} · 5 条新闻 + 1 条后续 · 所有事实与数字均来自上方链接原文。<br>
+    {note}<br>
     生成于 {gen} · <a href="../" style="color:#1d4ed8;text-decoration:none;">← 往期回顾</a>
   </div>
   </div>
@@ -274,6 +274,14 @@ def render_archive(entries: list[tuple[str, str, int, int]]) -> str:
     return ARCHIVE_TMPL.format(rows=rows)
 
 
+
+def issue_note(brief: dict) -> str:
+    n = len(brief.get("items", []))
+    fu = brief.get("followup")
+    base = f"每天 07:30 发出 · 本期 {n} 条新闻" + (" + 1 条后续" if fu else "")
+    return base + " · 时间线和出处都在页面里"
+
+
 def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> str:
     out = [CARD_HEAD.format(
         title=esc(brief.get("doc_title", "每日情报")),
@@ -373,7 +381,7 @@ def render_card(brief: dict, link_prefix: str, email_detail: bool = False) -> st
             out.append(render_item_detail(fu))
         out.append("</td></tr>")
 
-    out.append(CARD_FOOT.format(gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
+    out.append(CARD_FOOT.format(note=esc(issue_note(brief)), gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
     return "\n".join(out)
 
 
@@ -562,7 +570,9 @@ def render_event_page(item: dict, date: str, section: str = "") -> str:
         )
         parts.append(f'<div class="sec"><h3>出处</h3><p class="src">{links}</p></div>')
     parts.append(f'<a class="top" href="index.html">← 返回本期全部事件</a></article>')
-    parts.append(WEB_FOOT.format(date=esc(date), gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
+    parts.append(WEB_FOOT.format(date=esc(date),
+                                 note=esc("每日情报 · 单条详情 · 每天 07:30 发出"),
+                                 gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
     return "\n".join(parts)
 
 
@@ -622,7 +632,9 @@ def render_web(brief: dict) -> str:
             parts.append(f'<div class="sec"><h3>出处</h3><p class="src">{links}</p></div>')
         parts.append('<a class="top" href="#f1">↑ 回到本条</a></article>')
 
-    parts.append(WEB_FOOT.format(date=esc(brief.get("date", "")), gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
+    parts.append(WEB_FOOT.format(date=esc(brief.get("date", "")),
+                                 note=esc(issue_note(brief)),
+                                 gen=datetime.now().strftime("%Y-%m-%d %H:%M")))
     return "\n".join(parts)
 
 

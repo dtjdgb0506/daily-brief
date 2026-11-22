@@ -36,6 +36,7 @@ collect.py → cluster_events.py → （写 brief.json）→ build_card.py → s
   **名额按当天实际有哪些类别动态分配**（比例取自 [weights]；没有科技就多给政治/财经，
   每类内部按得分取）→ 跟过去 7 天归档比对，挑一条后续。
   每天 5 条 = 5 个不同事件，不拆事件凑数；栏目名/视频页标题（“学习进行时”“微视频”）会被过滤。
+若某天全网不足 5 个不同事件，就发实际条数（宁少不重），页脚会写清本期几条。
 - **build_card**：校验 + 渲染卡片/网页/往期索引；链接用 `web_base` 拼绝对地址
 - **send_html**：Date/Message-ID、465 SSL 失败回退 587 STARTTLS、3 次重试、`--dry-run`
 
