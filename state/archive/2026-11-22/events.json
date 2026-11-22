@@ -1,0 +1,797 @@
+{
+  "generated_at": "2026-11-22T18:21:57",
+  "run_date": "2026-11-22",
+  "window_hours": 24,
+  "content_day": "2026-11-21",
+  "history_days": 7,
+  "source": "D:\\DSH\\推送系统\\output\\raw（2026-11-21 当天：20/39 篇）",
+  "article_total": 20,
+  "event_total": 20,
+  "selected": [
+    "e1",
+    "e2",
+    "e5",
+    "e7",
+    "e15"
+  ],
+  "followup": null,
+  "warnings": [],
+  "events": [
+    {
+      "id": "e1",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 21.5,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 3,
+        "jargon": 1
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网",
+      "keywords": [
+        "教育创",
+        "创新职",
+        "职普融通",
+        "报告",
+        "上海",
+        "年度报"
+      ],
+      "article_ids": [
+        12
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735892.shtml"
+      ],
+      "titles": [
+        "《创新职普融通》年度报告上海发布 AI时代职普融通成教育创新战略选择-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e2",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 19.25,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "数万家智能工厂背后，AI到底改变了什么？-中新网",
+      "keywords": [
+        "智能工",
+        "制造",
+        "工厂背后",
+        "ai",
+        "能制",
+        "数万家智"
+      ],
+      "article_ids": [
+        9
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735913.shtml"
+      ],
+      "titles": [
+        "数万家智能工厂背后，AI到底改变了什么？-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e3",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 19.25,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网",
+      "keywords": [
+        "产业携",
+        "材料产",
+        "湖南",
+        "先进制",
+        "豫湘产",
+        "制造前"
+      ],
+      "article_ids": [
+        17
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735889.shtml"
+      ],
+      "titles": [
+        "豫湘产业携手 共拓先进制造前沿材料新赛道-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e4",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 17.19,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "秋假+赏秋热潮叠加 地方文旅消费迎来新机遇-中新网",
+      "keywords": [
+        "秋假期",
+        "孩子们",
+        "体验",
+        "研学生",
+        "赏秋",
+        "鱼灯"
+      ],
+      "article_ids": [
+        0
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735912.shtml"
+      ],
+      "titles": [
+        "秋假+赏秋热潮叠加 地方文旅消费迎来新机遇-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e5",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 14.02,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 3,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网",
+      "keywords": [
+        "伊朗普称无法接",
+        "协议",
+        "特朗想达",
+        "达成的",
+        "的协",
+        "永远不会拥有核武器"
+      ],
+      "article_ids": [
+        16
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735660.shtml"
+      ],
+      "titles": [
+        "特朗普称无法接受伊朗想达成的协议 重申伊朗“永远不会拥有核武器”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e6",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 13.06,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 3
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网",
+      "keywords": [
+        "人才发",
+        "汽车产",
+        "产业人",
+        "出海",
+        "智能网联新",
+        "大会在"
+      ],
+      "article_ids": [
+        4
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735888.shtml"
+      ],
+      "titles": [
+        "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e7",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 12.79,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网",
+      "keywords": [
+        "丹麦驱",
+        "俄罗斯武",
+        "驱逐俄表",
+        "武官",
+        "适当回应",
+        "示将"
+      ],
+      "article_ids": [
+        5
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735674.shtml"
+      ],
+      "titles": [
+        "丹麦驱逐俄罗斯武官，俄表示将“适当回应”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e8",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 12.79,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网",
+      "keywords": [
+        "深圳",
+        "总统",
+        "合作",
+        "中国总",
+        "总理",
+        "中新社记"
+      ],
+      "article_ids": [
+        13
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735832.shtml"
+      ],
+      "titles": [
+        "特朗普、普京、李在明等APEC与会领导人感谢中国，点赞深圳：“这是历史性的一页”-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e9",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 11.55,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "沙特称拦截3枚胡塞武装导弹 也门媒体称沙特袭击致41死-中新网",
+      "keywords": [
+        "沙特称拦",
+        "也门媒",
+        "胡塞武装导",
+        "导弹",
+        "拦截",
+        "媒体称沙"
+      ],
+      "article_ids": [
+        8
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735663.shtml"
+      ],
+      "titles": [
+        "沙特称拦截3枚胡塞武装导弹 也门媒体称沙特袭击致41死-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e10",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 11.55,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网",
+      "keywords": [
+        "日本研",
+        "进核三原",
+        "潜艇及为",
+        "原则",
+        "无核动力潜",
+        "引进"
+      ],
+      "article_ids": [
+        14
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735659.shtml"
+      ],
+      "titles": [
+        "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e11",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 10.31,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "伊朗宣布击落一架美军MQ-1无人机-中新网",
+      "keywords": [
+        "伊朗宣布击",
+        "击落一",
+        "一架美",
+        "美军",
+        "无人机",
+        "mq-1"
+      ],
+      "article_ids": [
+        2
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735843.shtml"
+      ],
+      "titles": [
+        "伊朗宣布击落一架美军MQ-1无人机-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e12",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 10.31,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "“拖堂”的气候大会给全世界算了笔账-中新网",
+      "keywords": [
+        "中国家",
+        "气候大",
+        "大会给全世",
+        "全球",
+        "世界算了笔账",
+        "拖堂"
+      ],
+      "article_ids": [
+        7
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735906.shtml"
+      ],
+      "titles": [
+        "“拖堂”的气候大会给全世界算了笔账-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e13",
+      "category": "other",
+      "tags": [],
+      "score": 8.53,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "“讲中国故事”暨印尼摄影家赴福建采风成果展在雅加达举行-中新网",
+      "keywords": [
+        "中国故",
+        "印尼摄",
+        "摄影家赴福",
+        "文化",
+        "故事",
+        "讲中"
+      ],
+      "article_ids": [
+        11
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735636.shtml"
+      ],
+      "titles": [
+        "“讲中国故事”暨印尼摄影家赴福建采风成果展在雅加达举行-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e14",
+      "category": "other",
+      "tags": [],
+      "score": 8.53,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网",
+      "keywords": [
+        "委内瑞拉",
+        "中国捐",
+        "清理",
+        "中方",
+        "重型机械",
+        "废墟"
+      ],
+      "article_ids": [
+        18
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735909.shtml"
+      ],
+      "titles": [
+        "中方设备解了我们燃眉之急——委内瑞拉感谢中方支持灾后重建-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e15",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 7.7,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "探访秘鲁钱凯港：跨越太平洋的发展新机遇-中新网",
+      "keywords": [
+        "钱凯港口",
+        "秘鲁钱",
+        "太平洋的",
+        "发展新机",
+        "机遇",
+        "的发"
+      ],
+      "article_ids": [
+        3
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735662.shtml"
+      ],
+      "titles": [
+        "探访秘鲁钱凯港：跨越太平洋的发展新机遇-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e16",
+      "category": "other",
+      "tags": [],
+      "score": 7.7,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网",
+      "keywords": [
+        "病例两",
+        "菲律宾霍",
+        "增加",
+        "卫生部吁保",
+        "报告",
+        "安全"
+      ],
+      "article_ids": [
+        10
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735864.shtml"
+      ],
+      "titles": [
+        "菲律宾霍乱病例两周增加69% 卫生部吁保障饮水和食品安全-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e17",
+      "category": "other",
+      "tags": [],
+      "score": 7.7,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网",
+      "keywords": [
+        "机场发生客",
+        "菲律宾达",
+        "达沃国际机紧",
+        "客机",
+        "紧急迫降",
+        "安全撤"
+      ],
+      "article_ids": [
+        15
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735857.shtml"
+      ],
+      "titles": [
+        "菲律宾达沃机场发生客机紧急迫降 146人安全撤离-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e18",
+      "category": "finance",
+      "tags": [
+        "finance",
+        "tech"
+      ],
+      "score": 6.88,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "港口通、绿电足、智能普惠：深圳APEC交出开放创新高分答卷-中新网",
+      "keywords": [
+        "apec",
+        "深圳",
+        "港口通",
+        "亚太",
+        "智能普",
+        "创新高分答卷"
+      ],
+      "article_ids": [
+        6
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-21/10735855.shtml"
+      ],
+      "titles": [
+        "港口通、绿电足、智能普惠：深圳APEC交出开放创新高分答卷-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e19",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 5.23,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 3
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "经济日报：“温差”待消弭 信心不可失-中新网",
+      "keywords": [
+        "经济日报",
+        "温差",
+        "增长",
+        "就业",
+        "发展",
+        "宏观"
+      ],
+      "article_ids": [
+        1
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735911.shtml"
+      ],
+      "titles": [
+        "经济日报：“温差”待消弭 信心不可失-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e20",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 5.23,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 3
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "结构向优、动能向新 我国消费市场潜能不断释放-中新网",
+      "keywords": [
+        "消费市场潜",
+        "潜能向新网",
+        "释放",
+        "结构向优",
+        "动能不断释",
+        "我国消"
+      ],
+      "article_ids": [
+        19
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-21/10735914.shtml"
+      ],
+      "titles": [
+        "结构向优、动能向新 我国消费市场潜能不断释放-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    }
+  ]
+}

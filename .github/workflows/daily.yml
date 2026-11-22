@@ -65,15 +65,15 @@ jobs:
           TCB_SECRET_KEY: ${{ secrets.TCB_SECRET_KEY }}
         run: python scripts/run_daily.py --auto-brief
 
-      - name: 保存发信状态（防止同一天重复发）
+      - name: 保存发信状态与事件归档（防止重复发 + 让“7 天后续”能生效）
         if: always()
         run: |
           git config user.name "daily-brief-bot"
           git config user.email "daily-brief-bot@users.noreply.github.com"
-          if [ -f state/sent.json ]; then
-            git add state/sent.json
+          if [ -d state ]; then
+            git add state
             if ! git diff --cached --quiet; then
-              git commit -m "state: 记录 $(date -u +%F) 发信状态 [skip ci]"
+              git commit -m "state: 记录 $(date -u +%F) 发信状态与事件归档 [skip ci]"
               git push
             fi
           fi

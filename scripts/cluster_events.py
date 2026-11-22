@@ -29,6 +29,7 @@ import argparse
 import json
 import math
 import re
+import shutil
 import sys
 import tomllib
 
@@ -38,6 +39,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+# 历史归档必须放在入库目录里（state/），否则 CI 每次全新 checkout，“7 天后续”永远匹配不到
+ARCHIVE_ROOT = ROOT / "state" / "archive"
 CJK = re.compile(r"[\u4e00-\u9fff]+")
 LATIN = re.compile(r"[A-Za-z][A-Za-z0-9.+-]{1,}")
 
@@ -55,8 +58,38 @@ SOFT_PATTERNS = [
     # 券商研报/盘面点评（不是新闻事件）
     r"建议关注", r"研报", r"目标价", r"涨停", r"早盘", r"尾盘", r"个股", r"券商",
     r"^[^：]{2,8}(证券|基金|研究院|研究所)：",
+    # 服务型内容（教你怎么做，不是新闻）
+    r"攻略", r"指南", r"测评", r"推荐", r"值得买", r"怎么选", r"教你", r"该不该",
+    r"值不值", r"教程", r"清单", r"避坑",
 ]
 SOFT_NEWS_RE = re.compile("|".join(SOFT_PATTERNS))
+
+# 英文“服务型/专栏/个人随笔”内容：不是新闻
+SERVICE_PATTERNS = [
+    r"\bhow (?:to|retiree|retirees|you|i)\b", r"\btips?\b", r"\bguide\b", r"\breview\b",
+    r"\bexplainer\b", r"\bshould you\b", r"\bhere'?s how\b", r"\bwhat to know\b",
+    r"\bwhy i\b", r"\bmy (?:life|journey|year)\b", r"\bi never\b", r"\bwe put\b",
+    r"^i\b", r"\bopinion\b", r"\bcolumn\b",
+]
+SERVICE_RE = re.compile("|".join(SERVICE_PATTERNS), re.I)
+
+EN_WORD = re.compile(r"[A-Za-z][A-Za-z'-]{2,}")
+EN_STOP = {
+    "the", "and", "for", "with", "that", "this", "from", "have", "will", "are", "was",
+    "not", "but", "you", "they", "his", "her", "its", "their", "about", "over", "into",
+    "after", "before", "more", "than", "says", "said", "new", "who", "what", "when",
+    "where", "why", "how", "can", "could", "would", "should", "may", "might", "amid",
+    "against", "than", "then", "them", "these", "those", "still", "just", "like",
+}
+
+
+def english_topic_overlap(a: str, b: str) -> float:
+    """英文标题的实词重合度：用来把“同一件事的多家英文报道”合并。"""
+    wa = {w.lower() for w in EN_WORD.findall(a)} - EN_STOP
+    wb = {w.lower() for w in EN_WORD.findall(b)} - EN_STOP
+    if len(wa) < 3 or len(wb) < 3:
+        return 0.0
+    return len(wa & wb) / min(len(wa), len(wb))
 
 # 硬新闻信号：标题里有人物/机构动作、决策、数字，才算“值得看的大事”。
 HARD_NEWS_WORDS = [
@@ -73,9 +106,9 @@ TIER_FACTOR = {"core": 1.30, "tech": 1.15, "analysis": 1.10, "cn": 0.95, "local"
 
 
 def is_soft_news(title: str) -> bool:
-    """展会/活动/签约/招商类标题 → 软新闻，不该进日报。"""
+    """展会/活动/服务型内容/专栏随笔 → 软新闻，不该进日报。"""
     t = title or ""
-    if SOFT_NEWS_RE.search(t):
+    if SOFT_NEWS_RE.search(t) or SERVICE_RE.search(t):
         return True
     # 标题里带“展”但没有硬新闻信号（发展/展望这类词先剔掉）
     stripped = re.sub(r"(发展|展望|展示|展现|开展|扩展|拓展|进展|展开|展出)", "", t)
@@ -414,6 +447,17 @@ def load_history(archive_dir: Path, days: int, today: str) -> list[dict]:
     return history
 
 
+def prune_archive(root: Path, keep_days: int = 30) -> None:
+    """只保留最近 N 天归档，别让仓库无限变大。"""
+    if not root.exists():
+        return
+    cutoff = (datetime.now() - timedelta(days=keep_days)).date().isoformat()
+    for day_dir in root.iterdir():
+        if (day_dir.is_dir() and re.fullmatch(r"\d{4}-\d{2}-\d{2}", day_dir.name)
+                and day_dir.name < cutoff):
+            shutil.rmtree(day_dir, ignore_errors=True)
+
+
 def entity_set_of_titles(titles: list[str]) -> tuple[set, set]:
     """归档事件只有标题，用它反推人物/公司。"""
     blob = " ".join(titles).lower()
@@ -457,6 +501,11 @@ def match_history(event: dict, history: list[dict]) -> dict | None:
             score = 0.45
         if jac >= 0.2:
             score = max(score, 0.5 + jac * 0.3)
+        # 中文关键词在历史标题/关键词里出现过（“美股”这类），也算同一件事
+        hist_blob = " ".join(hist.get("titles", []) + hist.get("keywords", []))
+        kw_hit = sum(1 for k in event["keywords"] if k and k in hist_blob) / max(len(event["keywords"]), 1)
+        if kw_hit >= 0.2:
+            score = max(score, 0.5 + min(kw_hit, 0.5))
         if score > best_score:
             best_score, best = score, hist
     return best if best_score >= 0.4 else None
@@ -472,7 +521,7 @@ KEY_NODE_WORDS = [
 def followup_importance(event: dict, matched: dict, weights: dict) -> float:
     """后续是否值得单独一条：类别权重 + 覆盖度 + 是否关键节点 + 历史匹配强度。"""
     cat_w = max(weights.get(event["category"], 20), 1) / 100
-    coverage = min(event["article_count"], 5) / 5
+    coverage = min(event["article_count"], 3) / 3
     blob = " ".join(event["titles"]) + " ".join(event["keywords"])
     keynode = 1.0 if any(w in blob for w in KEY_NODE_WORDS) else 0.0
     match_w = 0.1 if matched.get("representative_title") else 0.05
@@ -552,43 +601,20 @@ def freshness_factor(published_ages: list[float], half_life: float) -> float:
     return max(0.25, 0.5 ** (age / max(half_life, 1)))
 
 
-def pick_balanced(events: list[dict], top: int, weights: dict) -> list[dict]:
-    """名额按“当天实际有哪些类别”动态分配：没有科技就多给政治/财经，
-    每个类别内部按得分取，不会为了凑数把同一件事拆开。"""
-    by_cat: dict[str, list[dict]] = {}
-    for e in events:
-        by_cat.setdefault(e["category"], []).append(e)
-    cats = [c for c in by_cat if by_cat[c]]
-    if not cats:
-        return []
-    def wgt(c: str) -> int:
-        # “综合/其他”给最低权重：只在没有科技/政治/财经可用时才进来
-        return 1 if c == "other" else max(weights.get(c, 10), 1)
-
-    total_w = sum(wgt(c) for c in cats)
-    raw = {c: top * wgt(c) / total_w for c in cats}
-    alloc = {c: min(int(raw[c]), len(by_cat[c])) for c in cats}
-    used = sum(alloc.values())
-
-    # 余下名额：按“小数部分”从大到小补，且不超过该类别实际条数
-    frac_order = sorted(cats, key=lambda c: (raw[c] - int(raw[c]), weights.get(c, 10)), reverse=True)
-    while used < top:
-        progressed = False
-        for c in frac_order:
-            if alloc[c] < len(by_cat[c]) and used < top:
-                alloc[c] += 1
-                used += 1
-                progressed = True
-        if not progressed:
-            break
-
+def pick_balanced(events: list[dict], top: int, weights: dict, max_per_cat: int = 3) -> list[dict]:
+    """按得分取前 N 条，同一类别最多 max_per_cat 条。
+    不为“类别配额”硬塞低分事件——宁可让别的类别多一条，也不让 5 条里出现很弱的一条。
+    """
     picked: list[dict] = []
-    for c in cats:
-        picked.extend(by_cat[c][: alloc[c]])
-    if len(picked) < top:
-        rest = [e for e in events if e not in picked]
-        picked.extend(rest[: top - len(picked)])
-    picked.sort(key=lambda e: e["score"], reverse=True)
+    counts: dict[str, int] = {}
+    for e in sorted(events, key=lambda x: -x["score"]):
+        cat = e["category"]
+        if counts.get(cat, 0) >= max_per_cat:
+            continue
+        picked.append(e)
+        counts[cat] = counts.get(cat, 0) + 1
+        if len(picked) >= top:
+            break
     return picked
 
 
@@ -607,7 +633,7 @@ def main() -> int:
     parser.add_argument("--content-day", default=None, help="只看这一天的稿子（YYYY-MM-DD），优先于 --window-hours")
     parser.add_argument("--history-days", type=int, default=7, help="过去几天算“前七天”")
     parser.add_argument("--date", default=None, help="运行日期（默认今天），用于归档路径")
-    parser.add_argument("--history-dir", default=str(ROOT / "output" / "archive"), help="历史事件归档目录")
+    parser.add_argument("--history-dir", default=str(ARCHIVE_ROOT), help="历史事件归档目录")
     parser.add_argument("--no-archive", action="store_true", help="不写 output/archive/<date>/")
     parser.add_argument("--out", default=str(ROOT / "output"))
     parser.add_argument("--debug", action="store_true")
@@ -680,6 +706,13 @@ def main() -> int:
                     same_event, reason = True, "similarity+title"
                 else:
                     reason = ""
+            if not same_event:
+                # 英文媒体同一件事：标题实词重合度高就合并（"killer robots" / "UN talks" 这类）
+                t_i, t_j = articles[i]["title"], articles[j]["title"]
+                en_i = sum(1 for ch in t_i if ch.isascii() and ch.isalpha())
+                en_j = sum(1 for ch in t_j if ch.isascii() and ch.isalpha())
+                if en_i >= 12 and en_j >= 12 and english_topic_overlap(t_i, t_j) >= 0.3:
+                    same_event, reason = True, "english-topic"
             if args.debug:
                 pairs.append((round(max(sim, 0.5 if same_event else sim), 3),
                               articles[i]["title"][:26], articles[j]["title"][:26], reason or "-"))
@@ -780,7 +813,8 @@ def main() -> int:
     # 主推 = 今天的“新事件”；与历史重合的事件单独放“后续”，
     # 避免同一件事既当主推又当后续，也保证“5 条新闻 + 1 条后续”的结构稳定。
     main_pool = [e for e in events if not e["is_followup"]]
-    main = pick_balanced(main_pool, top, weights)
+    main = pick_balanced(main_pool, top, weights,
+                         int(cluster_cfg.get("max_per_category", 3)))
     main_ids = {e["id"] for e in main}
     follow_candidates = sorted(
         [e for e in events if e["is_followup"] and e["id"] not in main_ids],
@@ -847,11 +881,12 @@ def main() -> int:
     }
     (out_dir / "events.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # 归档，供以后识别“后续”用（同一天重跑覆盖）
+    # 归档，供以后识别“后续”用（同一天重跑覆盖）；放 state/ 才会被 CI 提交回仓库
     if not args.no_archive and not args.fixture:
-        arch = out_dir / "archive" / run_date
+        arch = ARCHIVE_ROOT / run_date
         arch.mkdir(parents=True, exist_ok=True)
         (arch / "events.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        prune_archive(ARCHIVE_ROOT)
 
     lines = [
         f"# 今日事件（{run_date}）",
