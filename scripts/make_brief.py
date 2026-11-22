@@ -177,16 +177,33 @@ def main() -> int:
     texts = {a["url"]: a["text"] for a in articles}
 
     by_id = {e["id"]: e for e in data.get("events", [])}
+    ordered = [e for e in data.get("events", [])]  # 已按得分排序
     items = []
+    used: set[str] = set()
     for eid in data.get("selected", []):
-        if eid not in by_id:
+        ev = by_id.get(eid)
+        if not ev:
             continue
-        title = clean_title(by_id[eid].get("representative_title", ""))
+        title = clean_title(ev.get("representative_title", ""))
         if len(title) < 6:
             continue
-        items.append(build_item(by_id[eid], texts, len(items) + 1))
+        used.add(eid)
+        items.append(build_item(ev, texts, len(items) + 1))
         if len(items) >= 5:
             break
+
+    # 被过滤掉（标题太短/垃圾）不够 5 条时，从剩下的高分公司补
+    for ev in ordered:
+        if len(items) >= 5:
+            break
+        eid = ev.get("id")
+        if not eid or eid in used:
+            continue
+        title = clean_title(ev.get("representative_title", ""))
+        if len(title) < 6 or ev.get("category") == "other":
+            continue
+        used.add(eid)
+        items.append(build_item(ev, texts, len(items) + 1))
 
     followup = None
     fid = data.get("followup")

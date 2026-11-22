@@ -157,7 +157,9 @@ def main() -> int:
     if "TCB_ENV_ID" in env_text or _os.environ.get("TCB_ENV_ID"):
         ok, _ = run_step("部署网页版", ["scripts/deploy_cloudbase.py"], log_path)
         if not ok:
-            print("  ⚠ 网页版部署失败，邮件里的链接可能打不开")
+            print("  ⚠ 网页版部署失败：回退成“邮件内联详情”，保证这封邮件能看")
+            run_step("回退出卡（内联）", ["scripts/build_card.py", "--date", date,
+                                       "--brief", str(brief_path), "--base", ""], log_path)
     else:
         print("\n▶ 部署网页版: 跳过（未配置 TCB_ENV_ID）")
 
