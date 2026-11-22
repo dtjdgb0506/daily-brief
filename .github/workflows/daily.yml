@@ -9,6 +9,8 @@ on:
   schedule:
     - cron: "30 23 * * *"
   workflow_dispatch:
+  push:
+    branches: [master]
 
 permissions:
   contents: read
@@ -56,6 +58,10 @@ jobs:
 
       - name: 采集 → 聚类 → 出卡 → 发信
         run: python scripts/run_daily.py --auto-brief
+
+      - name: 失败通知
+        if: failure()
+        run: python scripts/notify_failure.py || true
 
       - name: 保留产物
         uses: actions/upload-artifact@v4
