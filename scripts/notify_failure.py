@@ -24,8 +24,10 @@ HTML = """<!doctype html><html><body style="margin:0;padding:24px;background:#f4
 
 def main() -> int:
     cfg = load_env(ROOT / ".env")
-    msg = build_message(cfg, "【失败】每日情报没发出去", HTML, None, cfg["MAIL_TO"], None)
-    deliver(cfg, msg, dry_run=False)
+    for addr in [x.strip() for x in cfg["MAIL_TO"].split(",") if x.strip()]:
+        msg = build_message(cfg, "每日情报今天没发出去", HTML, None, addr, None)
+        deliver(cfg, msg, dry_run=False)
+        print(f"失败通知已发 -> {addr}")
     return 0
 
 

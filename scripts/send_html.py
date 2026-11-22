@@ -103,7 +103,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--subject", required=True)
     parser.add_argument("--html", required=True)
-    parser.add_argument("--to", default=None)
+    parser.add_argument("--to", default=None, help="多个收件人用逗号分隔；会拆成一人一封")
     parser.add_argument("--cc", default=None)
     parser.add_argument("--text", default=None, help="纯文本正文（默认由 HTML 自动生成）")
     parser.add_argument("--dry-run", action="store_true")
@@ -115,12 +115,19 @@ def main() -> int:
         html_path = ROOT / html_path
     html = html_path.read_text(encoding="utf-8")
 
-    to_addr = args.to or cfg["MAIL_TO"]
-    msg = build_message(cfg, args.subject, html, args.text, to_addr, args.cc)
-    deliver(cfg, msg, args.dry_run)
-    if not args.dry_run:
-        print(f"发送成功 -> {to_addr} | 主题: {args.subject}")
-    return 0
+    # 一人一封：发给自己那封会被 163 收进“我的收藏助手”，发给别人的是正常来信
+    recipients = [x.strip() for x in (args.to or cfg["MAIL_TO"]).split(",") if x.strip()]
+    failed = []
+    for addr in recipients:
+        msg = build_message(cfg, args.subject, html, args.text, addr, args.cc)
+        try:
+            deliver(cfg, msg, args.dry_run)
+            if not args.dry_run:
+                print(f"发送成功 -> {addr} | 主题: {args.subject}")
+        except Exception as exc:  # noqa: BLE001
+            failed.append(addr)
+            print(f"发送失败 -> {addr}：{type(exc).__name__}: {exc}")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
