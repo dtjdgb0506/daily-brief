@@ -1,0 +1,20 @@
+name: 采集源自检
+
+# 手动触发：只跑 collect --dry-run，检查每个源在 GitHub（美国）出口下能拿到多少条，不发信。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install lxml
+      - name: 检查各源
+        run: python scripts/collect.py --dry-run --since-hours 48
