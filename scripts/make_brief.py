@@ -90,14 +90,20 @@ def pick_timeline(texts: list[str], limit: int = 8) -> list[list[str]]:
     """从正文里抓“11月20日/11/20”这类日期，配上后面的短句。"""
     found: list[tuple[str, str]] = []
     seen: set[str] = set()
-    pattern = re.compile(r"(?:20\d{2}年)?(\d{1,2})月(\d{1,2})日|(\d{1,2})/(\d{1,2})")
+    pattern = re.compile(r"(?:20\d{2}年)?(\d{1,2})月(\d{1,2})日|(\d{1,2})/(\d{1,2})"
+                         r"|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}")
     for text in texts:
         for s in sentences(text):
             m = pattern.search(s)
             if not m or s in seen:
                 continue
             seen.add(s)
-            label = f"{int(m.group(1))}/{int(m.group(2))}" if m.group(1) else f"{int(m.group(3))}/{int(m.group(4))}"
+            if m.group(1):
+                label = f"{int(m.group(1))}/{int(m.group(2))}"
+            elif m.group(3):
+                label = f"{int(m.group(3))}/{int(m.group(4))}"
+            else:
+                label = m.group(5)
             body = s[:90].rstrip("，,、 ")
             found.append((label, body))
             if len(found) >= limit:
@@ -107,7 +113,9 @@ def pick_timeline(texts: list[str], limit: int = 8) -> list[list[str]]:
 
 
 OPINION_MARKERS = ("认为", "指出", "表示", "预计", "担忧", "分析", "评论", "警告",
-                   "判断", "质疑", "直言", "坦言", "称", "坦言", "觉得")
+                   "判断", "质疑", "直言", "坦言", "称", "觉得",
+                   "said", "says", "according to", "argued", "warned", "analyst", "analysts",
+                   "expects", "expected", "noted", "suggested", "believes", "told")
 
 
 def pick_opinions(texts: list[str], exclude: list[str], limit: int = 6) -> list[str]:

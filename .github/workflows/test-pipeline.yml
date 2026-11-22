@@ -1,0 +1,44 @@
+name: 流水线自检
+
+# 手动触发：按“昨天的新闻”跑一遍采集→聚类→自动稿→校验，只打印结果，不发信、不部署。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install lxml
+
+      - name: 计算内容日并采集
+        run: |
+          DAY=$(date -d "yesterday" +%F)
+          echo "DAY=$DAY" >> "$GITHUB_ENV"
+          echo "内容日：$DAY"
+          python scripts/collect.py --fetch 40 --day "$DAY"
+
+      - name: 聚类
+        run: python scripts/cluster_events.py --content-day "$DAY"
+
+      - name: 自动稿 + 模型改写
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: |
+          python scripts/make_brief.py --date "$DAY" --out /tmp/draft.json
+          python scripts/llm_polish.py --in /tmp/draft.json --out /tmp/brief.json
+
+      - name: 校验并打印
+        run: |
+          python scripts/build_card.py --brief /tmp/brief.json --date "$DAY" --dry-run
+          python scripts/print_brief.py /tmp/brief.json

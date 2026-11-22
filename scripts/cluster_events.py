@@ -153,7 +153,8 @@ def title_coverage(title: str, text: str) -> float:
 
 NAV_WORDS = ("首页", "时政", "国际", "财经", "社会", "娱乐", "体育", "军事", "科技",
              "图片", "视频", "直播", "专题", "评论", "字号", "分享", "责任编辑",
-             "来源：", "来源:", "作者：", "作者:", "编辑：", "编辑:", "扫一扫", "返回顶部")
+             "来源：", "来源:", "作者：", "作者:", "编辑：", "编辑:", "扫一扫", "返回顶部",
+             "Sign in", "Subscribe", "Log in", "Advertisement", "Skip to", "Home", "Menu")
 META_LINE = re.compile(r"^(20\d{2}[-年/]|\d{1,2}月\d{1,2}日|来源|作者|编辑|责任编辑|字号|分享|扫一扫)")
 
 
@@ -177,7 +178,9 @@ def clean_body(text: str) -> str:
 
 def title_bigrams(title: str) -> set[str]:
     core = norm_title(title)
-    return {run[i:i + 2] for run in CJK.findall(core) for i in range(len(run) - 1)}
+    grams = {run[i:i + 2] for run in CJK.findall(core) for i in range(len(run) - 1)}
+    grams.update(w.lower() for w in LATIN.findall(core) if len(w) >= 3)
+    return grams
 
 
 def tokenize(title: str, text: str) -> Counter:
