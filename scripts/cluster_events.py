@@ -55,7 +55,10 @@ SOFT_PATTERNS = [
     r"游戏", r"GTA", r"票房", r"剧集", r"综艺", r"音乐节", r"电影", r"赛事",
     # 购物/导购稿（"Best Pura Deals for Cyber Week" 这类）
     r"cyber week", r"\bgifts\b", r"shopping", r"discount", r"best .{0,30}deals",
-    r"emergency prep", r"prep spending",
+    # 消费型内容（不是新闻事件）
+    r"emergency prep", r"prep spending", r"retirees",
+    # 简报/早报合集（不是单一事件）
+    r"the download", r"morning brief", r"daily briefing", r"the brief", r"business brief", r"早报", r"晚报", r"简报", r"周报",
     # 文旅/生活类
     r"旅游", r"游客", r"打卡", r"美景", r"风光", r"探访", r"民俗", r"非遗", r"古都",
     r"历史文化魅力", r"古镇", r"民宿", r"温泉", r"养生", r"减肥", r"星座", r"情感",
@@ -67,7 +70,7 @@ SOFT_PATTERNS = [
     r"攻略", r"指南", r"测评", r"推荐", r"值得买", r"怎么选", r"教你", r"该不该",
     r"值不值", r"教程", r"清单", r"避坑",
 ]
-SOFT_NEWS_RE = re.compile("|".join(SOFT_PATTERNS))
+SOFT_NEWS_RE = re.compile("|".join(SOFT_PATTERNS), re.I)
 
 # 英文“服务型/专栏/个人随笔”内容：不是新闻
 SERVICE_PATTERNS = [
@@ -495,12 +498,34 @@ CROSS_LANG_TOPICS = [
 ]
 
 
+def _is_cjk_title(s: str) -> bool:
+    return sum(1 for ch in s if "\u4e00" <= ch <= "\u9fff") >= 3
+
+
 def cross_topic_match(a: str, b: str) -> str:
+    # 只处理“一中一英”的配对；同语言交给别的规则，避免把同语言的同话题不同事件也并了
+    if _is_cjk_title(a) == _is_cjk_title(b):
+        return ""
     la, lb = a.lower(), b.lower()
     for group in CROSS_LANG_TOPICS:
         if any(k in la for k in group) and any(k in lb for k in group):
             return group[0]
     return ""
+
+
+# 同一家公司 + 同一个动作词（IPO/财报/裁员…）→ 视为同一件事（中英文都算）
+ACTION_WORDS = ["ipo", "上市", "敲钟", "财报", "earnings", "收购", "并购", "裁员", "破产",
+                "起诉", "诉讼", "传票", "听证", "任命", "辞职", "召回"]
+
+
+def action_merge(companies: set, ti: str, tj: str, kind: str) -> bool:
+    if not companies:
+        return False
+    aliases = [a.lower() for c in companies for a in ENTITY_ALIASES[kind].get(c, [c])]
+    if not (any(a in ti for a in aliases) and any(a in tj for a in aliases)):
+        return False
+    la, lb = ti.lower(), tj.lower()
+    return any(w in la and w in lb for w in ACTION_WORDS)
 
 
 def prune_archive(root: Path, keep_days: int = 30) -> None:
@@ -798,6 +823,10 @@ def main() -> int:
                 if topic:
                     same_event, reason = True, f"topic:{topic}"
             if not same_event:
+                # 同一家公司 + 同一个动作（Anthropic IPO / Anthropic earnings）→ 同一件事
+                if shared_comps and action_merge(shared_comps, ti, tj, "companies"):
+                    same_event, reason = True, "company+action"
+            if not same_event:
                 # 英文媒体同一件事：标题实词重合度高就合并（"killer robots" / "UN talks" 这类）
                 t_i, t_j = articles[i]["title"], articles[j]["title"]
                 en_i = sum(1 for ch in t_i if ch.isascii() and ch.isalpha())
@@ -831,7 +860,7 @@ def main() -> int:
         # 重要性：不看类别，只看“这件事本身多大”
         # 覆盖度（几家在报）+ 跨源 + 硬新闻信号（有没有动作/数字）+ 有人分析
         n_sources = len({articles[i].get("source", "") for i in members if articles[i].get("source")})
-        coverage = 1 + 0.18 * min(len(members) - 1, 6)
+        coverage = 1 + 0.18 * min(len(members) - 1, 3)
         cross_src = 1 + 0.08 * min(n_sources - 1, 3)
         blob = " ".join(articles[i]["text"][:2000] for i in members)
         opinion_hits = sum(1 for m in ("认为", "指出", "表示", "预计", "担忧", "分析", "评论",
