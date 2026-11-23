@@ -43,9 +43,25 @@ def tcb_cmd() -> list[str]:
     return ["npx", "--yes", "--package=@cloudbase/cli", "tcb"]
 
 
+def clean_env() -> dict:
+    """清掉指向本机但没开的代理（很多人开着 Clash 后关掉，环境变量还留着，
+    tcb 会去连 127.0.0.1:7892 然后 ECONNREFUSED）。"""
+    env = dict(os.environ)
+    dropped = []
+    for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"):
+        val = env.get(key, "")
+        if val and ("127.0.0.1" in val or "localhost" in val):
+            env.pop(key, None)
+            dropped.append(key)
+    if dropped:
+        print("  （已忽略本机代理：" + ", ".join(dropped) + "）")
+    return env
+
+
 def run(cmd: list[str]) -> int:
     print("$", " ".join(cmd[:6]), "...")
-    proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace", env=clean_env())
     out = (proc.stdout or "") + (proc.stderr or "")
     for line in out.splitlines():
         if line.strip():
