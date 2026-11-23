@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-11-23T11:14:10",
+  "generated_at": "2026-11-23T12:23:41",
   "run_date": "2026-11-23",
   "window_hours": 24,
   "content_day": "2026-11-22",
   "history_days": 7,
-  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-22 当天：45/59 篇）",
-  "article_total": 45,
-  "event_total": 36,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-22 当天：38/50 篇）",
+  "article_total": 38,
+  "event_total": 29,
   "selected": [
     "e5",
-    "e12",
-    "e15",
-    "e18",
-    "e20"
+    "e13",
+    "e16",
+    "e21",
+    "e22"
   ],
   "followup": "e1",
   "warnings": [
@@ -50,7 +50,7 @@
       ],
       "article_ids": [
         9,
-        43
+        36
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cw3dgk29d37no?at_medium=RSS&at_campaign=rss",
@@ -99,7 +99,7 @@
       ],
       "article_ids": [
         0,
-        13
+        12
       ],
       "urls": [
         "https://techcrunch.com/2026/11/22/can-a-tv-be-too-large-an-investigation/",
@@ -145,7 +145,7 @@
         "研究"
       ],
       "article_ids": [
-        29
+        25
       ],
       "urls": [
         "https://www.ifanr.com/1690820?utm_source=rss&utm_medium=rss&utm_campaign="
@@ -190,9 +190,9 @@
         "ischumer"
       ],
       "article_ids": [
-        17,
-        27,
-        35
+        16,
+        24,
+        31
       ],
       "urls": [
         "https://www.straitstimes.com/world/united-states/trump-sees-difficulties-ahead-if-schumer-leads-senate",
@@ -241,7 +241,7 @@
         "应对高"
       ],
       "article_ids": [
-        42
+        35
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-22/10736139.shtml"
@@ -282,7 +282,7 @@
         "to"
       ],
       "article_ids": [
-        21
+        18
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cw8dvg5pgm0eo?at_medium=RSS&at_campaign=rss"
@@ -327,7 +327,7 @@
         "and"
       ],
       "article_ids": [
-        37
+        33
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/22/social-security-changes-cola-taxes-medicare.html"
@@ -415,7 +415,7 @@
         "and"
       ],
       "article_ids": [
-        15
+        14
       ],
       "urls": [
         "https://www.cnbc.com/make-it/2026/11/22/google-worker-earns-323000-a-yearbut-he-lives-on-minimum-wage.html"
@@ -432,6 +432,51 @@
     },
     {
       "id": "e10",
+      "category": "finance",
+      "tags": [
+        "finance",
+        "tech"
+      ],
+      "score": 26.42,
+      "source_tier": "core",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "UK-EU food deal hailed by British firms: ‘We’re pretty aligned anyway’",
+      "keywords": [
+        "thexportershellfish",
+        "andeal",
+        "in",
+        "ofor",
+        "to",
+        "that"
+      ],
+      "article_ids": [
+        5
+      ],
+      "urls": [
+        "https://www.theguardian.com/business/2026/nov/22/uk-eu-food-sps-deal-brexit-checks"
+      ],
+      "titles": [
+        "UK-EU food deal hailed by British firms: ‘We’re pretty aligned anyway’"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e11",
       "category": "tech",
       "tags": [
         "tech",
@@ -460,7 +505,7 @@
         "出价太低没达到预期"
       ],
       "article_ids": [
-        34
+        30
       ],
       "urls": [
         "https://news.mydrivers.com/1/1167/1167678.htm"
@@ -476,7 +521,7 @@
       "importance": 0.408
     },
     {
-      "id": "e11",
+      "id": "e12",
       "category": "tech",
       "tags": [
         "tech"
@@ -504,7 +549,7 @@
         "的电设施"
       ],
       "article_ids": [
-        22
+        19
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85959"
@@ -520,7 +565,7 @@
       "importance": 0.408
     },
     {
-      "id": "e12",
+      "id": "e13",
       "category": "politics",
       "tags": [
         "politics"
@@ -561,50 +606,6 @@
       "importance": 0.0
     },
     {
-      "id": "e13",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 23.24,
-      "source_tier": "core",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "UK taxpayers held more than £1tn in offshore tax havens, latest HMRC data shows",
-      "keywords": [
-        "the",
-        "tax",
-        "toffshore",
-        "in",
-        "andatas",
-        "ofor"
-      ],
-      "article_ids": [
-        19
-      ],
-      "urls": [
-        "https://www.theguardian.com/business/2026/nov/22/uk-taxpayer-funds-held-in-offshore-tax-havens-top-1tn-latest-hmrc-data-shows"
-      ],
-      "titles": [
-        "UK taxpayers held more than £1tn in offshore tax havens, latest HMRC data shows"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.273
-    },
-    {
       "id": "e14",
       "category": "tech",
       "tags": [
@@ -634,7 +635,7 @@
         "have"
       ],
       "article_ids": [
-        12
+        11
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/22/pizza-chains-sales-glp-1-demand.html"
@@ -651,45 +652,6 @@
     },
     {
       "id": "e15",
-      "category": "other",
-      "tags": [],
-      "score": 21.89,
-      "source_tier": "tech",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Wired"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Best Black Friday Nintendo Switch 2 Deals (2026): Switch 2 Bundles and Games",
-      "keywords": [
-        "switch",
-        "best",
-        "black",
-        "friday",
-        "nintendo",
-        "deals"
-      ],
-      "article_ids": [
-        41
-      ],
-      "urls": [
-        "https://www.wired.com/story/best-black-friday-nintendo-switch-deals-11-22-26/"
-      ],
-      "titles": [
-        "Best Black Friday Nintendo Switch 2 Deals (2026): Switch 2 Bundles and Games"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e16",
       "category": "politics",
       "tags": [
         "politics"
@@ -733,136 +695,7 @@
       "importance": 0.318
     },
     {
-      "id": "e17",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 21.33,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Cyprus expels Russian diplomats on suspicion of espionage",
-      "keywords": [
-        "thespionagexpels",
-        "oforussia",
-        "tonicosia",
-        "cyprususpicion",
-        "russian",
-        "diplomats"
-      ],
-      "article_ids": [
-        10
-      ],
-      "urls": [
-        "https://www.politico.eu/article/cyprus-expels-russian-diplomats-on-suspicion-of-espionage/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Cyprus expels Russian diplomats on suspicion of espionage"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e18",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 20.67,
-      "source_tier": "tech",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "The Verge"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Binding of Isaac developer removes AI music from Repentance Plus",
-      "keywords": [
-        "binding",
-        "ofrom",
-        "isaac",
-        "developeremoves",
-        "ai",
-        "music"
-      ],
-      "article_ids": [
-        5
-      ],
-      "urls": [
-        "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music"
-      ],
-      "titles": [
-        "Binding of Isaac developer removes AI music from Repentance Plus"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e19",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 20.67,
-      "source_tier": "tech",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "The Verge"
-      ],
-      "freshness": 0.25,
-      "representative_title": "We haven’t seen the last of the major tech outages",
-      "keywords": [
-        "the",
-        "we",
-        "haven",
-        "seen",
-        "lastech",
-        "of"
-      ],
-      "article_ids": [
-        39
-      ],
-      "urls": [
-        "https://www.theverge.com/tech/1039851/major-tech-outages"
-      ],
-      "titles": [
-        "We haven’t seen the last of the major tech outages"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e20",
+      "id": "e16",
       "category": "tech",
       "tags": [
         "tech"
@@ -890,7 +723,7 @@
         "举报"
       ],
       "article_ids": [
-        26
+        23
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85957"
@@ -903,7 +736,7 @@
       "importance": 0.0
     },
     {
-      "id": "e21",
+      "id": "e17",
       "category": "politics",
       "tags": [
         "politics"
@@ -947,52 +780,7 @@
       "importance": 0.318
     },
     {
-      "id": "e22",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC Top News"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Saudi Arabia, Bahrain report Iran-linked attacks; Tehran open to talksStock Chart Icon",
-      "keywords": [
-        "the",
-        "and",
-        "ton",
-        "in",
-        "said",
-        "u.s."
-      ],
-      "article_ids": [
-        11
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html"
-      ],
-      "titles": [
-        "Saudi Arabia, Bahrain report Iran-linked attacks; Tehran open to talksStock Chart Icon"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e23",
+      "id": "e18",
       "category": "politics",
       "tags": [
         "politics"
@@ -1020,7 +808,7 @@
         "to"
       ],
       "article_ids": [
-        36
+        32
       ],
       "urls": [
         "https://www.theguardian.com/world/2026/nov/22/netanyahu-rival-condemns-settler-arson-attacks-palestinian-villages-west-bank"
@@ -1036,7 +824,7 @@
       "importance": 0.318
     },
     {
-      "id": "e24",
+      "id": "e19",
       "category": "politics",
       "tags": [
         "politics",
@@ -1065,7 +853,7 @@
         "inot"
       ],
       "article_ids": [
-        40
+        34
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/frances-le-pen-denies-receiving-secrets-from-civil-servant"
@@ -1081,7 +869,51 @@
       "importance": 0.318
     },
     {
-      "id": "e25",
+      "id": "e20",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 19.99,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Top Wall Street analysts favor these stocks for strong returns",
+      "keywords": [
+        "thenergy",
+        "ofor",
+        "ton",
+        "andevon",
+        "in",
+        "by"
+      ],
+      "article_ids": [
+        10
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/22/top-wall-street-analysts-favor-these-stocks-for-strong-returns.html"
+      ],
+      "titles": [
+        "Top Wall Street analysts favor these stocks for strong returns"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e21",
       "category": "finance",
       "tags": [
         "finance",
@@ -1123,7 +955,7 @@
       "importance": 0.0
     },
     {
-      "id": "e26",
+      "id": "e22",
       "category": "tech",
       "tags": [
         "tech",
@@ -1152,7 +984,7 @@
         "旧金山洪"
       ],
       "article_ids": [
-        20
+        17
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85958"
@@ -1165,7 +997,7 @@
       "importance": 0.0
     },
     {
-      "id": "e27",
+      "id": "e23",
       "category": "politics",
       "tags": [
         "politics"
@@ -1193,7 +1025,7 @@
         "that"
       ],
       "article_ids": [
-        24
+        21
       ],
       "urls": [
         "https://english.elpais.com/culture/2026-11-22/from-john-ford-to-elviss-ghetto-the-fight-against-injustice-in-the-united-states.html"
@@ -1209,7 +1041,7 @@
       "importance": 0.318
     },
     {
-      "id": "e28",
+      "id": "e24",
       "category": "politics",
       "tags": [
         "politics"
@@ -1237,7 +1069,7 @@
         "ton"
       ],
       "article_ids": [
-        30
+        26
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/german-army-starts-testing-kamikaze-drones-and-ai-targeting-tool-in-lithuania"
@@ -1253,7 +1085,7 @@
       "importance": 0.318
     },
     {
-      "id": "e29",
+      "id": "e25",
       "category": "politics",
       "tags": [
         "politics"
@@ -1281,7 +1113,7 @@
         "asherrill"
       ],
       "article_ids": [
-        32
+        28
       ],
       "urls": [
         "https://english.elpais.com/usa/2026-11-22/mikie-sherrill-governor-of-new-jersey-democrats-have-to-move-fast-and-show-wins-right-away.html"
@@ -1297,7 +1129,7 @@
       "importance": 0.318
     },
     {
-      "id": "e30",
+      "id": "e26",
       "category": "politics",
       "tags": [
         "politics",
@@ -1342,7 +1174,7 @@
       "importance": 0.318
     },
     {
-      "id": "e31",
+      "id": "e27",
       "category": "politics",
       "tags": [
         "politics"
@@ -1370,7 +1202,7 @@
         "尼桑本"
       ],
       "article_ids": [
-        33
+        29
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85956"
@@ -1383,7 +1215,7 @@
       "importance": 0.0
     },
     {
-      "id": "e32",
+      "id": "e28",
       "category": "other",
       "tags": [],
       "score": 17.44,
@@ -1422,7 +1254,7 @@
       "importance": 0.0
     },
     {
-      "id": "e33",
+      "id": "e29",
       "category": "politics",
       "tags": [
         "politics"
@@ -1450,137 +1282,13 @@
         "来源"
       ],
       "article_ids": [
-        16
+        15
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-22/10736214.shtml"
       ],
       "titles": [
         "联合国气候变化安塔利亚大会闭幕-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e34",
-      "category": "other",
-      "tags": [],
-      "score": 15.81,
-      "source_tier": "tech",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "The Verge"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Delta flights in and out of Atlanta delayed due to system outage",
-      "keywords": [
-        "deltandelayedue",
-        "flightsystem",
-        "in",
-        "outoutage",
-        "of",
-        "atlanta"
-      ],
-      "article_ids": [
-        18
-      ],
-      "urls": [
-        "https://www.theverge.com/transportation/1039779/delta-flights-delayed-system-outage"
-      ],
-      "titles": [
-        "Delta flights in and out of Atlanta delayed due to system outage"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.219
-    },
-    {
-      "id": "e35",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 15.58,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-财经"
-      ],
-      "freshness": 0.25,
-      "representative_title": "重大工程有序推进 助力经济民生发展-中新网",
-      "keywords": [
-        "工程有",
-        "重大工",
-        "推进",
-        "发展",
-        "有序推",
-        "经济民生发"
-      ],
-      "article_ids": [
-        38
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-22/10736202.shtml"
-      ],
-      "titles": [
-        "重大工程有序推进 助力经济民生发展-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e36",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 15.05,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 1
-      },
-      "source_names": [
-        "中新网-财经"
-      ],
-      "freshness": 0.25,
-      "representative_title": "中国经济看“新”丨从“尝鲜”到“潮流”，智能穿戴打开消费新空间-中新网",
-      "keywords": [
-        "智能穿",
-        "穿戴打开消",
-        "消费新",
-        "中国经",
-        "数据",
-        "场景"
-      ],
-      "article_ids": [
-        28
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/cj/2026/11-22/10736203.shtml"
-      ],
-      "titles": [
-        "中国经济看“新”丨从“尝鲜”到“潮流”，智能穿戴打开消费新空间-中新网"
       ],
       "is_followup": false,
       "followup_of": null,
