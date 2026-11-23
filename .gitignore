@@ -12,3 +12,5 @@ briefs/
 config/brief.auto.json
 config/brief.published.json
 config/brief.backfill.json
+config/brief.resend.json
+config/events.resend.json
