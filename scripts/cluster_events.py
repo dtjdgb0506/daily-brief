@@ -445,11 +445,15 @@ def load_articles(raw_dir: Path) -> list[dict]:
         # 没有发布日期的稿子直接不要：宁缺毋滥，避免把旧闻当今天
         if not published:
             continue
+        # 清洗后再判一次长度：有些站（如界面）正文抽出来全是导航，clean_body 会清成空
+        cleaned = clean_body(text)
+        if len(cleaned.strip()) < 120:
+            continue
         articles.append({
             "url": meta.get("url", ""),
             "title": norm_title(meta.get("title", "") or js.stem),
             "raw_title": meta.get("title", ""),
-            "text": clean_body(text),
+            "text": cleaned,
             "source": meta.get("source", "") or js.parent.name,
             "published": published,
         })

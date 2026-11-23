@@ -83,6 +83,20 @@ def build_prompt(draft: dict) -> str:
     return "\n".join(lines)
 
 
+class ModelRefusal(RuntimeError):
+    """模型拒答/内容过滤（不是限流，也不是超时）。"""
+
+
+def extract_content(data: dict) -> str:
+    """从 chat/completions 响应里取正文；空内容视为拒答。"""
+    choice = (data.get("choices") or [{}])[0]
+    content = ((choice.get("message") or {}).get("content") or "").strip()
+    finish = choice.get("finish_reason") or data.get("stop_reason") or ""
+    if not content:
+        raise ModelRefusal(f"模型没有返回内容（finish_reason={finish or 'empty'}）")
+    return content
+
+
 def call_llm(cfg: dict, prompt: str, timeout: int = 90, extra: str = "") -> str:
     url = cfg.get("LLM_BASE_URL", "https://api.deepseek.com/v1").rstrip("/") + "/chat/completions"
     body = json.dumps({
@@ -105,7 +119,7 @@ def call_llm(cfg: dict, prompt: str, timeout: int = 90, extra: str = "") -> str:
     )
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         data = json.loads(resp.read().decode("utf-8"))
-    return data["choices"][0]["message"]["content"]
+    return extract_content(data)
 
 
 def parse_json_block(text: str) -> dict:
@@ -189,7 +203,19 @@ def main() -> int:
         print("把 key 给我，或在 .env 里加：LLM_API_KEY=... / LLM_BASE_URL=... / LLM_MODEL=...")
         return 2
 
-    raw = call_llm(cfg, prompt)
+    try:
+        raw = call_llm(cfg, prompt)
+    except ModelRefusal as exc:
+        print(f"  ⚠ {exc}：可能触发了内容策略（不是限流）。")
+        print("  用中性措辞重试一次……")
+        soft = ("如果内容敏感，请只做中性客观陈述：不评价、不渲染细节、不复述未经证实的指控，"
+                "保留数字与已公开事实。")
+        try:
+            raw = call_llm(cfg, prompt, extra=soft)
+        except ModelRefusal as exc2:
+            print(f"✗ 仍被拒答：{exc2}")
+            print("  降级：保留抽取式初稿（质量糙一点），不中断流水线。")
+            return 3
     llm = parse_json_block(raw)
     brief = merge(draft, llm)
 
@@ -206,13 +232,18 @@ def main() -> int:
 
     if strong_jargon_hits(all_text(brief)) >= 4:
         print("  官话太多，要求模型重写一遍……")
-        raw2 = call_llm(cfg, prompt, extra=(
-            "上一版官话太多。请把每条都改写成具体的人话："
-            "不许出现“高质量发展/深入实施/动能向新/结构向优/统筹推进/释放潜能/赋能/抓手”等词，"
-            "把套话换成具体的行业、数字、人群、动作。数字仍必须来自素材。"))
-        brief2 = merge(draft, parse_json_block(raw2))
-        if strong_jargon_hits(all_text(brief2)) < strong_jargon_hits(all_text(brief)):
-            brief = brief2
+        try:
+            raw2 = call_llm(cfg, prompt, extra=(
+                "上一版官话太多。请把每条都改写成具体的人话："
+                "不许出现“高质量发展/深入实施/动能向新/结构向优/统筹推进/释放潜能/赋能/抓手”等词，"
+                "把套话换成具体的行业、数字、人群、动作。数字仍必须来自素材。"))
+            brief2 = merge(draft, parse_json_block(raw2))
+            if strong_jargon_hits(all_text(brief2)) < strong_jargon_hits(all_text(brief)):
+                brief = brief2
+        except ModelRefusal as exc:
+            print(f"  ⚠ 重写时被拒答（{exc}），保留当前版本")
+        except ValueError as exc:
+            print(f"  ⚠ 重写结果不可用（{exc}），保留当前版本")
     Path(args.out).write_text(json.dumps(brief, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"已改写并写入 {args.out}")
     for it in brief["items"]:

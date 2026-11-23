@@ -202,5 +202,24 @@ class TestSendFromState(unittest.TestCase):
         self.assertIn("没有准备好的卡片", proc.stdout + proc.stderr)
 
 
+class TestLlmRefusal(unittest.TestCase):
+    """拒答（refusal / content_filter）要能被识别，并降级而不是崩掉。"""
+
+    def test_normal_content(self):
+        import llm_polish
+        data = {"choices": [{"message": {"content": '{"ok": 1}'}, "finish_reason": "stop"}]}
+        self.assertEqual(llm_polish.extract_content(data), '{"ok": 1}')
+
+    def test_empty_content_raises(self):
+        import llm_polish
+        for data in (
+            {"choices": [{"message": {"content": ""}, "finish_reason": "content_filter"}]},
+            {"choices": [{"message": {"content": "   "}, "finish_reason": "refusal"}]},
+            {"choices": []},
+        ):
+            with self.assertRaises(llm_polish.ModelRefusal):
+                llm_polish.extract_content(data)
+
+
 if __name__ == "__main__":
     unittest.main()
