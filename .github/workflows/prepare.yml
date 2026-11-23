@@ -7,6 +7,9 @@ name: 每日情报-准备
 on:
   schedule:
     - cron: "50 22 * * *"
+  # 外部定时服务（cron-job.org 等）可以 POST /dispatches 精准触发，绕开 GitHub 定时延迟
+  repository_dispatch:
+    types: [prepare]
   workflow_dispatch:
 
 permissions:

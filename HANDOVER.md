@@ -166,6 +166,26 @@ python scripts/send_html.py --subject "每日情报 11·21｜..." --html output/
 
 GitHub → Actions →「每日情报」→ Run workflow。
 
+### 外部定时触发（替代 GitHub schedule，准点用）
+
+GitHub 自带的 schedule 实测会延迟几小时甚至整轮丢失。用外部定时服务（cron-job.org 免费），到点 POST 一次：
+
+```bash
+# 06:50 准备
+curl -X POST https://api.github.com/repos/dtjdgb0506/daily-brief/dispatches \
+  -H "Authorization: Bearer <细粒度 PAT，权限 Actions: write>" \
+  -H "Accept: application/vnd.github+json" \
+  -d '{"event_type":"prepare"}'
+
+# 07:30 发信
+curl -X POST https://api.github.com/repos/dtjdgb0506/daily-brief/dispatches \
+  -H "Authorization: Bearer <同一 PAT>" \
+  -H "Accept: application/vnd.github+json" \
+  -d '{"event_type":"send"}'
+```
+
+两个 workflow 都已加 `repository_dispatch` 触发（`prepare` / `send`）。cron-job.org 里建两个任务、时区选 Asia/Shanghai、开“POST + 自定义头 + JSON body”即可。重复触发不会重复发信：`state/sent.json` 幂等兜底。
+
 ### 改内容口味
 
 - 想多推某类：改 `profile.toml` 的 `[weights]`
@@ -213,7 +233,7 @@ GitHub → Actions →「每日情报」→ Run workflow。
 5. **境外源依赖 GitHub 出口**：本机（国内）直连会超时，本地跑只能抓到约 22 个源（多为国内 + 部分国际站）。CI 上能抓 49 个。
 6. **软新闻过滤会误杀**：行业峰会、产品发布会、政策吹风会这类标题可能被当成“活动稿”过滤掉；如果发现好新闻被漏，把词加进 `scripts/cluster_events.py` 的 `SOFT_PATTERNS` 例外或调整。
 7. **部分源不可用**：Reuters、Nikkei、Foreign Affairs、Politico 等有反爬/付费墙（Politico、Nikkei、Foreign Affairs 已重新加入，云端能不能出稿以 `check_sources.py` 为准）；Nature 的 RSS 有时返回空。
-8. **GitHub Actions 定时可能延迟几分钟**：06:50 那轮有 40 分钟缓冲，07:30 只发信、延迟很小；极端情况（排队/漏跑）会由 07:30 的回退逻辑现跑一遍。
+8. **GitHub schedule 不可靠（实测）**：2026-11-23 的 06:50 准备任务被延迟到 **11:11** 才跑（晚了 4 小时 21 分），07:30 的发送任务当天**完全没触发**。两段式只能缓解“抓取慢”，挡不住 GitHub 丢跑。要准点必须用外部定时触发 `repository_dispatch`（见“五、操作手册 → 外部定时触发”），或换境外 VPS 跑 cron。
 9. **某天事件不足 5 条时只发实际条数**（宁少不重，不拆事件凑数）。
 10. **每天会多一个机器 commit**：CI 发完信把 `state/sent.json` 提交回仓库（`[skip ci]`），这是防重复发的代价。
 11. 邮件里的详情链接会先经过腾讯云中间页（见第 1 条）。
