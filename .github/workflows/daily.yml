@@ -78,8 +78,13 @@ jobs:
           if [ -d state ]; then
             git add state
             if ! git diff --cached --quiet; then
-              git commit -m "state: 记录 $(date -u +%F) 已发送 [skip ci]"
-              git push
+              git commit -m "state: 记录 $(date -u +%F) 已发送 [skip ci]" || true
+              for i in 1 2 3; do
+                git pull --rebase --autostash origin master >/dev/null 2>&1 || git rebase --abort >/dev/null 2>&1
+                if git push origin HEAD >/dev/null 2>&1; then echo "state 已推送"; break; fi
+                echo "推送被拒，5 秒后重试（第 $i 次）"
+                sleep 5
+              done
             fi
           fi
 
