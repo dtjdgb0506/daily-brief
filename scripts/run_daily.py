@@ -89,6 +89,7 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--no-collect", action="store_true")
     parser.add_argument("--no-send", action="store_true")
+    parser.add_argument("--ignore-selfcheck", action="store_true", help="跳过发送前自检（不推荐）")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--fetch", type=int, default=150, help="采集后抓多少篇正文")
     parser.add_argument("--feed-timeout", type=int, default=15, help="单个 RSS 源超时秒数（本机被墙时调小）")
@@ -196,6 +197,14 @@ def main() -> int:
                                        "--brief", str(brief_path), "--base", ""], log_path)
     else:
         print("\n▶ 部署网页版: 跳过（未配置 TCB_ENV_ID）")
+
+    # 5.5 自检：把踩过的坑过一遍，不过就不发（--ignore-selfcheck 可跳过）
+    if not args.ignore_selfcheck:
+        ok, _ = run_step("自检", ["scripts/selfcheck.py", "--date", date,
+                                 "--brief", str(brief_path)], log_path)
+        if not ok:
+            print("✗ 自检没通过，先不发信；修好后重跑，或加 --ignore-selfcheck 强行发")
+            return 1
 
     # 6. 发信（幂等）
     sent = load_sent()

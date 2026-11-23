@@ -75,6 +75,17 @@ python scripts/llm_polish.py --dry-run  # 只打印 prompt
 
 没配 key 时自动跳过模型改写，用抽取式初稿兜底。
 
+## 自检（发信前必跑）
+
+```bash
+python scripts/selfcheck.py --date 2026-11-23          # 结构/内容/串台/完整性/状态/环境
+python scripts/selfcheck.py --date 2026-11-23 --strict  # 警告也算失败
+python -m unittest discover -s tests -v                 # 单测（含历史事故回归用例）
+```
+
+`run_daily.py` 发信前会自动跑自检，**不过就不发**。每条检查都对应一次真实事故，清单在
+[INCIDENTS.md](INCIDENTS.md)。
+
 ## 测试
 
 ```bash

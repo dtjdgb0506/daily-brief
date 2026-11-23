@@ -94,6 +94,7 @@ run_daily.py 串起全流程（日志 / 幂等 / 失败回退 / 失败通知）
 | `scripts/extract_main.py` | lxml 内容块打分，抽主内容（解决“只抓到导航条”） |
 | `scripts/cluster_events.py` | 事件聚类、去重、打分、动态名额分配、7 天后续识别；软新闻过滤 + 源分层 + 硬新闻信号 |
 | `scripts/check_sources.py` | 并发检查每个源能不能用、出多少条（`--timeout/--workers/--only`） |
+| `scripts/selfcheck.py` | 发信前自检：结构/内容/串台/完整性/状态/环境；不过就不发 |
 | `scripts/verify_handover.py` | 交接文档自检：单测/占位符/线上站点/Actions/发信状态/源数量 |
 | `scripts/make_brief.py` | 抽取式初稿 |
 | `scripts/llm_polish.py` | 调 DeepSeek 改写成“人话 + 分析”，禁官话，官话过多自动重写 |

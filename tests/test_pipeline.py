@@ -221,5 +221,57 @@ class TestLlmRefusal(unittest.TestCase):
                 llm_polish.extract_content(data)
 
 
+class TestSelfcheck(unittest.TestCase):
+    """自检系统：过去踩过的坑要有检查兜住。"""
+
+    def _item(self, i: int) -> dict:
+        return {
+            "title": f"测试新闻标题{i}",
+            "lede": "这是一句导语，长度足够通过检查。",
+            "points": [["1 · ", "a"], ["2 · ", "b"], ["3 · ", "c"]],
+            "web": {"sources": [{"label": "x", "url": f"https://example.com/{i}"}]},
+        }
+
+    def _brief(self, **kw):
+        first = self._item(1)
+        first.update(kw)
+        return {
+            "date": "2026-11-23",
+            "doc_title": first["title"],
+            "items": [first, self._item(2), self._item(3)],
+            "followup": None,
+        }
+
+    def test_valid_brief_passes(self):
+        import selfcheck
+        errors, _ = selfcheck.check_brief(self._brief())
+        self.assertEqual(errors, [])
+
+    def test_soft_news_detected(self):
+        import selfcheck
+        errors, _ = selfcheck.check_brief(self._brief(title="2026年广西林木展吸引国际头部企业"))
+        self.assertTrue(any("软新闻" in e for e in errors))
+
+    def test_question_title_detected(self):
+        import selfcheck
+        errors, _ = selfcheck.check_brief(self._brief(title="英伟达为什么暴跌？"))
+        self.assertTrue(any("问句" in e for e in errors))
+
+    def test_missing_lede_detected(self):
+        import selfcheck
+        errors, _ = selfcheck.check_brief(self._brief(lede=""))
+        self.assertTrue(any("没有导语" in e for e in errors))
+
+    def test_site_page_mismatch_detected(self):
+        import selfcheck
+        with tempfile.TemporaryDirectory() as td:
+            day = Path(td) / "2026-11-23"
+            day.mkdir()
+            (day / "index.html").write_text("x", encoding="utf-8")
+            (day / "p1.html").write_text("<h1>另一条不相干的新闻</h1>", encoding="utf-8")
+            errors, _ = selfcheck.check_site(Path(td), "2026-11-23", self._brief())
+            self.assertTrue(any("对不上" in e for e in errors))
+
+
 if __name__ == "__main__":
     unittest.main()
