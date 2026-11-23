@@ -91,6 +91,7 @@ def main() -> int:
     parser.add_argument("--no-send", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--fetch", type=int, default=150, help="采集后抓多少篇正文")
+    parser.add_argument("--feed-timeout", type=int, default=15, help="单个 RSS 源超时秒数（本机被墙时调小）")
     parser.add_argument("--auto-brief", action="store_true", help="当天没有 brief 时用 make_brief.py 生成自动初稿")
     parser.add_argument("--window-hours", type=int, default=24)
     parser.add_argument("--same-day", action="store_true", help="默认推前一天的新闻；加这个才推当天")
@@ -107,7 +108,7 @@ def main() -> int:
     print(f"  内容日：{content_day}（{'当天' if args.same_day else '前一天'}）")
     if not args.no_collect:
         ok, _ = run_step("采集", ["scripts/collect.py", "--fetch", str(args.fetch),
-                                 "--day", content_day], log_path)
+                                 "--day", content_day, "--feed-timeout", str(args.feed_timeout)], log_path)
         if not ok:
             print("  ⚠ 采集失败，继续用现有 raw 数据")
     else:
