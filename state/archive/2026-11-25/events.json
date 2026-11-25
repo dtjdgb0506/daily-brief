@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-25T06:53:14",
+  "generated_at": "2026-11-25T13:06:36",
   "run_date": "2026-11-25",
   "window_hours": 24,
   "content_day": "2026-11-24",
   "history_days": 7,
-  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-24 当天：69/85 篇）",
-  "article_total": 69,
-  "event_total": 63,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-24 当天：53/71 篇）",
+  "article_total": 53,
+  "event_total": 47,
   "selected": [
-    "e16",
     "e20",
-    "e21",
     "e25",
-    "e26"
+    "e26",
+    "e33",
+    "e42"
   ],
-  "followup": "e19",
+  "followup": "e15",
   "warnings": [
     "今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。"
   ],
@@ -26,22 +26,23 @@
         "tech",
         "politics"
       ],
-      "score": 44.65,
+      "score": 54.05,
       "source_tier": "core",
       "hard_news": 0.78,
-      "article_count": 3,
-      "source_count": 3,
+      "article_count": 4,
+      "source_count": 4,
       "readability": {
         "opinion": 5,
         "jargon": 0
       },
       "source_names": [
         "Ars Technica",
+        "CNBC Top News",
         "CNBC World",
         "Guardian World"
       ],
       "freshness": 0.25,
-      "representative_title": "How Trump and Silicon Valley forced Nvidia to take Jensen Huang back",
+      "representative_title": "Six key questions raised by Jensen Huang's return to Nvidia",
       "keywords": [
         "the",
         "tofor",
@@ -51,19 +52,22 @@
         "in"
       ],
       "article_ids": [
-        15,
-        16,
-        38
+        6,
+        7,
+        29,
+        52
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/24/nvidia-jensen-huang-ceo-return.html",
         "https://arstechnica.com/tech-policy/2026/11/how-trump-and-silicon-valley-forced-nvidia-to-take-jensen-huang-back/",
-        "https://www.theguardian.com/technology/2026/nov/24/nvidia-trump-huang-intelligence"
+        "https://www.theguardian.com/technology/2026/nov/24/nvidia-trump-huang-intelligence",
+        "https://www.cnbc.com/2026/11/24/nvidia-jensen-huang-politics-market.html"
       ],
       "titles": [
         "Nvidia brought Jensen Huang back. But the investigations aren’t over",
         "How Trump and Silicon Valley forced Nvidia to take Jensen Huang back",
-        "The Nvidia case is just the latest episode of Trump disregarding intelligence"
+        "The Nvidia case is just the latest episode of Trump disregarding intelligence",
+        "Six key questions raised by Jensen Huang's return to Nvidia"
       ],
       "is_followup": true,
       "followup_of": {
@@ -74,11 +78,59 @@
     },
     {
       "id": "e2",
-      "category": "tech",
+      "category": "politics",
       "tags": [
-        "tech"
+        "politics"
       ],
-      "score": 31.75,
+      "score": 28.42,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 2,
+      "source_count": 2,
+      "readability": {
+        "opinion": 3,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News",
+        "The Diplomat"
+      ],
+      "freshness": 0.25,
+      "representative_title": "With Qianfan, China Has Its Answer to Starlink",
+      "keywords": [
+        "the",
+        "tofrom",
+        "and",
+        "chinas",
+        "withas",
+        "is"
+      ],
+      "article_ids": [
+        9,
+        33
+      ],
+      "urls": [
+        "https://thediplomat.com/2026/11/with-qianfan-china-has-its-answer-to-starlink/",
+        "https://www.cnbc.com/2026/11/24/us-china-thwarting-india-growth.html"
+      ],
+      "titles": [
+        "With Qianfan, China Has Its Answer to Starlink",
+        "China has changed tactics but still thwarts India's rise: U.S. panel"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Alaska, your next governor is a Wikipedia nerd"
+      },
+      "importance": 0.402
+    },
+    {
+      "id": "e3",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 28.2,
       "source_tier": "core",
       "hard_news": 1.08,
       "article_count": 1,
@@ -88,36 +140,36 @@
         "jargon": 0
       },
       "source_names": [
-        "CNBC World"
+        "Guardian World"
       ],
       "freshness": 0.25,
-      "representative_title": "Signal joins United Airlines, banks in limiting AI agents",
+      "representative_title": "Leftwing coalition leader calls for rental revolution as Spain heads for snap election",
       "keywords": [
-        "andataccess",
-        "ton",
-        "agentsaid",
-        "the",
-        "ain",
-        "signal"
+        "thelectionot",
+        "tofront",
+        "forental",
+        "in",
+        "and",
+        "that"
       ],
       "article_ids": [
-        26
+        14
       ],
       "urls": [
-        "https://www.cnbc.com/2026/11/24/signal-airlines-banks-ai-limit.html"
+        "https://www.theguardian.com/world/2026/nov/24/spain-election-ada-colau-broad-front-far-right"
       ],
       "titles": [
-        "Signal joins United Airlines, banks in limiting AI agents"
+        "Leftwing coalition leader calls for rental revolution as Spain heads for snap election"
       ],
       "is_followup": true,
       "followup_of": {
         "date": "2026-11-22",
-        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
       },
-      "importance": 0.408
+      "importance": 0.318
     },
     {
-      "id": "e3",
+      "id": "e4",
       "category": "politics",
       "tags": [
         "politics"
@@ -145,7 +197,7 @@
         "in"
       ],
       "article_ids": [
-        32
+        23
       ],
       "urls": [
         "https://english.elpais.com/international/2026-11-24/colombia-marks-10-years-since-farc-peace-deal-as-de-la-espriella-threatens-its-future.html"
@@ -161,7 +213,7 @@
       "importance": 0.318
     },
     {
-      "id": "e4",
+      "id": "e5",
       "category": "politics",
       "tags": [
         "politics"
@@ -189,7 +241,7 @@
         "kushneresorthis"
       ],
       "article_ids": [
-        34
+        25
       ],
       "urls": [
         "https://www.npr.org/2026/11/24/g-s1-154623/albania-jared-kushner-land-deal-protests"
@@ -205,7 +257,7 @@
       "importance": 0.318
     },
     {
-      "id": "e5",
+      "id": "e6",
       "category": "politics",
       "tags": [
         "politics"
@@ -233,7 +285,7 @@
         "toctober"
       ],
       "article_ids": [
-        46
+        34
       ],
       "urls": [
         "https://www.theguardian.com/world/2026/nov/24/gaza-meningitis-epidemic-alert"
@@ -249,96 +301,7 @@
       "importance": 0.318
     },
     {
-      "id": "e6",
-      "category": "finance",
-      "tags": [
-        "finance",
-        "tech"
-      ],
-      "score": 27.68,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC Top News"
-      ],
-      "freshness": 0.25,
-      "representative_title": "OakNorth secures U.S. national bank charter",
-      "keywords": [
-        "the",
-        "toforegulatory",
-        "in",
-        "u.s.",
-        "and",
-        "bank"
-      ],
-      "article_ids": [
-        5
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/24/oaknorth-us-bank-charter.html"
-      ],
-      "titles": [
-        "OakNorth secures U.S. national bank charter"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.273
-    },
-    {
       "id": "e7",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 27.68,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC Top News"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Best Buy (BBY) Q3 2027 earnings",
-      "keywords": [
-        "thearningsales",
-        "oforeported",
-        "and",
-        "buy",
-        "beston",
-        "in"
-      ],
-      "article_ids": [
-        59
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/24/best-buy-bby-q3-2027-earnings.html"
-      ],
-      "titles": [
-        "Best Buy (BBY) Q3 2027 earnings"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.273
-    },
-    {
-      "id": "e8",
       "category": "tech",
       "tags": [
         "tech"
@@ -360,13 +323,13 @@
       "keywords": [
         "firefox",
         "支持",
-        "释出",
         "所有",
+        "释出",
         "网站",
         "主题"
       ],
       "article_ids": [
-        68
+        51
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85979"
@@ -382,52 +345,7 @@
       "importance": 0.408
     },
     {
-      "id": "e9",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "tech"
-      ],
-      "score": 26.85,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Guardian Essential poll: Albanese’s disapproval rating hits highest level as problems mount for Labor",
-      "keywords": [
-        "thessentialast",
-        "oforating",
-        "inear",
-        "andisapprovalabor",
-        "albanese",
-        "pollevel"
-      ],
-      "article_ids": [
-        65
-      ],
-      "urls": [
-        "https://www.theguardian.com/australia-news/2026/nov/25/guardian-essential-poll-anthony-albaneses-ai-datacentres-labor-one-nation-coalition"
-      ],
-      "titles": [
-        "Guardian Essential poll: Albanese’s disapproval rating hits highest level as problems mount for Labor"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Alaska, your next governor is a Wikipedia nerd"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e10",
+      "id": "e8",
       "category": "tech",
       "tags": [
         "tech"
@@ -455,7 +373,7 @@
         "withackers"
       ],
       "article_ids": [
-        11
+        3
       ],
       "urls": [
         "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/"
@@ -471,7 +389,7 @@
       "importance": 0.408
     },
     {
-      "id": "e11",
+      "id": "e9",
       "category": "politics",
       "tags": [
         "politics"
@@ -499,7 +417,7 @@
         "to"
       ],
       "article_ids": [
-        55
+        44
       ],
       "urls": [
         "https://thediplomat.com/2026/11/amid-political-crisis-high-stakes-for-mongolias-2027-presidential-election/"
@@ -515,7 +433,7 @@
       "importance": 0.318
     },
     {
-      "id": "e12",
+      "id": "e10",
       "category": "politics",
       "tags": [
         "politics"
@@ -543,7 +461,7 @@
         "active"
       ],
       "article_ids": [
-        23
+        15
       ],
       "urls": [
         "https://www.straitstimes.com/world/mexico-reports-12-active-measles-cases-says-90-vaccinated"
@@ -559,7 +477,7 @@
       "importance": 0.318
     },
     {
-      "id": "e13",
+      "id": "e11",
       "category": "politics",
       "tags": [
         "politics"
@@ -587,7 +505,7 @@
         "colombian"
       ],
       "article_ids": [
-        24
+        16
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cjqlq2n4np7do?at_medium=RSS&at_campaign=rss"
@@ -603,7 +521,7 @@
       "importance": 0.318
     },
     {
-      "id": "e14",
+      "id": "e12",
       "category": "tech",
       "tags": [
         "tech"
@@ -631,7 +549,7 @@
         "board"
       ],
       "article_ids": [
-        39
+        30
       ],
       "urls": [
         "https://techcrunch.com/2026/11/24/huang-reportedly-admitted-to-more-than-two-affairs-to-nvidias-board/"
@@ -647,92 +565,7 @@
       "importance": 0.408
     },
     {
-      "id": "e15",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 24.02,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Snowden on steroids: AI agents in phones trigger surveillance fears",
-      "keywords": [
-        "ton",
-        "ain",
-        "the",
-        "agentsnowden",
-        "andatare",
-        "isignal"
-      ],
-      "article_ids": [
-        6
-      ],
-      "urls": [
-        "https://www.politico.eu/article/ai-agents-phone-privacy-surveillance-fears/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Snowden on steroids: AI agents in phones trigger surveillance fears"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e16",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 23.94,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "鸿蒙系统终端设备数破亿，华为同步官宣注册开发者超 1200 万、可获取应用服务超 46 万",
-      "keywords": [
-        "鸿蒙系",
-        "系统终",
-        "华为",
-        "应用",
-        "设备数破",
-        "官宣"
-      ],
-      "article_ids": [
-        10
-      ],
-      "urls": [
-        "https://www.ithome.com/1/031/891.htm"
-      ],
-      "titles": [
-        "鸿蒙系统终端设备数破亿，华为同步官宣注册开发者超 1200 万、可获取应用服务超 46 万"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e17",
+      "id": "e13",
       "category": "tech",
       "tags": [
         "tech"
@@ -756,11 +589,11 @@
         "tofor",
         "andecarthatechcrunch",
         "invidiaitstartup",
-        "amazon",
+        "amazonext",
         "is"
       ],
       "article_ids": [
-        22
+        13
       ],
       "urls": [
         "https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/"
@@ -776,7 +609,7 @@
       "importance": 0.408
     },
     {
-      "id": "e18",
+      "id": "e14",
       "category": "tech",
       "tags": [
         "tech"
@@ -804,7 +637,7 @@
         "thanksgivingusts"
       ],
       "article_ids": [
-        36
+        27
       ],
       "urls": [
         "https://www.straitstimes.com/world/united-states/macys-thanksgiving-day-balloons-threatened-by-winds-in-new-york"
@@ -820,7 +653,7 @@
       "importance": 0.408
     },
     {
-      "id": "e19",
+      "id": "e15",
       "category": "tech",
       "tags": [
         "tech"
@@ -848,10 +681,10 @@
         "手机"
       ],
       "article_ids": [
-        43
+        21
       ],
       "urls": [
-        "https://www.ifanr.com/1691302?utm_source=rss&utm_medium=rss&utm_campaign="
+        "https://www.ifanr.com/1691302?utm_source=rss&utm_medium=rss&utm_campaign"
       ],
       "titles": [
         "华为发布了大折叠手机和小折叠电脑，但 1 亿鸿蒙设备才是最大的亮点"
@@ -864,89 +697,51 @@
       "importance": 0.608
     },
     {
-      "id": "e20",
-      "category": "tech",
+      "id": "e16",
+      "category": "politics",
       "tags": [
-        "tech"
+        "politics"
       ],
-      "score": 22.65,
-      "source_tier": "cn",
-      "hard_news": 0.95,
+      "score": 22.3,
+      "source_tier": "core",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 0,
-        "jargon": 1
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "微软 Win11 将淘汰蓝牙 MTP 功能，标准蓝牙文件传输不受影响",
-      "keywords": [
-        "蓝牙文",
-        "windows",
-        "微软",
-        "功能",
-        "文件传",
-        "mtp"
-      ],
-      "article_ids": [
-        66
-      ],
-      "urls": [
-        "https://www.ithome.com/1/031/892.htm"
-      ],
-      "titles": [
-        "微软 Win11 将淘汰蓝牙 MTP 功能，标准蓝牙文件传输不受影响"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e21",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 22.64,
-      "source_tier": "cn",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
+        "opinion": 3,
         "jargon": 0
       },
       "source_names": [
-        "快科技"
+        "CNBC World"
       ],
       "freshness": 0.25,
-      "representative_title": "捷途掀翻纯电方盒子桌子！环游者EV 8.99万起上市：续航最高550公里--快科技--科技改变未来",
+      "representative_title": "Ukraine war: Russia warns NATO member Estonia of ‘open war’",
       "keywords": [
-        "科技",
-        "捷途",
-        "环游者",
-        "ev",
-        "方盒子",
-        "纯电方"
+        "thestonian",
+        "ofromember",
+        "tonatopen",
+        "russiand",
+        "in",
+        "itsaid"
       ],
       "article_ids": [
-        42
+        45
       ],
       "urls": [
-        "https://news.mydrivers.com/1/1168/1168303.htm"
+        "https://www.cnbc.com/2026/11/24/russia-estonia-ukraine-war-nato-finland.html"
       ],
       "titles": [
-        "捷途掀翻纯电方盒子桌子！环游者EV 8.99万起上市：续航最高550公里--快科技--科技改变未来"
+        "Ukraine war: Russia warns NATO member Estonia of ‘open war’"
       ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
+      },
+      "importance": 0.318
     },
     {
-      "id": "e22",
+      "id": "e17",
       "category": "politics",
       "tags": [
         "politics",
@@ -975,7 +770,7 @@
         "withuangomez"
       ],
       "article_ids": [
-        49
+        37
       ],
       "urls": [
         "https://www.npr.org/2026/11/24/g-s1-155227/up-first-newsletter-nvidia-jensen-huang-trump-ukraine-russia-jimmy-gomez"
@@ -991,7 +786,7 @@
       "importance": 0.318
     },
     {
-      "id": "e23",
+      "id": "e18",
       "category": "tech",
       "tags": [
         "tech"
@@ -1019,7 +814,7 @@
         "with"
       ],
       "article_ids": [
-        14
+        5
       ],
       "urls": [
         "https://www.technologyreview.com/2026/11/24/1148091/raising-the-stakes-for-enterprise-networks-with-ai-modernization/"
@@ -1035,7 +830,7 @@
       "importance": 0.408
     },
     {
-      "id": "e24",
+      "id": "e19",
       "category": "tech",
       "tags": [
         "tech"
@@ -1063,7 +858,7 @@
         "gridevelopers"
       ],
       "article_ids": [
-        47
+        35
       ],
       "urls": [
         "https://www.technologyreview.com/2026/11/24/1149622/data-centers-natural-gas/"
@@ -1079,48 +874,7 @@
       "importance": 0.408
     },
     {
-      "id": "e25",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 21.57,
-      "source_tier": "cn",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "HKC 神盾 27Q420B 显示器上市：QD Mini LED + Ultrafast IPS，2399 元",
-      "keywords": [
-        "神盾",
-        "显示器上市",
-        "q420b",
-        "hkc",
-        "qd",
-        "minips"
-      ],
-      "article_ids": [
-        12
-      ],
-      "urls": [
-        "https://www.ithome.com/1/031/893.htm"
-      ],
-      "titles": [
-        "HKC 神盾 27Q420B 显示器上市：QD Mini LED + Ultrafast IPS，2399 元"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e26",
+      "id": "e20",
       "category": "finance",
       "tags": [
         "finance"
@@ -1148,10 +902,10 @@
         "五座椅"
       ],
       "article_ids": [
-        57
+        19
       ],
       "urls": [
-        "https://www.ifanr.com/1691381?utm_source=rss&utm_medium=rss&utm_campaign="
+        "https://www.ifanr.com/1691381?utm_source=rss&utm_medium=rss&utm_campaign"
       ],
       "titles": [
         "18.79 万元起！比亚迪唐 EV 正式上市，砍掉七座换来 850km 续航，还有线控底盘"
@@ -1161,7 +915,7 @@
       "importance": 0.0
     },
     {
-      "id": "e27",
+      "id": "e21",
       "category": "politics",
       "tags": [
         "politics"
@@ -1189,7 +943,7 @@
         "on"
       ],
       "article_ids": [
-        9
+        2
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c893rl37ywdgo?at_medium=RSS&at_campaign=rss"
@@ -1205,7 +959,7 @@
       "importance": 0.318
     },
     {
-      "id": "e28",
+      "id": "e22",
       "category": "politics",
       "tags": [
         "politics"
@@ -1233,7 +987,7 @@
         "killed"
       ],
       "article_ids": [
-        37
+        28
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c6rrg7ggq190o?at_medium=RSS&at_campaign=rss"
@@ -1249,7 +1003,7 @@
       "importance": 0.318
     },
     {
-      "id": "e29",
+      "id": "e23",
       "category": "politics",
       "tags": [
         "politics"
@@ -1277,7 +1031,7 @@
         "is"
       ],
       "article_ids": [
-        48
+        36
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cmwy868v3nneo?at_medium=RSS&at_campaign=rss"
@@ -1293,48 +1047,7 @@
       "importance": 0.318
     },
     {
-      "id": "e30",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 21.26,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "日本今年1至9月出生人口同比减少0.3%-中新网",
-      "keywords": [
-        "日本今",
-        "人口同",
-        "今年",
-        "出生人",
-        "同比减",
-        "减少"
-      ],
-      "article_ids": [
-        56
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-24/10737230.shtml"
-      ],
-      "titles": [
-        "日本今年1至9月出生人口同比减少0.3%-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e31",
+      "id": "e24",
       "category": "tech",
       "tags": [
         "tech",
@@ -1363,7 +1076,7 @@
         "inick"
       ],
       "article_ids": [
-        41
+        32
       ],
       "urls": [
         "https://arstechnica.com/gadgets/2026/11/one-terminal-command-gave-my-forgotten-android-device-a-desk-job/"
@@ -1379,7 +1092,7 @@
       "importance": 0.408
     },
     {
-      "id": "e32",
+      "id": "e25",
       "category": "tech",
       "tags": [
         "tech"
@@ -1407,7 +1120,7 @@
         "技术"
       ],
       "article_ids": [
-        28
+        18
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-24/10737255.shtml"
@@ -1420,7 +1133,7 @@
       "importance": 0.0
     },
     {
-      "id": "e33",
+      "id": "e26",
       "category": "tech",
       "tags": [
         "tech"
@@ -1448,10 +1161,10 @@
         "办事的"
       ],
       "article_ids": [
-        44
+        49
       ],
       "urls": [
-        "https://www.ifanr.com/1691355?utm_source=rss&utm_medium=rss&utm_campaign="
+        "https://www.ifanr.com/1691355?utm_source=rss&utm_medium=rss&utm_campaign"
       ],
       "titles": [
         "实测小豆：主动办事的背后，AI 正在走向每一个人"
@@ -1461,7 +1174,7 @@
       "importance": 0.0
     },
     {
-      "id": "e34",
+      "id": "e27",
       "category": "tech",
       "tags": [
         "tech",
@@ -1490,7 +1203,7 @@
         "thatrusthis"
       ],
       "article_ids": [
-        3
+        0
       ],
       "urls": [
         "https://www.atlanticcouncil.org/blogs/geotech-cues/to-compete-with-china-on-technology-the-united-states-must-address-data-and-trust-deficits/"
@@ -1506,7 +1219,7 @@
       "importance": 0.408
     },
     {
-      "id": "e35",
+      "id": "e28",
       "category": "tech",
       "tags": [
         "tech"
@@ -1534,7 +1247,7 @@
         "human"
       ],
       "article_ids": [
-        58
+        46
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/europe-should-lead-in-ensuring-that-technology-and-finance-benefit-humans-by-bertrand-badre-and-florian-ingen-housz-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1550,7 +1263,7 @@
       "importance": 0.408
     },
     {
-      "id": "e36",
+      "id": "e29",
       "category": "tech",
       "tags": [
         "tech"
@@ -1578,7 +1291,7 @@
         "boomakinglobal"
       ],
       "article_ids": [
-        61
+        47
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/how-south-korea-can-use-semiconductor-boom-to-strengthen-overall-economy-by-lee-jong-wha-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1594,97 +1307,7 @@
       "importance": 0.408
     },
     {
-      "id": "e37",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Why France is at risk of recession",
-      "keywords": [
-        "thelectionovember",
-        "ofrancenergy",
-        "in",
-        "ton",
-        "and",
-        "is"
-      ],
-      "article_ids": [
-        1
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/24/france-recession-risk-pmi.html"
-      ],
-      "titles": [
-        "Why France is at risk of recession"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e38",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Chinese police contacted members of WeChat group after they discussed Melbourne vigil for HungryPanda rider",
-      "keywords": [
-        "the",
-        "in",
-        "groupolice",
-        "oforider",
-        "to",
-        "wechathathey"
-      ],
-      "article_ids": [
-        7
-      ],
-      "urls": [
-        "https://www.theguardian.com/business/2026/nov/25/chinese-police-wechat-group-hungrypanda-delivery-rider-alleged-murder-melbourne-ntwnfb"
-      ],
-      "titles": [
-        "Chinese police contacted members of WeChat group after they discussed Melbourne vigil for HungryPanda rider"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e39",
+      "id": "e30",
       "category": "politics",
       "tags": [
         "politics"
@@ -1712,7 +1335,7 @@
         "congo"
       ],
       "article_ids": [
-        13
+        4
       ],
       "urls": [
         "https://www.npr.org/2026/11/24/nx-s1-6042912/drc-congo-mining-china-copper-colbalt-critical-minerals"
@@ -1728,7 +1351,7 @@
       "importance": 0.318
     },
     {
-      "id": "e40",
+      "id": "e31",
       "category": "politics",
       "tags": [
         "politics",
@@ -1757,7 +1380,7 @@
         "his"
       ],
       "article_ids": [
-        20
+        12
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/french-ex-president-sarkozy-wife-to-be-tried-over-witness-tampering-source"
@@ -1773,10 +1396,11 @@
       "importance": 0.318
     },
     {
-      "id": "e41",
+      "id": "e32",
       "category": "politics",
       "tags": [
-        "politics"
+        "politics",
+        "finance"
       ],
       "score": 20.36,
       "source_tier": "core",
@@ -1788,26 +1412,26 @@
         "jargon": 0
       },
       "source_names": [
-        "Politico Europe"
+        "Guardian World"
       ],
       "freshness": 0.25,
-      "representative_title": "COP must change after Antalya failure, UK climate chief warns",
+      "representative_title": "Leader of India’s Cockroach movement says he was stopped from boarding flight to UK",
       "keywords": [
+        "tofrom",
+        "wasaystopped",
         "the",
-        "tofor",
-        "coprocess",
-        "in",
-        "and",
-        "on"
+        "cockroache",
+        "on",
+        "indiand"
       ],
       "article_ids": [
-        21
+        38
       ],
       "urls": [
-        "https://www.politico.eu/article/rachel-kyte-cop-change-antalya-failure/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+        "https://www.theguardian.com/world/2026/nov/24/leader-india-coackroach-movement-says-stopped-from-boarding-flight-to-uk"
       ],
       "titles": [
-        "COP must change after Antalya failure, UK climate chief warns"
+        "Leader of India’s Cockroach movement says he was stopped from boarding flight to UK"
       ],
       "is_followup": true,
       "followup_of": {
@@ -1817,92 +1441,7 @@
       "importance": 0.318
     },
     {
-      "id": "e42",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Farage suggests he could appeal to Le Pen to block Britain rejoining the EU",
-      "keywords": [
-        "theu",
-        "tofarage",
-        "in",
-        "that",
-        "he",
-        "and"
-      ],
-      "article_ids": [
-        60
-      ],
-      "urls": [
-        "https://www.politico.eu/article/farage-le-pen-brexit-eu-accession-uk/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Farage suggests he could appeal to Le Pen to block Britain rejoining the EU"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e43",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 20.25,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "黑得深邃：宾利首款纯电 SUV 托卡尔新增纯黑特别版，全球只有 20 台",
-      "keywords": [
-        "托卡尔新增纯黑特",
-        "宾利首款纯",
-        "特别版",
-        "采用",
-        "纯电",
-        "全球只有"
-      ],
-      "article_ids": [
-        0
-      ],
-      "urls": [
-        "https://www.ithome.com/1/031/894.htm"
-      ],
-      "titles": [
-        "黑得深邃：宾利首款纯电 SUV 托卡尔新增纯黑特别版，全球只有 20 台"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e44",
+      "id": "e33",
       "category": "tech",
       "tags": [
         "tech"
@@ -1930,7 +1469,7 @@
         "企的"
       ],
       "article_ids": [
-        64
+        50
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-24/10737250.shtml"
@@ -1943,7 +1482,7 @@
       "importance": 0.0
     },
     {
-      "id": "e45",
+      "id": "e34",
       "category": "politics",
       "tags": [
         "politics"
@@ -1971,7 +1510,7 @@
         "colombiare"
       ],
       "article_ids": [
-        52
+        41
       ],
       "urls": [
         "https://www.npr.org/2026/11/24/nx-s1-6038806/colombia-water-plants-frailejons"
@@ -1987,7 +1526,7 @@
       "importance": 0.318
     },
     {
-      "id": "e46",
+      "id": "e35",
       "category": "politics",
       "tags": [
         "politics"
@@ -2015,7 +1554,7 @@
         "in"
       ],
       "article_ids": [
-        33
+        24
       ],
       "urls": [
         "https://arstechnica.com/gadgets/2026/11/ukraines-sea-drones-blow-up-russian-warship-in-benghazi-operation/"
@@ -2031,52 +1570,7 @@
       "importance": 0.318
     },
     {
-      "id": "e47",
-      "category": "finance",
-      "tags": [
-        "finance",
-        "politics"
-      ],
-      "score": 19.08,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Bulgaria faces EU fine over runaway public finances",
-      "keywords": [
-        "theu",
-        "tofaces",
-        "fine",
-        "bulgariand",
-        "brussels",
-        "fines"
-      ],
-      "article_ids": [
-        30
-      ],
-      "urls": [
-        "https://www.politico.eu/article/bulgaria-eu-fine-public-finances/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Bulgaria faces EU fine over runaway public finances"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
-      },
-      "importance": 0.273
-    },
-    {
-      "id": "e48",
+      "id": "e36",
       "category": "tech",
       "tags": [
         "tech"
@@ -2104,10 +1598,10 @@
         "智能眼"
       ],
       "article_ids": [
-        2
+        11
       ],
       "urls": [
-        "https://www.ifanr.com/1691270?utm_source=rss&utm_medium=rss&utm_campaign="
+        "https://www.ifanr.com/1691270?utm_source=rss&utm_medium=rss&utm_campaign"
       ],
       "titles": [
         "在一个长期相信考试可以改变命运的社会里，AI 已经开始动摇人们对成绩的信任"
@@ -2120,7 +1614,7 @@
       "importance": 0.408
     },
     {
-      "id": "e49",
+      "id": "e37",
       "category": "politics",
       "tags": [
         "politics"
@@ -2148,7 +1642,7 @@
         "in"
       ],
       "article_ids": [
-        17
+        8
       ],
       "urls": [
         "https://www.wired.com/story/thanksgiving-travel-will-be-stormy-mess/"
@@ -2164,90 +1658,7 @@
       "importance": 0.318
     },
     {
-      "id": "e50",
-      "category": "other",
-      "tags": [],
-      "score": 18.31,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "韩国30至39岁人群未婚比例升至53.1%-中新网",
-      "keywords": [
-        "韩国",
-        "未婚比",
-        "比例升",
-        "岁人群未",
-        "升至",
-        "意愿"
-      ],
-      "article_ids": [
-        45
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-24/10737158.shtml"
-      ],
-      "titles": [
-        "韩国30至39岁人群未婚比例升至53.1%-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e51",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 18.18,
-      "source_tier": "analysis",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "The Diplomat"
-      ],
-      "freshness": 0.25,
-      "representative_title": "With Qianfan, China Has Its Answer to Starlink",
-      "keywords": [
-        "the",
-        "tof",
-        "and",
-        "qianfan",
-        "asatellite",
-        "withastarlink"
-      ],
-      "article_ids": [
-        18
-      ],
-      "urls": [
-        "https://thediplomat.com/2026/11/with-qianfan-china-has-its-answer-to-starlink/"
-      ],
-      "titles": [
-        "With Qianfan, China Has Its Answer to Starlink"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e52",
+      "id": "e38",
       "category": "politics",
       "tags": [
         "politics"
@@ -2275,7 +1686,7 @@
         "thisame"
       ],
       "article_ids": [
-        19
+        10
       ],
       "urls": [
         "https://warontherocks.com/the-game-is-the-easy-part-measuring-military-strategic-judgment/"
@@ -2291,7 +1702,7 @@
       "importance": 0.318
     },
     {
-      "id": "e53",
+      "id": "e39",
       "category": "politics",
       "tags": [
         "politics",
@@ -2320,7 +1731,7 @@
         "war"
       ],
       "article_ids": [
-        40
+        31
       ],
       "urls": [
         "https://warontherocks.com/cogs-of-war/battlefield-power-is-running-short/"
@@ -2336,7 +1747,7 @@
       "importance": 0.318
     },
     {
-      "id": "e54",
+      "id": "e40",
       "category": "other",
       "tags": [],
       "score": 17.54,
@@ -2362,7 +1773,7 @@
         "pope"
       ],
       "article_ids": [
-        53
+        42
       ],
       "urls": [
         "https://english.elpais.com/society/2026-11-24/leo-xivs-plan-to-combat-child-sexual-abuse-remains-a-mystery-theyre-trying-to-hold-him-back-and-he-doesnt-know-who-he-can-trust.html"
@@ -2378,7 +1789,7 @@
       "importance": 0.219
     },
     {
-      "id": "e55",
+      "id": "e41",
       "category": "finance",
       "tags": [
         "finance"
@@ -2406,7 +1817,7 @@
         "is"
       ],
       "article_ids": [
-        25
+        17
       ],
       "urls": [
         "https://www.project-syndicate.org/onpoint/is-a-financial-market-reckoning-imminent?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -2422,51 +1833,7 @@
       "importance": 0.273
     },
     {
-      "id": "e56",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 16.52,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 1
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "特朗普停下脚步鼓掌，普京听到熟悉的歌：深圳APEC晚宴乐章曲目大有深意-中新网",
-      "keywords": [
-        "客人",
-        "旋律",
-        "文化",
-        "深圳",
-        "曲目",
-        "这首"
-      ],
-      "article_ids": [
-        63
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-24/10737258.shtml"
-      ],
-      "titles": [
-        "特朗普停下脚步鼓掌，普京听到熟悉的歌：深圳APEC晚宴乐章曲目大有深意-中新网"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Trump lands significant victories in media defamation cases"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e57",
+      "id": "e42",
       "category": "other",
       "tags": [],
       "score": 16.46,
@@ -2492,7 +1859,7 @@
         "所有"
       ],
       "article_ids": [
-        51
+        40
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85982"
@@ -2505,7 +1872,7 @@
       "importance": 0.0
     },
     {
-      "id": "e58",
+      "id": "e43",
       "category": "other",
       "tags": [],
       "score": 16.44,
@@ -2531,7 +1898,7 @@
         "of"
       ],
       "article_ids": [
-        62
+        48
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/how-the-au-can-improve-security-peacekeeping-fulfill-ali-mazrui-vision-by-adekeye-adebajo-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -2547,7 +1914,7 @@
       "importance": 0.219
     },
     {
-      "id": "e59",
+      "id": "e44",
       "category": "other",
       "tags": [],
       "score": 15.75,
@@ -2573,7 +1940,7 @@
         "所有"
       ],
       "article_ids": [
-        54
+        43
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85980"
@@ -2586,7 +1953,7 @@
       "importance": 0.0
     },
     {
-      "id": "e60",
+      "id": "e45",
       "category": "other",
       "tags": [],
       "score": 15.03,
@@ -2612,7 +1979,7 @@
         "紫杉醇"
       ],
       "article_ids": [
-        31
+        22
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85981"
@@ -2625,46 +1992,7 @@
       "importance": 0.0
     },
     {
-      "id": "e61",
-      "category": "other",
-      "tags": [],
-      "score": 14.32,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "中新网-国际"
-      ],
-      "freshness": 0.25,
-      "representative_title": "印度阿约提亚至尼泊尔贾纳克布尔新开直达客运列车抵尼-中新网",
-      "keywords": [
-        "列车抵尼",
-        "印度阿",
-        "尼泊尔贾",
-        "阿约提亚至尼",
-        "贾纳克布尔新开直",
-        "直达客"
-      ],
-      "article_ids": [
-        8
-      ],
-      "urls": [
-        "https://www.chinanews.com.cn/gj/2026/11-24/10737211.shtml"
-      ],
-      "titles": [
-        "印度阿约提亚至尼泊尔贾纳克布尔新开直达客运列车抵尼-中新网"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e62",
+      "id": "e46",
       "category": "finance",
       "tags": [
         "finance"
@@ -2692,7 +2020,7 @@
         "推广专利开放许可"
       ],
       "article_ids": [
-        35
+        26
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-24/10737240.shtml"
@@ -2705,7 +2033,7 @@
       "importance": 0.0
     },
     {
-      "id": "e63",
+      "id": "e47",
       "category": "finance",
       "tags": [
         "finance"
@@ -2733,7 +2061,7 @@
         "项目"
       ],
       "article_ids": [
-        50
+        39
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-24/10737244.shtml"
