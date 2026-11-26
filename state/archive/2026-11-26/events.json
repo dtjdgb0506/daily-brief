@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-26T06:53:22",
+  "generated_at": "2026-11-26T12:31:24",
   "run_date": "2026-11-26",
   "window_hours": 24,
   "content_day": "2026-11-25",
   "history_days": 7,
-  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-25 当天：70/79 篇）",
-  "article_total": 70,
-  "event_total": 58,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-25 当天：64/72 篇）",
+  "article_total": 64,
+  "event_total": 53,
   "selected": [
-    "e12",
+    "e10",
+    "e11",
     "e14",
-    "e15",
-    "e18",
-    "e24"
+    "e21",
+    "e38"
   ],
-  "followup": "e3",
+  "followup": "e1",
   "warnings": [
     "今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。"
   ],
@@ -26,49 +26,42 @@
         "tech",
         "politics"
       ],
-      "score": 58.05,
+      "score": 39.84,
       "source_tier": "core",
       "hard_news": 0.78,
-      "article_count": 5,
-      "source_count": 3,
+      "article_count": 3,
+      "source_count": 2,
       "readability": {
-        "opinion": 7,
+        "opinion": 3,
         "jargon": 0
       },
       "source_names": [
         "CNBC World",
-        "NPR World",
-        "快科技"
+        "NPR World"
       ],
       "freshness": 0.25,
-      "representative_title": "Trump open to pardoning Jensen Huang if needed: NY Post",
+      "representative_title": "GOP lawmaker seeks answers over Nvidia CEO Jensen Huang",
       "keywords": [
         "the",
         "tofor",
         "huang",
         "and",
-        "nvidiai",
-        "in"
+        "nvidias",
+        "thatrump"
       ],
       "article_ids": [
-        7,
-        50,
-        51,
-        58,
-        63
+        6,
+        47,
+        56
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/25/trump-huang-pardon-politics.html",
-        "https://news.mydrivers.com/1/1168/1168584.htm",
         "https://www.npr.org/2026/11/25/nx-s1-6052417/nvidia-jensen-huang-reaction-republicans-congress-investigation",
-        "https://www.cnbc.com/2026/11/25/jensen-huang-nvidia-ai-talent-race.html",
         "https://www.npr.org/2026/11/25/g-s1-155493/up-first-newsletter-iowa-detonation-kilmar-abrego-garcia-nvidia-jensen-huang"
       ],
       "titles": [
         "Trump open to pardoning Jensen Huang if needed: NY Post",
-        "黄仁勋 离开英伟达的11天--快科技--科技改变未来",
         "GOP lawmaker seeks answers over Nvidia CEO Jensen Huang",
-        "Jensen Huang’s Nvidia return highlights U.S.-China AI talent race",
         "Up First briefing: Iowa detonation; Kilmar Abrego Garcia; Jensen Huang"
       ],
       "is_followup": true,
@@ -80,96 +73,6 @@
     },
     {
       "id": "e2",
-      "category": "tech",
-      "tags": [
-        "tech",
-        "finance"
-      ],
-      "score": 38.59,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Tech stocks fall: Nvidia, Anthropic, SoftBank Group, SK Hynix, Samsung",
-      "keywords": [
-        "thequipment",
-        "and",
-        "tof",
-        "stocksoftbank",
-        "invidiai",
-        "on"
-      ],
-      "article_ids": [
-        0
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/25/tech-stocks-softbank-group-advantest-sk-hynix-samsung.html"
-      ],
-      "titles": [
-        "Tech stocks fall: Nvidia, Anthropic, SoftBank Group, SK Hynix, Samsung"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e3",
-      "category": "tech",
-      "tags": [
-        "tech",
-        "finance"
-      ],
-      "score": 32.19,
-      "source_tier": "cn",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 3,
-        "jargon": 0
-      },
-      "source_names": [
-        "快科技"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Anthropic破发背后：上市次日 创始人兄妹合计套现5.6亿美元--快科技--科技改变未来",
-      "keywords": [
-        "anthropic",
-        "美元",
-        "上市次日",
-        "亿美",
-        "科技",
-        "创始人"
-      ],
-      "article_ids": [
-        39
-      ],
-      "urls": [
-        "https://news.mydrivers.com/1/1168/1168583.htm"
-      ],
-      "titles": [
-        "Anthropic破发背后：上市次日 创始人兄妹合计套现5.6亿美元--快科技--科技改变未来"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Anthropic worker claims to have solved a Holy Grail of math problems with the help of AI"
-      },
-      "importance": 0.608
-    },
-    {
-      "id": "e4",
       "category": "politics",
       "tags": [
         "politics"
@@ -198,7 +101,7 @@
       ],
       "article_ids": [
         29,
-        32
+        31
       ],
       "urls": [
         "https://foreignpolicy.com/2026/11/25/spain-snap-elections-catalonia-far-right-junts-sanchez-alianca-catalana-housing-crisis-immigration/",
@@ -216,7 +119,7 @@
       "importance": 0.402
     },
     {
-      "id": "e5",
+      "id": "e3",
       "category": "politics",
       "tags": [
         "politics"
@@ -260,100 +163,10 @@
       "importance": 0.518
     },
     {
-      "id": "e6",
+      "id": "e4",
       "category": "politics",
       "tags": [
         "politics"
-      ],
-      "score": 28.2,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Metsola reelection talks in trouble after EU conservatives vote with far right again",
-      "keywords": [
-        "thepp",
-        "ton",
-        "with",
-        "in",
-        "andeal",
-        "talks"
-      ],
-      "article_ids": [
-        25
-      ],
-      "urls": [
-        "https://www.politico.eu/article/eu-parliaments-socialists-and-liberals-halt-talks-with-epp/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Metsola reelection talks in trouble after EU conservatives vote with far right again"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e7",
-      "category": "finance",
-      "tags": [
-        "finance",
-        "politics"
-      ],
-      "score": 26.42,
-      "source_tier": "core",
-      "hard_news": 1.08,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "EU rejects Trump’s case for new tariffs",
-      "keywords": [
-        "theuropeanew",
-        "oforejects",
-        "in",
-        "on",
-        "tovercapacity",
-        "trump"
-      ],
-      "article_ids": [
-        30
-      ],
-      "urls": [
-        "https://www.politico.eu/article/eu-rejects-donald-trump-case-for-new-tariffs/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "EU rejects Trump’s case for new tariffs"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Trump lands significant victories in media defamation cases"
-      },
-      "importance": 0.273
-    },
-    {
-      "id": "e8",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
       ],
       "score": 25.98,
       "source_tier": "core",
@@ -365,26 +178,26 @@
         "jargon": 0
       },
       "source_names": [
-        "CNBC Top News"
+        "BBC World"
       ],
       "freshness": 0.25,
-      "representative_title": "Norse Atlantic falls 78% after warning its finances are ‘critical’ amid soaring fuel costs",
+      "representative_title": "Russia's own figures show it has lost nearly 500,000 people in Ukraine war",
       "keywords": [
         "the",
-        "fuel",
-        "tofor",
-        "inorse",
-        "and",
-        "costsoaring"
+        "oforussiashow",
+        "in",
+        "andata",
+        "town",
+        "by"
       ],
       "article_ids": [
-        42
+        11
       ],
       "urls": [
-        "https://www.cnbc.com/2026/11/25/norse-atlantic-financial-warning-fuel-costs.html"
+        "https://www.bbc.co.uk/news/articles/cmx27g533zwyo?at_medium=RSS&at_campaign=rss"
       ],
       "titles": [
-        "Norse Atlantic falls 78% after warning its finances are ‘critical’ amid soaring fuel costs"
+        "Russia's own figures show it has lost nearly 500,000 people in Ukraine war"
       ],
       "is_followup": true,
       "followup_of": {
@@ -394,14 +207,63 @@
       "importance": 0.318
     },
     {
-      "id": "e9",
+      "id": "e5",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 25.95,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 2,
+      "source_count": 2,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "BBC World",
+        "El Pais EN"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Palestinian student jailed without charge after arrest at Jerusalem dormitory",
+      "keywords": [
+        "the",
+        "andetention",
+        "tofor",
+        "on",
+        "in",
+        "hisaid"
+      ],
+      "article_ids": [
+        16,
+        61
+      ],
+      "urls": [
+        "https://english.elpais.com/international/2026-11-25/palestinian-student-jailed-without-charge-after-arrest-at-jerusalem-dormitory.html",
+        "https://www.bbc.co.uk/news/articles/cw62p8z9edjlo?at_medium=RSS&at_campaign=rss"
+      ],
+      "titles": [
+        "Palestinian student jailed without charge after arrest at Jerusalem dormitory",
+        "Protesters call on Israel to free Palestinian student held without charge"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.402
+    },
+    {
+      "id": "e6",
       "category": "tech",
       "tags": [
-        "tech"
+        "tech",
+        "finance"
       ],
-      "score": 25.08,
-      "source_tier": "cn",
-      "hard_news": 0.95,
+      "score": 25.95,
+      "source_tier": "core",
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
@@ -409,36 +271,81 @@
         "jargon": 0
       },
       "source_names": [
-        "快科技"
+        "CNBC World"
       ],
       "freshness": 0.25,
-      "representative_title": "郭帆谈《流浪地球4》：会继续拍科幻 暂未确定下一部题材--快科技--科技改变未来",
+      "representative_title": "AI debt tests Big Tech spending as Nvidia reboundsStock Chart IconStock Chart IconStock Chart Icon",
       "keywords": [
-        "流浪地球",
-        "科技",
-        "郭帆谈",
-        "科幻",
-        "快科",
-        "父亲"
+        "the",
+        "ton",
+        "andebthathis",
+        "ais",
+        "aspending",
+        "ofrom"
       ],
       "article_ids": [
-        62
+        43
       ],
       "urls": [
-        "https://news.mydrivers.com/1/1168/1168585.htm"
+        "https://www.cnbc.com/2026/11/25/ai-debt-big-tech-spending-nvidia.html"
       ],
       "titles": [
-        "郭帆谈《流浪地球4》：会继续拍科幻 暂未确定下一部题材--快科技--科技改变未来"
+        "AI debt tests Big Tech spending as Nvidia reboundsStock Chart IconStock Chart IconStock Chart Icon"
       ],
       "is_followup": true,
       "followup_of": {
         "date": "2026-11-22",
-        "title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
       },
       "importance": 0.408
     },
     {
-      "id": "e10",
+      "id": "e7",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 24.77,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Nvidia whiplash tests Kevin Warsh’s push to read market signals",
+      "keywords": [
+        "the",
+        "tofor",
+        "and",
+        "markethathose",
+        "is",
+        "he"
+      ],
+      "article_ids": [
+        12
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/25/nvidia-kevin-warsh-fed-market-signals.html"
+      ],
+      "titles": [
+        "Nvidia whiplash tests Kevin Warsh’s push to read market signals"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e8",
       "category": "finance",
       "tags": [
         "finance"
@@ -466,7 +373,7 @@
         "fed"
       ],
       "article_ids": [
-        16
+        17
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/25/pce-inflation-report-october-2026.html"
@@ -482,7 +389,7 @@
       "importance": 0.273
     },
     {
-      "id": "e11",
+      "id": "e9",
       "category": "politics",
       "tags": [
         "politics"
@@ -510,7 +417,7 @@
         "saidetails"
       ],
       "article_ids": [
-        67
+        60
       ],
       "urls": [
         "https://techcrunch.com/2026/11/25/todoist-confirms-6-of-customers-details-were-stolen-in-data-breach/"
@@ -526,93 +433,7 @@
       "importance": 0.318
     },
     {
-      "id": "e12",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 23.28,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 3,
-        "jargon": 0
-      },
-      "source_names": [
-        "界面新闻"
-      ],
-      "freshness": 0.25,
-      "representative_title": "蒙古国保护区火灾初估损失达61亿元，涉事日企曾承诺全额赔偿",
-      "keywords": [
-        "蒙古国",
-        "火灾",
-        "保护区域",
-        "损失",
-        "日本",
-        "是蒙"
-      ],
-      "article_ids": [
-        47
-      ],
-      "urls": [
-        "https://www.jiemian.com/article/15374365.html"
-      ],
-      "titles": [
-        "蒙古国保护区火灾初估损失达61亿元，涉事日企曾承诺全额赔偿"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e13",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 22.93,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Aidan is one of thousands of students forced to verbally defend his honours thesis as universities take on AI",
-      "keywords": [
-        "the",
-        "ofor",
-        "ton",
-        "students",
-        "honours",
-        "ais"
-      ],
-      "article_ids": [
-        19
-      ],
-      "urls": [
-        "https://www.theguardian.com/australia-news/2026/nov/25/australian-universities-tackle-ai-plagiarism-oral-assessment-honours-masters-phd"
-      ],
-      "titles": [
-        "Aidan is one of thousands of students forced to verbally defend his honours thesis as universities take on AI"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e14",
+      "id": "e10",
       "category": "tech",
       "tags": [
         "tech"
@@ -653,7 +474,7 @@
       "importance": 0.0
     },
     {
-      "id": "e15",
+      "id": "e11",
       "category": "finance",
       "tags": [
         "finance"
@@ -681,7 +502,7 @@
         "投资"
       ],
       "article_ids": [
-        43
+        41
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-25/10737848.shtml"
@@ -694,7 +515,7 @@
       "importance": 0.0
     },
     {
-      "id": "e16",
+      "id": "e12",
       "category": "tech",
       "tags": [
         "tech"
@@ -714,10 +535,10 @@
       "freshness": 0.25,
       "representative_title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
       "keywords": [
-        "ain",
         "amazon",
-        "tofor",
         "and",
+        "ton",
+        "ain",
         "metagentalks",
         "muse"
       ],
@@ -733,12 +554,12 @@
       "is_followup": true,
       "followup_of": {
         "date": "2026-11-22",
-        "title": "Trump lands significant victories in media defamation cases"
+        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
       },
       "importance": 0.408
     },
     {
-      "id": "e17",
+      "id": "e13",
       "category": "politics",
       "tags": [
         "politics",
@@ -783,7 +604,7 @@
       "importance": 0.318
     },
     {
-      "id": "e18",
+      "id": "e14",
       "category": "tech",
       "tags": [
         "tech"
@@ -811,7 +632,7 @@
         "isn"
       ],
       "article_ids": [
-        68
+        62
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/nvidia-liability-problem-not-going-away-with-jensen-huangs-return-by-luigi-zingales-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -824,7 +645,51 @@
       "importance": 0.0
     },
     {
-      "id": "e19",
+      "id": "e15",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 21.84,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Huang reinstatement reignites voter angst over tech's outsized power",
+      "keywords": [
+        "the",
+        "toforeinstatementhis",
+        "and",
+        "invidiai",
+        "huang",
+        "thatech"
+      ],
+      "article_ids": [
+        24
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/25/huang-reinstatement-reignites-voter-angst-over-techs-outsized-power.html"
+      ],
+      "titles": [
+        "Huang reinstatement reignites voter angst over tech's outsized power"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e16",
       "category": "tech",
       "tags": [
         "tech",
@@ -869,7 +734,7 @@
       "importance": 0.408
     },
     {
-      "id": "e20",
+      "id": "e17",
       "category": "tech",
       "tags": [
         "tech",
@@ -914,7 +779,7 @@
       "importance": 0.408
     },
     {
-      "id": "e21",
+      "id": "e18",
       "category": "tech",
       "tags": [
         "tech"
@@ -935,14 +800,14 @@
       "representative_title": "Allstate suffers multiday tech outage ahead of Thanksgiving",
       "keywords": [
         "the",
-        "tofrom",
-        "allstate",
+        "tofor",
         "and",
+        "allstate",
         "in",
         "outage"
       ],
       "article_ids": [
-        35
+        34
       ],
       "urls": [
         "https://techcrunch.com/2026/11/25/allstate-suffers-multi-day-tech-outage-ahead-of-thanksgiving/"
@@ -958,7 +823,7 @@
       "importance": 0.408
     },
     {
-      "id": "e22",
+      "id": "e19",
       "category": "tech",
       "tags": [
         "tech",
@@ -987,7 +852,7 @@
         "isoldierseaworld"
       ],
       "article_ids": [
-        46
+        45
       ],
       "urls": [
         "https://www.wired.com/story/hot-jump-roping-toy-soldiers-accidentally-made-their-own-psyop/"
@@ -1003,7 +868,7 @@
       "importance": 0.408
     },
     {
-      "id": "e23",
+      "id": "e20",
       "category": "tech",
       "tags": [
         "tech"
@@ -1031,7 +896,7 @@
         "in"
       ],
       "article_ids": [
-        65
+        58
       ],
       "urls": [
         "https://arstechnica.com/ai/2026/11/ai-can-do-the-calculations-physicists-are-figuring-out-what-comes-next/"
@@ -1047,7 +912,7 @@
       "importance": 0.408
     },
     {
-      "id": "e24",
+      "id": "e21",
       "category": "tech",
       "tags": [
         "tech"
@@ -1075,7 +940,7 @@
         "chatgpt"
       ],
       "article_ids": [
-        52
+        48
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85992"
@@ -1088,7 +953,7 @@
       "importance": 0.0
     },
     {
-      "id": "e25",
+      "id": "e22",
       "category": "politics",
       "tags": [
         "politics"
@@ -1116,7 +981,7 @@
         "security"
       ],
       "article_ids": [
-        5
+        4
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cmd718zydz9qo?at_medium=RSS&at_campaign=rss"
@@ -1132,7 +997,7 @@
       "importance": 0.318
     },
     {
-      "id": "e26",
+      "id": "e23",
       "category": "politics",
       "tags": [
         "politics",
@@ -1161,7 +1026,7 @@
         "britishad"
       ],
       "article_ids": [
-        45
+        44
       ],
       "urls": [
         "https://www.theguardian.com/environment/2026/nov/25/swiss-tourist-killed-british-americans-injured-elephants-cameroon"
@@ -1177,10 +1042,11 @@
       "importance": 0.318
     },
     {
-      "id": "e27",
+      "id": "e24",
       "category": "politics",
       "tags": [
-        "politics"
+        "politics",
+        "tech"
       ],
       "score": 21.33,
       "source_tier": "core",
@@ -1192,26 +1058,26 @@
         "jargon": 0
       },
       "source_names": [
-        "BBC World"
+        "CNBC World"
       ],
       "freshness": 0.25,
-      "representative_title": "Phala Phala farm theft: South Africa's Ramaphosa wins court battle over impeachment threat",
+      "representative_title": "U.S. jury found Huawei guilty of multiple criminal charges",
       "keywords": [
         "the",
-        "tof",
+        "andepartment",
         "in",
-        "courthatheft",
-        "ramaphosand",
-        "it"
+        "tofound",
+        "huaweitsaid",
+        "u.s."
       ],
       "article_ids": [
-        57
+        52
       ],
       "urls": [
-        "https://www.bbc.co.uk/news/articles/cq4gn6gj3z37o?at_medium=RSS&at_campaign=rss"
+        "https://www.cnbc.com/2026/11/25/huawei-fraud-trade-trial.html"
       ],
       "titles": [
-        "Phala Phala farm theft: South Africa's Ramaphosa wins court battle over impeachment threat"
+        "U.S. jury found Huawei guilty of multiple criminal charges"
       ],
       "is_followup": true,
       "followup_of": {
@@ -1221,7 +1087,7 @@
       "importance": 0.318
     },
     {
-      "id": "e28",
+      "id": "e25",
       "category": "politics",
       "tags": [
         "politics"
@@ -1249,7 +1115,7 @@
         "bodiesaid"
       ],
       "article_ids": [
-        60
+        54
       ],
       "urls": [
         "https://www.straitstimes.com/world/families-say-they-cannot-locate-bodies-of-relatives-in-ebola-hit-congo-city"
@@ -1265,7 +1131,7 @@
       "importance": 0.318
     },
     {
-      "id": "e29",
+      "id": "e26",
       "category": "tech",
       "tags": [
         "tech",
@@ -1294,7 +1160,7 @@
         "in"
       ],
       "article_ids": [
-        9
+        8
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/fossil-fuel-phase-out-doesnt-require-success-at-cop-by-gernot-wagner-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1310,7 +1176,7 @@
       "importance": 0.408
     },
     {
-      "id": "e30",
+      "id": "e27",
       "category": "tech",
       "tags": [
         "tech"
@@ -1338,7 +1204,7 @@
         "chokepointof"
       ],
       "article_ids": [
-        66
+        59
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/nvidia-scandal-who-controls-americas-ai-chokepoint-by-carla-norrlof-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1354,7 +1220,7 @@
       "importance": 0.408
     },
     {
-      "id": "e31",
+      "id": "e28",
       "category": "politics",
       "tags": [
         "politics"
@@ -1382,7 +1248,7 @@
         "in"
       ],
       "article_ids": [
-        1
+        0
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/british-pm-burnham-defends-influencer-engagement-after-criticism-of-downing-street-videos"
@@ -1398,7 +1264,7 @@
       "importance": 0.318
     },
     {
-      "id": "e32",
+      "id": "e29",
       "category": "politics",
       "tags": [
         "politics"
@@ -1426,7 +1292,7 @@
         "onow"
       ],
       "article_ids": [
-        2
+        1
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/russian-government-official-warns-of-ukrainian-drone-attacks-on-utility-infrastructure-this-winter"
@@ -1442,7 +1308,7 @@
       "importance": 0.318
     },
     {
-      "id": "e33",
+      "id": "e30",
       "category": "politics",
       "tags": [
         "politics"
@@ -1470,7 +1336,7 @@
         "military"
       ],
       "article_ids": [
-        6
+        5
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/ck9q8xp5r5pgo?at_medium=RSS&at_campaign=rss"
@@ -1486,96 +1352,7 @@
       "importance": 0.318
     },
     {
-      "id": "e34",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "tech"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "BBC World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Canadian astronaut welcomes baby girl from space station",
-      "keywords": [
-        "the",
-        "space",
-        "and",
-        "in",
-        "canadian",
-        "astronauthatour"
-      ],
-      "article_ids": [
-        12
-      ],
-      "urls": [
-        "https://www.bbc.co.uk/news/articles/ckx283y8wwwgo?at_medium=RSS&at_campaign=rss"
-      ],
-      "titles": [
-        "Canadian astronaut welcomes baby girl from space station"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e35",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "El Pais EN"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Palestinian student jailed without charge after arrest at Jerusalem dormitory",
-      "keywords": [
-        "the",
-        "andetention",
-        "on",
-        "histudent",
-        "tofrom",
-        "he"
-      ],
-      "article_ids": [
-        15
-      ],
-      "urls": [
-        "https://english.elpais.com/international/2026-11-25/palestinian-student-jailed-without-charge-after-arrest-at-jerusalem-dormitory.html"
-      ],
-      "titles": [
-        "Palestinian student jailed without charge after arrest at Jerusalem dormitory"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e36",
+      "id": "e31",
       "category": "politics",
       "tags": [
         "politics"
@@ -1603,7 +1380,7 @@
         "iss"
       ],
       "article_ids": [
-        64
+        57
       ],
       "urls": [
         "https://www.theguardian.com/science/2026/nov/25/china-sends-first-pakistani-astronaut-into-space"
@@ -1619,7 +1396,7 @@
       "importance": 0.318
     },
     {
-      "id": "e37",
+      "id": "e32",
       "category": "tech",
       "tags": [
         "tech"
@@ -1647,7 +1424,7 @@
         "重现已"
       ],
       "article_ids": [
-        3
+        2
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85993"
@@ -1660,7 +1437,7 @@
       "importance": 0.0
     },
     {
-      "id": "e38",
+      "id": "e33",
       "category": "politics",
       "tags": [
         "politics"
@@ -1688,7 +1465,7 @@
         "liberiamerican"
       ],
       "article_ids": [
-        8
+        7
       ],
       "urls": [
         "https://www.npr.org/2026/11/25/nx-s1-6048614/thanksgiving-liberia-gratitude-prayer"
@@ -1704,7 +1481,7 @@
       "importance": 0.318
     },
     {
-      "id": "e39",
+      "id": "e34",
       "category": "politics",
       "tags": [
         "politics",
@@ -1733,7 +1510,7 @@
         "that"
       ],
       "article_ids": [
-        11
+        10
       ],
       "urls": [
         "https://www.theguardian.com/world/2026/nov/25/this-is-europe-brussels-eu-uk-summit"
@@ -1749,7 +1526,51 @@
       "importance": 0.318
     },
     {
-      "id": "e40",
+      "id": "e35",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 19.39,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "UK embassy in Japan warns of rise in drink spiking and credit card fraud at Tokyo bars",
+      "keywords": [
+        "in",
+        "andrink",
+        "thembassy",
+        "tofraud",
+        "japan",
+        "spiking"
+      ],
+      "article_ids": [
+        37
+      ],
+      "urls": [
+        "https://www.theguardian.com/world/2026/nov/25/british-embassy-tokyo-warning-tourists-drink-spiking-credit-card-fraud"
+      ],
+      "titles": [
+        "UK embassy in Japan warns of rise in drink spiking and credit card fraud at Tokyo bars"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Anthropic worker claims to have solved a Holy Grail of math problems with the help of AI"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e36",
       "category": "politics",
       "tags": [
         "politics"
@@ -1777,7 +1598,7 @@
         "hasaid"
       ],
       "article_ids": [
-        49
+        46
       ],
       "urls": [
         "https://arstechnica.com/security/2026/11/a-familiar-iranian-hacking-group-has-found-a-new-way-to-cause-chaos/"
@@ -1793,7 +1614,7 @@
       "importance": 0.318
     },
     {
-      "id": "e41",
+      "id": "e37",
       "category": "politics",
       "tags": [
         "politics"
@@ -1821,7 +1642,7 @@
         "inew"
       ],
       "article_ids": [
-        40
+        39
       ],
       "urls": [
         "https://thediplomat.com/2026/11/nepals-prime-minister-is-back-from-india-now-comes-the-hard-part/"
@@ -1837,7 +1658,7 @@
       "importance": 0.318
     },
     {
-      "id": "e42",
+      "id": "e38",
       "category": "other",
       "tags": [],
       "score": 18.31,
@@ -1876,7 +1697,7 @@
       "importance": 0.0
     },
     {
-      "id": "e43",
+      "id": "e39",
       "category": "other",
       "tags": [],
       "score": 18.31,
@@ -1902,7 +1723,7 @@
         "举报"
       ],
       "article_ids": [
-        55
+        51
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85991"
@@ -1918,7 +1739,7 @@
       "importance": 0.219
     },
     {
-      "id": "e44",
+      "id": "e40",
       "category": "politics",
       "tags": [
         "politics",
@@ -1947,7 +1768,7 @@
         "is"
       ],
       "article_ids": [
-        10
+        9
       ],
       "urls": [
         "https://www.atlanticcouncil.org/blogs/econographics/global-climate-governance-is-fragmenting-but-plurilateralism-can-keep-cooperation-alive/"
@@ -1963,7 +1784,7 @@
       "importance": 0.318
     },
     {
-      "id": "e45",
+      "id": "e41",
       "category": "politics",
       "tags": [
         "politics"
@@ -2007,7 +1828,7 @@
       "importance": 0.318
     },
     {
-      "id": "e46",
+      "id": "e42",
       "category": "politics",
       "tags": [
         "politics"
@@ -2035,7 +1856,7 @@
         "oil"
       ],
       "article_ids": [
-        24
+        25
       ],
       "urls": [
         "https://www.atlanticcouncil.org/blogs/energysource/chinas-conspicuous-absence-in-asian-energy-security-plans/"
@@ -2051,7 +1872,7 @@
       "importance": 0.318
     },
     {
-      "id": "e47",
+      "id": "e43",
       "category": "politics",
       "tags": [
         "politics",
@@ -2080,7 +1901,7 @@
         "was"
       ],
       "article_ids": [
-        34
+        33
       ],
       "urls": [
         "https://warontherocks.com/cogs-of-war/the-contract-was-the-easy-part-how-accelerator-day-put-the-pentagon-on-the-clock/"
@@ -2096,7 +1917,7 @@
       "importance": 0.318
     },
     {
-      "id": "e48",
+      "id": "e44",
       "category": "politics",
       "tags": [
         "politics",
@@ -2125,7 +1946,7 @@
         "thathis"
       ],
       "article_ids": [
-        44
+        42
       ],
       "urls": [
         "https://thediplomat.com/2026/11/how-can-australia-secure-its-future/"
@@ -2141,7 +1962,7 @@
       "importance": 0.318
     },
     {
-      "id": "e49",
+      "id": "e45",
       "category": "finance",
       "tags": [
         "finance",
@@ -2170,7 +1991,7 @@
         "is"
       ],
       "article_ids": [
-        69
+        63
       ],
       "urls": [
         "https://english.elpais.com/economy-and-business/2026-11-25/argentina-slips-into-recession-testing-mileis-promise-of-growth.html"
@@ -2186,7 +2007,7 @@
       "importance": 0.273
     },
     {
-      "id": "e50",
+      "id": "e46",
       "category": "finance",
       "tags": [
         "finance"
@@ -2214,7 +2035,7 @@
         "its"
       ],
       "article_ids": [
-        41
+        40
       ],
       "urls": [
         "https://techcrunch.com/2026/11/25/flipkart-ceo-kalyan-krishnamurthy-to-step-down-next-week-amid-ipo-uncertainty/"
@@ -2230,7 +2051,7 @@
       "importance": 0.473
     },
     {
-      "id": "e51",
+      "id": "e47",
       "category": "finance",
       "tags": [
         "finance"
@@ -2258,7 +2079,7 @@
         "koreas"
       ],
       "article_ids": [
-        54
+        50
       ],
       "urls": [
         "https://thediplomat.com/2026/11/is-the-north-korean-economy-really-booming/"
@@ -2274,7 +2095,7 @@
       "importance": 0.273
     },
     {
-      "id": "e52",
+      "id": "e48",
       "category": "politics",
       "tags": [
         "politics"
@@ -2302,7 +2123,7 @@
         "开始在日"
       ],
       "article_ids": [
-        61
+        55
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-25/10737815.shtml"
@@ -2315,7 +2136,7 @@
       "importance": 0.0
     },
     {
-      "id": "e53",
+      "id": "e49",
       "category": "other",
       "tags": [],
       "score": 17.44,
@@ -2341,7 +2162,7 @@
         "不同"
       ],
       "article_ids": [
-        17
+        18
       ],
       "urls": [
         "https://www.ifanr.com/1691661?utm_source=rss&utm_medium=rss&utm_campaign"
@@ -2354,7 +2175,7 @@
       "importance": 0.0
     },
     {
-      "id": "e54",
+      "id": "e50",
       "category": "tech",
       "tags": [
         "tech"
@@ -2382,7 +2203,7 @@
         "广州共探人"
       ],
       "article_ids": [
-        4
+        3
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-25/10737820.shtml"
@@ -2395,7 +2216,7 @@
       "importance": 0.0
     },
     {
-      "id": "e55",
+      "id": "e51",
       "category": "finance",
       "tags": [
         "finance"
@@ -2423,7 +2244,7 @@
         "for"
       ],
       "article_ids": [
-        18
+        19
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/how-to-update-wto-aid-for-trade-to-support-continued-development-cooperation-by-arancha-gonzalez-laya-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -2439,7 +2260,7 @@
       "importance": 0.273
     },
     {
-      "id": "e56",
+      "id": "e52",
       "category": "other",
       "tags": [],
       "score": 16.46,
@@ -2465,7 +2286,7 @@
         "研究显"
       ],
       "article_ids": [
-        33
+        32
       ],
       "urls": [
         "https://www.solidot.org/story?sid=85990"
@@ -2478,46 +2299,7 @@
       "importance": 0.0
     },
     {
-      "id": "e57",
-      "category": "other",
-      "tags": [],
-      "score": 15.03,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "“独立”微信音乐悄悄上线：内置在听一听中，曲库来源于 QQ 音乐",
-      "keywords": [
-        "音乐悄悄上线",
-        "微信音",
-        "qq",
-        "听一听中",
-        "来源于",
-        "内置在听"
-      ],
-      "article_ids": [
-        48
-      ],
-      "urls": [
-        "https://www.ithome.com/1/032/530.htm"
-      ],
-      "titles": [
-        "“独立”微信音乐悄悄上线：内置在听一听中，曲库来源于 QQ 音乐"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e58",
+      "id": "e53",
       "category": "finance",
       "tags": [
         "finance",
@@ -2546,7 +2328,7 @@
         "林业"
       ],
       "article_ids": [
-        37
+        36
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-25/10737838.shtml"
