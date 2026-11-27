@@ -1,0 +1,2281 @@
+{
+  "generated_at": "2026-11-28T06:53:14",
+  "run_date": "2026-11-28",
+  "window_hours": 24,
+  "content_day": "2026-11-27",
+  "history_days": 7,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-27 当天：61/69 篇）",
+  "article_total": 61,
+  "event_total": 52,
+  "selected": [
+    "e3",
+    "e10",
+    "e13",
+    "e17",
+    "e22"
+  ],
+  "followup": "e18",
+  "warnings": [
+    "今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。"
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 31.75,
+      "source_tier": "core",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Politico Europe"
+      ],
+      "freshness": 0.25,
+      "representative_title": "We’d be ‘stupid’ not to: Poland defends $300M military AI deal with Palantir",
+      "keywords": [
+        "the",
+        "tof",
+        "andeal",
+        "palantir",
+        "with",
+        "polandefense"
+      ],
+      "article_ids": [
+        27
+      ],
+      "urls": [
+        "https://www.politico.eu/article/wed-be-stupid-not-to-poland-defends-300m-military-ai-deal-with-palantir/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+      ],
+      "titles": [
+        "We’d be ‘stupid’ not to: Poland defends $300M military AI deal with Palantir"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e2",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 27.93,
+      "source_tier": "core",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "SAP weighs cutting at least 10,000 jobs in AI push",
+      "keywords": [
+        "toureported",
+        "in",
+        "the",
+        "and",
+        "sap",
+        "ait"
+      ],
+      "article_ids": [
+        18
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/27/sap-job-cuts-ai-restructuring.html"
+      ],
+      "titles": [
+        "SAP weighs cutting at least 10,000 jobs in AI push"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e3",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 27.36,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 4,
+        "jargon": 0
+      },
+      "source_names": [
+        "界面新闻"
+      ],
+      "freshness": 0.25,
+      "representative_title": "汽车企业为更难增长的2027年做好准备",
+      "keywords": [
+        "汽车展",
+        "销量",
+        "万辆",
+        "企业",
+        "增长",
+        "界面新闻"
+      ],
+      "article_ids": [
+        12
+      ],
+      "urls": [
+        "https://www.jiemian.com/article/15385006.html"
+      ],
+      "titles": [
+        "汽车企业为更难增长的2027年做好准备"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e4",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 26.85,
+      "source_tier": "core",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "BBC World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Italy's former police chief rejected mafia inquiry allegations before death",
+      "keywords": [
+        "the",
+        "ande",
+        "in",
+        "oformer",
+        "ton",
+        "mafiallegations"
+      ],
+      "article_ids": [
+        37
+      ],
+      "urls": [
+        "https://www.bbc.co.uk/news/articles/c69q8yjj1v0po?at_medium=RSS&at_campaign=rss"
+      ],
+      "titles": [
+        "Italy's former police chief rejected mafia inquiry allegations before death"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "A Space Probe Returns to Asteroids Where NASA Tested Planetary Defense Systems"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e5",
+      "category": "finance",
+      "tags": [
+        "finance",
+        "politics"
+      ],
+      "score": 26.42,
+      "source_tier": "core",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Norse Atlantic Airways files for bankruptcy and cancels all future flights",
+      "keywords": [
+        "the",
+        "and",
+        "tonorse",
+        "flights",
+        "for",
+        "atlanticancels"
+      ],
+      "article_ids": [
+        3
+      ],
+      "urls": [
+        "https://www.theguardian.com/business/2026/nov/27/norse-atlantic-airways-files-for-bankruptcy-cancels-all-future-flights"
+      ],
+      "titles": [
+        "Norse Atlantic Airways files for bankruptcy and cancels all future flights"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e6",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 26.42,
+      "source_tier": "core",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Straits Times"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Republicans rethink tariffs as Democrats seek a deal",
+      "keywords": [
+        "the",
+        "ton",
+        "tariffsaidemocratsome",
+        "and",
+        "republicans",
+        "ofor"
+      ],
+      "article_ids": [
+        52
+      ],
+      "urls": [
+        "https://www.straitstimes.com/world/united-states/republicans-rethink-tariffs-giving-democrats-an-opening-to-challenge-trump"
+      ],
+      "titles": [
+        "Republicans rethink tariffs as Democrats seek a deal"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e7",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "tech"
+      ],
+      "score": 26.38,
+      "source_tier": "tech",
+      "hard_news": 0.95,
+      "article_count": 2,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "MIT Tech Review"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Our 2027 Innovators Under 35 competition is now open",
+      "keywords": [
+        "the",
+        "toforeviewho",
+        "and",
+        "is",
+        "our",
+        "inew"
+      ],
+      "article_ids": [
+        40,
+        55
+      ],
+      "urls": [
+        "https://www.technologyreview.com/2026/11/27/1149857/2027-innovators-under-35-competition-nominate/",
+        "https://www.technologyreview.com/2026/11/27/1149960/the-download-the-download-innovators-under-35-nominations-bionic-hand/"
+      ],
+      "titles": [
+        "Our 2027 Innovators Under 35 competition is now open",
+        "The Download: Innovators Under 35 nominations are open, and a bionic window into the mind"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Alaska, your next governor is a Wikipedia nerd"
+      },
+      "importance": 0.402
+    },
+    {
+      "id": "e8",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 25.17,
+      "source_tier": "tech",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Ars Technica"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Volvo's big batteries: We drive its updated 2028 plug-in hybrids",
+      "keywords": [
+        "the",
+        "andrive",
+        "ofor",
+        "ton",
+        "in",
+        "with"
+      ],
+      "article_ids": [
+        10
+      ],
+      "urls": [
+        "https://arstechnica.com/cars/2026/11/volvos-big-batteries-we-drive-its-updated-2028-plug-in-hybrids/"
+      ],
+      "titles": [
+        "Volvo's big batteries: We drive its updated 2028 plug-in hybrids"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e9",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 25.08,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "快科技"
+      ],
+      "freshness": 0.25,
+      "representative_title": "纯电SUV也能听V10声浪！雷克萨斯旗舰TZ中国首秀 剑指国产9系--快科技--科技改变未来",
+      "keywords": [
+        "雷克萨斯旗",
+        "纯电",
+        "tz",
+        "科技",
+        "suv10",
+        "快科"
+      ],
+      "article_ids": [
+        0
+      ],
+      "urls": [
+        "https://news.mydrivers.com/1/1169/1169232.htm"
+      ],
+      "titles": [
+        "纯电SUV也能听V10声浪！雷克萨斯旗舰TZ中国首秀 剑指国产9系--快科技--科技改变未来"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e10",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 24.17,
+      "source_tier": "cn",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "菲律宾副总统莎拉称绝不会因弹劾审判辞职-中新网",
+      "keywords": [
+        "总统莎",
+        "莎拉称绝",
+        "弹劾审判辞",
+        "菲律宾副",
+        "副总",
+        "辞职"
+      ],
+      "article_ids": [
+        33
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-27/10738991.shtml"
+      ],
+      "titles": [
+        "菲律宾副总统莎拉称绝不会因弹劾审判辞职-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e11",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 24.02,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "China’s factories are growing profits again, but the AI boom is picking winners",
+      "keywords": [
+        "the",
+        "tofrom",
+        "in",
+        "andemand",
+        "chinas",
+        "profits"
+      ],
+      "article_ids": [
+        17
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/27/china-industrial-profits-october.html"
+      ],
+      "titles": [
+        "China’s factories are growing profits again, but the AI boom is picking winners"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e12",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 24.02,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Politico Europe"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Meta’s UK rollout for Muse AI agent exposes it to more liability",
+      "keywords": [
+        "the",
+        "tofor",
+        "and",
+        "ain",
+        "u.k.",
+        "metagent"
+      ],
+      "article_ids": [
+        58
+      ],
+      "urls": [
+        "https://www.politico.eu/article/metas-uk-rollout-for-muse-ai-agent-exposes-it-to-more-liability/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+      ],
+      "titles": [
+        "Meta’s UK rollout for Muse AI agent exposes it to more liability"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e13",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 23.94,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "爱范儿"
+      ],
+      "freshness": 0.25,
+      "representative_title": "捷途纵横 R700 发布：华为乾崑智驾配大梁，家用硬派两手抓",
+      "keywords": [
+        "纵横",
+        "r700",
+        "硬派两手抓",
+        "捷途纵",
+        "华为乾崑智",
+        "智驾配大"
+      ],
+      "article_ids": [
+        25
+      ],
+      "urls": [
+        "https://www.ifanr.com/1695926?utm_source=rss&utm_medium=rss&utm_campaign"
+      ],
+      "titles": [
+        "捷途纵横 R700 发布：华为乾崑智驾配大梁，家用硬派两手抓"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e14",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 23.62,
+      "source_tier": "core",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Newly released documents suggest CIA did more post-9/11 waterboarding than previously acknowledged",
+      "keywords": [
+        "the",
+        "of",
+        "inewly",
+        "ton",
+        "documentsuggesthan",
+        "ciacknowledgedid"
+      ],
+      "article_ids": [
+        49
+      ],
+      "urls": [
+        "https://www.theguardian.com/us-news/2026/nov/27/newly-released-documents-cia-waterboarding-9-11"
+      ],
+      "titles": [
+        "Newly released documents suggest CIA did more post-9/11 waterboarding than previously acknowledged"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e15",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 23.47,
+      "source_tier": "tech",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Ars Technica"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Intel faced a choice: Give Trump 10% or face the consequences",
+      "keywords": [
+        "the",
+        "tofor",
+        "intel",
+        "thatrumpresident",
+        "inot",
+        "was"
+      ],
+      "article_ids": [
+        13
+      ],
+      "urls": [
+        "https://arstechnica.com/tech-policy/2026/11/intel-faced-a-choice-give-trump-10-or-face-the-consequences/"
+      ],
+      "titles": [
+        "Intel faced a choice: Give Trump 10% or face the consequences"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e16",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 22.93,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "BBC World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Rare turtles found inside baggage at Amsterdam airport",
+      "keywords": [
+        "the",
+        "turtleseized",
+        "invwa",
+        "were",
+        "ofound",
+        "to"
+      ],
+      "article_ids": [
+        41
+      ],
+      "urls": [
+        "https://www.bbc.co.uk/news/articles/cm5y1380q3vgo?at_medium=RSS&at_campaign=rss"
+      ],
+      "titles": [
+        "Rare turtles found inside baggage at Amsterdam airport"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e17",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 22.8,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "爱范儿"
+      ],
+      "freshness": 0.25,
+      "representative_title": "启源 Q06 迎来大升级！长安发布天枢领航 Ultra 2.0，明年 1 月推车位到车位",
+      "keywords": [
+        "长安发",
+        "领航",
+        "启源",
+        "车位到车",
+        "天枢领",
+        "q06"
+      ],
+      "article_ids": [
+        38
+      ],
+      "urls": [
+        "https://www.ifanr.com/1695936?utm_source=rss&utm_medium=rss&utm_campaign"
+      ],
+      "titles": [
+        "启源 Q06 迎来大升级！长安发布天枢领航 Ultra 2.0，明年 1 月推车位到车位"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e18",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 22.64,
+      "source_tier": "cn",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "快科技"
+      ],
+      "freshness": 0.25,
+      "representative_title": "刷新世界纪录！国产全磁悬浮人工心脏已上市 重量仅90克--快科技--科技改变未来",
+      "keywords": [
+        "心脏",
+        "人工心",
+        "科技",
+        "磁悬浮人",
+        "快科",
+        "世界纪录"
+      ],
+      "article_ids": [
+        14
+      ],
+      "urls": [
+        "https://news.mydrivers.com/1/1169/1169233.htm"
+      ],
+      "titles": [
+        "刷新世界纪录！国产全磁悬浮人工心脏已上市 重量仅90克--快科技--科技改变未来"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
+      },
+      "importance": 0.473
+    },
+    {
+      "id": "e19",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 22.36,
+      "source_tier": "tech",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Ars Technica"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Books, bikes, and The Burbs: These are Ars staff’s holiday gift picks for 2026",
+      "keywords": [
+        "the",
+        "and",
+        "ofor",
+        "tor",
+        "thathese",
+        "youndersea"
+      ],
+      "article_ids": [
+        56
+      ],
+      "urls": [
+        "https://arstechnica.com/shopping/2026/11/books-bikes-and-the-burbs-these-are-ars-staffs-holiday-gift-picks-for-2026/"
+      ],
+      "titles": [
+        "Books, bikes, and The Burbs: These are Ars staff’s holiday gift picks for 2026"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e20",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 22.14,
+      "source_tier": "analysis",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "The Diplomat"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Read Like The Diplomat: 2026 Holiday Edition",
+      "keywords": [
+        "the",
+        "ofrom",
+        "andiplomathroughow",
+        "in",
+        "ton",
+        "thathis"
+      ],
+      "article_ids": [
+        21
+      ],
+      "urls": [
+        "https://thediplomat.com/2026/11/read-like-the-diplomat-2026-holiday-edition/"
+      ],
+      "titles": [
+        "Read Like The Diplomat: 2026 Holiday Edition"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e21",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 22.02,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 1
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "聚焦“人工智能+能源” 2026兴隆湖能源电力创新发展大会在蓉举行-中新网",
+      "keywords": [
+        "能源电",
+        "智能",
+        "人工智",
+        "电力创",
+        "发展大",
+        "四川"
+      ],
+      "article_ids": [
+        7
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-27/10739072.shtml"
+      ],
+      "titles": [
+        "聚焦“人工智能+能源” 2026兴隆湖能源电力创新发展大会在蓉举行-中新网"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "智能网联新能源汽车产业人才发展大会在渝举行 赋能“渝车出海”-中新网"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e22",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 21.57,
+      "source_tier": "cn",
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "IT之家"
+      ],
+      "freshness": 0.25,
+      "representative_title": "魏牌高山右舵版车型在香港市场上市，今年第四季度还将登陆澳洲",
+      "keywords": [
+        "魏牌高山右",
+        "右舵版车",
+        "市场上",
+        "车型在香",
+        "香港市",
+        "上市"
+      ],
+      "article_ids": [
+        50
+      ],
+      "urls": [
+        "https://www.ithome.com/1/033/771.htm"
+      ],
+      "titles": [
+        "魏牌高山右舵版车型在香港市场上市，今年第四季度还将登陆澳洲"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e23",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 21.51,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "快科技"
+      ],
+      "freshness": 0.25,
+      "representative_title": "马斯克又放豪言！SpaceX未来市值或达128000000000000000000美元--快科技--科技改变未来",
+      "keywords": [
+        "马斯克又放豪言",
+        "spacex",
+        "市值或达",
+        "科技改",
+        "未来市",
+        "美元"
+      ],
+      "article_ids": [
+        24
+      ],
+      "urls": [
+        "https://news.mydrivers.com/1/1169/1169234.htm"
+      ],
+      "titles": [
+        "马斯克又放豪言！SpaceX未来市值或达128000000000000000000美元--快科技--科技改变未来"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e24",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 21.33,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Straits Times"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Centre Party could give Sweden a government, but far-right backing stores up trouble",
+      "keywords": [
+        "the",
+        "party",
+        "tofor",
+        "swedenowith",
+        "centre",
+        "andemocratstores"
+      ],
+      "article_ids": [
+        8
+      ],
+      "urls": [
+        "https://www.straitstimes.com/world/europe/centre-party-could-give-sweden-a-government-but-far-right-backing-stores-up-trouble"
+      ],
+      "titles": [
+        "Centre Party could give Sweden a government, but far-right backing stores up trouble"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e25",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 21.33,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Politico Europe"
+      ],
+      "freshness": 0.25,
+      "representative_title": "The man who coined ‘Brexit’ likes the sound of ‘Breturn’ and ‘Brejoin’",
+      "keywords": [
+        "the",
+        "and",
+        "tofor",
+        "in",
+        "that",
+        "he"
+      ],
+      "article_ids": [
+        11
+      ],
+      "urls": [
+        "https://www.politico.eu/article/the-man-who-coined-brexit-likes-the-sound-of-breturn-and-brejoin-peter-wilding/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+      ],
+      "titles": [
+        "The man who coined ‘Brexit’ likes the sound of ‘Breturn’ and ‘Brejoin’"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e26",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 21.33,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Straits Times"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Mexico weighs the limits of politically popular wage strategy",
+      "keywords": [
+        "the",
+        "ofor",
+        "to",
+        "wage",
+        "and",
+        "mexico"
+      ],
+      "article_ids": [
+        47
+      ],
+      "urls": [
+        "https://www.straitstimes.com/world/mexico-weighs-the-limits-of-politically-popular-wage-strategy"
+      ],
+      "titles": [
+        "Mexico weighs the limits of politically popular wage strategy"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e27",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "tech"
+      ],
+      "score": 21.26,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "加拿大近30万民众联名请愿要求驱逐美国大使-中新网",
+      "keywords": [
+        "加拿大使",
+        "请愿书",
+        "美国",
+        "要求驱",
+        "众议院",
+        "民众联名请"
+      ],
+      "article_ids": [
+        48
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-27/10738967.shtml"
+      ],
+      "titles": [
+        "加拿大近30万民众联名请愿要求驱逐美国大使-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e28",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 20.67,
+      "source_tier": "tech",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "MIT Tech Review"
+      ],
+      "freshness": 0.25,
+      "representative_title": "How cutting-edge prosthetics can help probe the human mind",
+      "keywords": [
+        "the",
+        "tofor",
+        "and",
+        "ithis",
+        "howill",
+        "inotrial"
+      ],
+      "article_ids": [
+        59
+      ],
+      "urls": [
+        "https://www.technologyreview.com/2026/11/27/1149946/cutting-edge-prosthetics-allow-researchers-to-probe-the-human-mind/"
+      ],
+      "titles": [
+        "How cutting-edge prosthetics can help probe the human mind"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e29",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 20.48,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Project Syndicate"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Can the AI Mineral Rush Advance a Just Green Transition? by Suneeta Kaimal",
+      "keywords": [
+        "thenergy",
+        "and",
+        "toforushas",
+        "ainew",
+        "thatransition",
+        "justhis"
+      ],
+      "article_ids": [
+        19
+      ],
+      "urls": [
+        "https://www.project-syndicate.org/commentary/ai-mineral-rush-can-advance-just-equitable-transition-by-suneeta-kaimal-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
+      ],
+      "titles": [
+        "Can the AI Mineral Rush Advance a Just Green Transition? by Suneeta Kaimal"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "The military lacks an ‘overarching plan’ to improve munition stockpiles—partly because it’s no one’s job"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e30",
+      "category": "tech",
+      "tags": [
+        "tech"
+      ],
+      "score": 20.48,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Project Syndicate"
+      ],
+      "freshness": 0.25,
+      "representative_title": "The Evolving Terrain of the Global AI Transformation by Michael Spence",
+      "keywords": [
+        "thevolvingovernments",
+        "of",
+        "ais",
+        "and",
+        "globalongereads",
+        "transformation"
+      ],
+      "article_ids": [
+        20
+      ],
+      "urls": [
+        "https://www.project-syndicate.org/onpoint/what-explains-ai-missing-productivity-boom-by-michael-spence-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
+      ],
+      "titles": [
+        "The Evolving Terrain of the Global AI Transformation by Michael Spence"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.408
+    },
+    {
+      "id": "e31",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "NPR World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Strobe Talbott, former deputy secretary of state, has died",
+      "keywords": [
+        "the",
+        "andeputy",
+        "oformer",
+        "talbottime",
+        "he",
+        "in"
+      ],
+      "article_ids": [
+        5
+      ],
+      "urls": [
+        "https://www.npr.org/2026/11/27/g-s1-155990/strobe-talbott-obit"
+      ],
+      "titles": [
+        "Strobe Talbott, former deputy secretary of state, has died"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e32",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "NPR World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "French cinema star Gérard Depardieu ordered to stand trial for rape and sexual assault",
+      "keywords": [
+        "the",
+        "in",
+        "andepardieu",
+        "oforape",
+        "tordered",
+        "sexual"
+      ],
+      "article_ids": [
+        23
+      ],
+      "urls": [
+        "https://www.npr.org/2026/11/27/nx-s1-6055559/gerard-depardieu-trial-rape-france"
+      ],
+      "titles": [
+        "French cinema star Gérard Depardieu ordered to stand trial for rape and sexual assault"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e33",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Al Jazeera"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Serbia’s student-led movement nominates chemistry professor for presidency",
+      "keywords": [
+        "the",
+        "ofor",
+        "inominates",
+        "ton",
+        "movementhat",
+        "and"
+      ],
+      "article_ids": [
+        31
+      ],
+      "urls": [
+        "https://www.aljazeera.com/news/2026/11/27/serbias-student-led-movement-nominates-chemistry-professor-for-presidency?traffic_source=rss"
+      ],
+      "titles": [
+        "Serbia’s student-led movement nominates chemistry professor for presidency"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e34",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Three studies link glyphosate to cancer, contradicting claims of Trump EPA",
+      "keywords": [
+        "thepand",
+        "ofor",
+        "inihas",
+        "ton",
+        "glyphosate",
+        "thathree"
+      ],
+      "article_ids": [
+        43
+      ],
+      "urls": [
+        "https://www.theguardian.com/us-news/2026/nov/27/glyphosate-cancer-studies-trump-epa"
+      ],
+      "titles": [
+        "Three studies link glyphosate to cancer, contradicting claims of Trump EPA"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e35",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "tech"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Straits Times"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Eisenkot accuses Netanyahu's party Likud of stalling coalition talks",
+      "keywords": [
+        "toform",
+        "theisenkotalkstalling",
+        "party",
+        "and",
+        "likud",
+        "coalitionetanyahuntil"
+      ],
+      "article_ids": [
+        60
+      ],
+      "urls": [
+        "https://www.straitstimes.com/world/middle-east/eisenkot-accuses-netanyahus-party-of-stalling-israeli-coalition-talks"
+      ],
+      "titles": [
+        "Eisenkot accuses Netanyahu's party Likud of stalling coalition talks"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e36",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "politics"
+      ],
+      "score": 19.66,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "爱范儿"
+      ],
+      "freshness": 0.25,
+      "representative_title": "从「中国特供」变全球旗舰，搭载 Momenta 智驾的本田冠道来了",
+      "keywords": [
+        "冠道",
+        "中国特",
+        "本田冠",
+        "全球旗",
+        "全新一代",
+        "代冠"
+      ],
+      "article_ids": [
+        1
+      ],
+      "urls": [
+        "https://www.ifanr.com/1695948?utm_source=rss&utm_medium=rss&utm_campaign"
+      ],
+      "titles": [
+        "从「中国特供」变全球旗舰，搭载 Momenta 智驾的本田冠道来了"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e37",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 19.39,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "NPR World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "As UN Secretary General's last day approaches, search for his replacement continues",
+      "keywords": [
+        "the",
+        "tof",
+        "foreplacement",
+        "u.n.",
+        "thathisecretary",
+        "itime"
+      ],
+      "article_ids": [
+        15
+      ],
+      "urls": [
+        "https://www.npr.org/2026/11/27/nx-s1-6050907/as-un-secretary-generals-last-day-approaches-search-for-his-replacement-continues"
+      ],
+      "titles": [
+        "As UN Secretary General's last day approaches, search for his replacement continues"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e38",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 19.39,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "BBC World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Marital rape: Millions of wives in South Asia unprotected - study",
+      "keywords": [
+        "the",
+        "rape",
+        "in",
+        "maritalawhere",
+        "and",
+        "ofor"
+      ],
+      "article_ids": [
+        16
+      ],
+      "urls": [
+        "https://www.bbc.co.uk/news/articles/cw074p95ye5do?at_medium=RSS&at_campaign=rss"
+      ],
+      "titles": [
+        "Marital rape: Millions of wives in South Asia unprotected - study"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e39",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "finance"
+      ],
+      "score": 19.39,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "EU leaders fail to break budget deadlock as political pressure mounts",
+      "keywords": [
+        "theu",
+        "tofor",
+        "andeadlock",
+        "budgethathursday",
+        "in",
+        "on"
+      ],
+      "article_ids": [
+        46
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/27/eu-budget-2028-2034-deadlock.html"
+      ],
+      "titles": [
+        "EU leaders fail to break budget deadlock as political pressure mounts"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e40",
+      "category": "finance",
+      "tags": [
+        "finance",
+        "politics"
+      ],
+      "score": 19.08,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "BBC World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Brazil pushes back on Emmanuel Macron calling its meat 'doped'",
+      "keywords": [
+        "theu",
+        "meaton",
+        "ofrance",
+        "andoped",
+        "in",
+        "brazil"
+      ],
+      "article_ids": [
+        42
+      ],
+      "urls": [
+        "https://www.bbc.co.uk/news/articles/c6rrg28npvzeo?at_medium=RSS&at_campaign=rss"
+      ],
+      "titles": [
+        "Brazil pushes back on Emmanuel Macron calling its meat 'doped'"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Trump lands significant victories in media defamation cases"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e41",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 19.08,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Politico Europe"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Asia-Pacific trade bloc opens accession talks with UAE, Philippines and Indonesia",
+      "keywords": [
+        "the",
+        "topens",
+        "trade",
+        "and",
+        "with",
+        "as"
+      ],
+      "article_ids": [
+        51
+      ],
+      "urls": [
+        "https://www.politico.eu/article/asia-pacific-trade-accession-talks-uae-philippines-indonesia/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+      ],
+      "titles": [
+        "Asia-Pacific trade bloc opens accession talks with UAE, Philippines and Indonesia"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Trump lands significant victories in media defamation cases"
+      },
+      "importance": 0.273
+    },
+    {
+      "id": "e42",
+      "category": "politics",
+      "tags": [
+        "politics",
+        "tech"
+      ],
+      "score": 18.18,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Project Syndicate"
+      ],
+      "freshness": 0.25,
+      "representative_title": "The Future of the Global Disability Agenda by Alberto Vásquez Encalada",
+      "keywords": [
+        "thencalada",
+        "andisability",
+        "tofor",
+        "thathisquez",
+        "by",
+        "from"
+      ],
+      "article_ids": [
+        9
+      ],
+      "urls": [
+        "https://www.project-syndicate.org/commentary/disability-inclusion-rights-in-the-un-must-go-beyond-mainstreaming-by-alberto-vasquez-encalada-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
+      ],
+      "titles": [
+        "The Future of the Global Disability Agenda by Alberto Vásquez Encalada"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Alaska, your next governor is a Wikipedia nerd"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e43",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 18.18,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "Project Syndicate"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Gun Buybacks Work, But Not the Way We Thought by Aurora A. Ramírez-Álvarez",
+      "keywords": [
+        "the",
+        "buybackshare",
+        "buthoughton",
+        "gunot",
+        "work",
+        "way"
+      ],
+      "article_ids": [
+        32
+      ],
+      "urls": [
+        "https://www.project-syndicate.org/commentary/gun-buybacks-can-reduce-nonlethal-firearm-injuries-mexico-city-by-aurora-a-ramirez-alvarez-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
+      ],
+      "titles": [
+        "Gun Buybacks Work, But Not the Way We Thought by Aurora A. Ramírez-Álvarez"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Anthropic worker claims to have solved a Holy Grail of math problems with the help of AI"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e44",
+      "category": "tech",
+      "tags": [
+        "tech",
+        "finance"
+      ],
+      "score": 18.08,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 1
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "新能源装机容量十年翻两番 “一带一路”绿色能源合作跑出加速度-中新网",
+      "keywords": [
+        "能源合",
+        "一带一路",
+        "合作",
+        "绿色能",
+        "新能",
+        "装机容量十年翻"
+      ],
+      "article_ids": [
+        4
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-27/10739074.shtml"
+      ],
+      "titles": [
+        "新能源装机容量十年翻两番 “一带一路”绿色能源合作跑出加速度-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e45",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 17.45,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "伊朗海军司令称夺回两艘被美军劫持的油轮-中新网",
+      "keywords": [
+        "伊朗海峡",
+        "海军司",
+        "司令称夺",
+        "夺回两艘被",
+        "被美军劫持的油轮",
+        "中新网"
+      ],
+      "article_ids": [
+        36
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-27/10738962.shtml"
+      ],
+      "titles": [
+        "伊朗海军司令称夺回两艘被美军劫持的油轮-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e46",
+      "category": "other",
+      "tags": [],
+      "score": 17.44,
+      "source_tier": "cn",
+      "hard_news": 0.95,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "IT之家"
+      ],
+      "freshness": 0.25,
+      "representative_title": "华擎推出旗舰一体式液冷 Taichi AQUA 360 LCD：引入分体式设计",
+      "keywords": [
+        "体式液",
+        "lcd",
+        "液冷排",
+        "分体",
+        "taichi",
+        "aqua"
+      ],
+      "article_ids": [
+        22
+      ],
+      "urls": [
+        "https://www.ithome.com/1/033/769.htm"
+      ],
+      "titles": [
+        "华擎推出旗舰一体式液冷 Taichi AQUA 360 LCD：引入分体式设计"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e47",
+      "category": "finance",
+      "tags": [
+        "finance",
+        "tech"
+      ],
+      "score": 17.13,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "欧盟委员会称浏览器竞争是 DMA 优先事项",
+      "keywords": [
+        "浏览器竞",
+        "竞争是",
+        "欧盟委员会称浏",
+        "dma",
+        "优先事项",
+        "所有"
+      ],
+      "article_ids": [
+        6
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=86012"
+      ],
+      "titles": [
+        "欧盟委员会称浏览器竞争是 DMA 优先事项"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e48",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 17.13,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-财经"
+      ],
+      "freshness": 0.25,
+      "representative_title": "港股上行 恒生科技指数领跑大市-中新网",
+      "keywords": [
+        "港股上行",
+        "科技指",
+        "集团涨",
+        "亿元",
+        "恒生科",
+        "指数领跑大市"
+      ],
+      "article_ids": [
+        30
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/cj/2026/11-27/10739070.shtml"
+      ],
+      "titles": [
+        "港股上行 恒生科技指数领跑大市-中新网"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e49",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 16.62,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "中新网-国际"
+      ],
+      "freshness": 0.25,
+      "representative_title": "日媒：涉嫌非法侵入住宅，一名驻日美军人员被捕-中新网",
+      "keywords": [
+        "驻日美军人员被",
+        "涉嫌非法侵入住宅",
+        "一名驻",
+        "日本",
+        "被捕",
+        "日媒"
+      ],
+      "article_ids": [
+        29
+      ],
+      "urls": [
+        "https://www.chinanews.com.cn/gj/2026/11-27/10738996.shtml"
+      ],
+      "titles": [
+        "日媒：涉嫌非法侵入住宅，一名驻日美军人员被捕-中新网"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "日媒：日本研究引进核潜艇及为“无核三原则”设例外-中新网"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e50",
+      "category": "other",
+      "tags": [],
+      "score": 15.03,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "一人户二人户占全国家庭构成的近六成",
+      "keywords": [
+        "人户占全国家",
+        "家庭构成的近",
+        "一人",
+        "二人",
+        "六成",
+        "近六"
+      ],
+      "article_ids": [
+        28
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=86011"
+      ],
+      "titles": [
+        "一人户二人户占全国家庭构成的近六成"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    },
+    {
+      "id": "e51",
+      "category": "other",
+      "tags": [],
+      "score": 15.03,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "Solidot"
+      ],
+      "freshness": 0.25,
+      "representative_title": "文明的历史是小麦的历史",
+      "keywords": [
+        "的历史是",
+        "小麦的",
+        "是小",
+        "文明的",
+        "所有",
+        "举报"
+      ],
+      "article_ids": [
+        34
+      ],
+      "urls": [
+        "https://www.solidot.org/story?sid=86013"
+      ],
+      "titles": [
+        "文明的历史是小麦的历史"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-23",
+        "title": "地球捕获了一颗迷你月球"
+      },
+      "importance": 0.219
+    },
+    {
+      "id": "e52",
+      "category": "other",
+      "tags": [],
+      "score": 14.32,
+      "source_tier": "cn",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 0,
+        "jargon": 0
+      },
+      "source_names": [
+        "IT之家"
+      ],
+      "freshness": 0.25,
+      "representative_title": "我国自主聚变能源解决方案发布工程初步规划，拟分两个阶段实施",
+      "keywords": [
+        "聚变能源解",
+        "工程初",
+        "规划",
+        "阶段实施",
+        "示范堆",
+        "我国自"
+      ],
+      "article_ids": [
+        53
+      ],
+      "urls": [
+        "https://www.ithome.com/1/033/770.htm"
+      ],
+      "titles": [
+        "我国自主聚变能源解决方案发布工程初步规划，拟分两个阶段实施"
+      ],
+      "is_followup": false,
+      "followup_of": null,
+      "importance": 0.0
+    }
+  ]
+}
