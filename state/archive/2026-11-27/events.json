@@ -1,42 +1,44 @@
 {
-  "generated_at": "2026-11-27T06:53:14",
+  "generated_at": "2026-11-27T12:38:12",
   "run_date": "2026-11-27",
   "window_hours": 24,
   "content_day": "2026-11-26",
   "history_days": 7,
-  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-26 当天：66/81 篇）",
-  "article_total": 66,
-  "event_total": 58,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-26 当天：50/65 篇）",
+  "article_total": 50,
+  "event_total": 43,
   "selected": [
-    "e9",
-    "e19",
-    "e21",
-    "e25",
-    "e33"
+    "e6",
+    "e16",
+    "e17",
+    "e20",
+    "e28"
   ],
-  "followup": "e17",
+  "followup": "e14",
   "warnings": [
     "今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。"
   ],
   "events": [
     {
       "id": "e1",
-      "category": "finance",
+      "category": "politics",
       "tags": [
-        "finance",
-        "politics"
+        "politics",
+        "finance"
       ],
-      "score": 38.8,
+      "score": 56.41,
       "source_tier": "core",
       "hard_news": 1.08,
-      "article_count": 3,
-      "source_count": 2,
+      "article_count": 5,
+      "source_count": 4,
       "readability": {
-        "opinion": 1,
+        "opinion": 2,
         "jargon": 0
       },
       "source_names": [
+        "Guardian World",
         "NPR World",
+        "Straits Times",
         "War on the Rocks"
       ],
       "freshness": 0.25,
@@ -44,23 +46,29 @@
       "keywords": [
         "the",
         "and",
-        "ofor",
-        "ton",
-        "in",
-        "thanksgiving"
+        "tofor",
+        "inewhich",
+        "on",
+        "thatrumputin"
       ],
       "article_ids": [
         6,
-        28,
-        52
+        11,
+        17,
+        25,
+        40
       ],
       "urls": [
         "https://warontherocks.com/where-soldiers-enjoyed-thanksgiving/",
+        "https://www.theguardian.com/us-news/2026/nov/26/brazil-china-react-to-new-trump-tariffs-threat",
+        "https://www.straitstimes.com/world/europe/trump-says-hed-like-to-see-putin-pull-back-military-aggression-in-europe",
         "https://www.npr.org/2026/11/26/g-s1-155950/up-first-newsletter-thanksgiving-weather-travel-trump-tariffs-iowa-detonation-fcc-free-speech",
         "https://warontherocks.com/george-washingtons-thanksgiving-proclamation-5/"
       ],
       "titles": [
         "Where Soldiers Enjoyed Thanksgiving",
+        "China reserves right to take ‘necessary measures’ after Trump’s new tariff proposals",
+        "Trump urges Putin to end military aggression in Europe",
         "Up First briefing: Thanksgiving weather; Trump tariffs; Iowa; FCC",
         "George Washington’s Thanksgiving Proclamation"
       ],
@@ -69,7 +77,7 @@
         "date": "2026-11-22",
         "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
       },
-      "importance": 0.44
+      "importance": 0.485
     },
     {
       "id": "e2",
@@ -77,47 +85,43 @@
       "tags": [
         "politics"
       ],
-      "score": 28.42,
+      "score": 29.54,
       "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 2,
-      "source_count": 2,
+      "hard_news": 1.08,
+      "article_count": 1,
+      "source_count": 1,
       "readability": {
-        "opinion": 3,
+        "opinion": 2,
         "jargon": 0
       },
       "source_names": [
-        "Politico Europe",
-        "Straits Times"
+        "Guardian World"
       ],
       "freshness": 0.25,
-      "representative_title": "Trump urges Putin to end military aggression in Europe",
+      "representative_title": "Israel ‘officially sanctions’ torture of Palestinian prisoners to extract confessions, report concludes",
       "keywords": [
-        "theuropend",
-        "tonato",
-        "inot",
-        "and",
-        "trumputin",
-        "military"
+        "thextracthan",
+        "ofor",
+        "in",
+        "torture",
+        "tofficially",
+        "and"
       ],
       "article_ids": [
-        20,
-        54
+        3
       ],
       "urls": [
-        "https://www.straitstimes.com/world/europe/trump-says-hed-like-to-see-putin-pull-back-military-aggression-in-europe",
-        "https://www.politico.eu/article/us-to-delay-overhaul-of-military-presence-in-europe/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
+        "https://www.theguardian.com/world/2026/nov/26/israel-officially-sanctions-torture-palestinian-prisoners-confessions-report"
       ],
       "titles": [
-        "Trump urges Putin to end military aggression in Europe",
-        "US to delay overhaul of military presence in Europe"
+        "Israel ‘officially sanctions’ torture of Palestinian prisoners to extract confessions, report concludes"
       ],
       "is_followup": true,
       "followup_of": {
         "date": "2026-11-22",
-        "title": "The military lacks an ‘overarching plan’ to improve munition stockpiles—partly because it’s no one’s job"
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
       },
-      "importance": 0.402
+      "importance": 0.318
     },
     {
       "id": "e3",
@@ -148,7 +152,7 @@
         "was"
       ],
       "article_ids": [
-        57
+        43
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c9m2jke85xzxo?at_medium=RSS&at_campaign=rss"
@@ -223,54 +227,6 @@
         "jargon": 0
       },
       "source_names": [
-        "CNBC Top News",
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Pablo Hernández de Cos set to succeed Lagarde as ECB president",
-      "keywords": [
-        "thecbank",
-        "tof",
-        "andeuropean",
-        "indez",
-        "cospain",
-        "as"
-      ],
-      "article_ids": [
-        34,
-        44
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/26/pablo-hernandez-de-cos-ecb-president.html",
-        "https://www.politico.eu/article/eu-leaders-clear-path-for-spains-pablo-hernandez-de-cos-to-lead-ecb/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Pablo Hernández de Cos set to succeed Lagarde as ECB president",
-        "EU leaders clear path for Spain’s Pablo Hernández de Cos to lead ECB"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Trump lands significant victories in media defamation cases"
-      },
-      "importance": 0.402
-    },
-    {
-      "id": "e6",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 27.19,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 2,
-      "source_count": 2,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
         "CNBC World",
         "NPR World"
       ],
@@ -285,8 +241,8 @@
         "northe"
       ],
       "article_ids": [
-        40,
-        64
+        31,
+        48
       ],
       "urls": [
         "https://www.npr.org/2026/11/26/g-s1-155955/north-korea-kim-nuclear-weapons-trump",
@@ -304,96 +260,7 @@
       "importance": 0.402
     },
     {
-      "id": "e7",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 26.22,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 3,
-        "jargon": 0
-      },
-      "source_names": [
-        "快科技"
-      ],
-      "freshness": 0.25,
-      "representative_title": "交通锥加鸡蛋！美国男子30次霸凌Waymo无人车 自动驾驶只能原地挨打--快科技--科技改变未来",
-      "keywords": [
-        "驾驶",
-        "科技",
-        "waymo",
-        "车辆",
-        "男子",
-        "无人车"
-      ],
-      "article_ids": [
-        53
-      ],
-      "urls": [
-        "https://news.mydrivers.com/1/1168/1168931.htm"
-      ],
-      "titles": [
-        "交通锥加鸡蛋！美国男子30次霸凌Waymo无人车 自动驾驶只能原地挨打--快科技--科技改变未来"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-23",
-        "title": "Waymo 无人驾驶出租车因旧金山洪水而陷入困境"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e8",
-      "category": "tech",
-      "tags": [
-        "tech",
-        "finance"
-      ],
-      "score": 25.08,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "快科技"
-      ],
-      "freshness": 0.25,
-      "representative_title": "荣耀首款阔折叠手机预计明年3月亮相：折痕接近看不见 前摄有望支持方形画幅--快科技--科技改变未来",
-      "keywords": [
-        "荣耀首款",
-        "科技",
-        "手机预计",
-        "阔折叠手",
-        "快科",
-        "折痕"
-      ],
-      "article_ids": [
-        17
-      ],
-      "urls": [
-        "https://news.mydrivers.com/1/1168/1168933.htm"
-      ],
-      "titles": [
-        "荣耀首款阔折叠手机预计明年3月亮相：折痕接近看不见 前摄有望支持方形画幅--快科技--科技改变未来"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e9",
+      "id": "e6",
       "category": "tech",
       "tags": [
         "tech"
@@ -421,7 +288,7 @@
         "需要"
       ],
       "article_ids": [
-        27
+        24
       ],
       "urls": [
         "https://www.ifanr.com/1695555?utm_source=rss&utm_medium=rss&utm_campaign"
@@ -434,7 +301,7 @@
       "importance": 0.0
     },
     {
-      "id": "e10",
+      "id": "e7",
       "category": "politics",
       "tags": [
         "politics"
@@ -462,7 +329,7 @@
         "on"
       ],
       "article_ids": [
-        26
+        23
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cmlyd76kyx44o?at_medium=RSS&at_campaign=rss"
@@ -478,7 +345,7 @@
       "importance": 0.318
     },
     {
-      "id": "e11",
+      "id": "e8",
       "category": "politics",
       "tags": [
         "politics"
@@ -506,7 +373,7 @@
         "hasaid"
       ],
       "article_ids": [
-        42
+        33
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c98r7p65edvgo?at_medium=RSS&at_campaign=rss"
@@ -522,7 +389,7 @@
       "importance": 0.318
     },
     {
-      "id": "e12",
+      "id": "e9",
       "category": "politics",
       "tags": [
         "politics"
@@ -550,7 +417,7 @@
         "toresponders"
       ],
       "article_ids": [
-        62
+        47
       ],
       "urls": [
         "https://www.npr.org/2026/11/26/g-s1-155957/congo-ebola-responders"
@@ -566,7 +433,7 @@
       "importance": 0.318
     },
     {
-      "id": "e13",
+      "id": "e10",
       "category": "politics",
       "tags": [
         "politics"
@@ -594,7 +461,7 @@
         "travel"
       ],
       "article_ids": [
-        65
+        49
       ],
       "urls": [
         "https://www.cnbc.com/make-it/2026/11/26/travel-fatigue-holiday-tips.html"
@@ -610,7 +477,7 @@
       "importance": 0.318
     },
     {
-      "id": "e14",
+      "id": "e11",
       "category": "tech",
       "tags": [
         "tech"
@@ -639,7 +506,7 @@
       ],
       "article_ids": [
         13,
-        55
+        41
       ],
       "urls": [
         "https://www.technologyreview.com/2026/11/26/1149923/the-next-generation-of-bionic-hands-is-here-and-they-can-feel/",
@@ -657,7 +524,7 @@
       "importance": 0.492
     },
     {
-      "id": "e15",
+      "id": "e12",
       "category": "tech",
       "tags": [
         "tech",
@@ -686,7 +553,7 @@
         "consumereturnsaid"
       ],
       "article_ids": [
-        36
+        28
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/temu-to-make-it-easier-to-return-packages-eu-says-as-china-retailer-seeks-to-avoid-fine"
@@ -702,7 +569,7 @@
       "importance": 0.408
     },
     {
-      "id": "e16",
+      "id": "e13",
       "category": "politics",
       "tags": [
         "politics"
@@ -730,7 +597,7 @@
         "weddingueststate"
       ],
       "article_ids": [
-        45
+        34
       ],
       "urls": [
         "https://www.theguardian.com/world/2026/nov/26/india-anant-singh-hosts-400000-guests-wedding-guests-daughter"
@@ -746,7 +613,7 @@
       "importance": 0.318
     },
     {
-      "id": "e17",
+      "id": "e14",
       "category": "politics",
       "tags": [
         "politics"
@@ -789,7 +656,7 @@
       "importance": 0.518
     },
     {
-      "id": "e18",
+      "id": "e15",
       "category": "tech",
       "tags": [
         "tech",
@@ -818,7 +685,7 @@
         "ofund"
       ],
       "article_ids": [
-        23
+        21
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/26/mispricing-risk-fund-managers-ai-volatility.html"
@@ -834,7 +701,7 @@
       "importance": 0.408
     },
     {
-      "id": "e19",
+      "id": "e16",
       "category": "tech",
       "tags": [
         "tech"
@@ -875,92 +742,49 @@
       "importance": 0.0
     },
     {
-      "id": "e20",
+      "id": "e17",
       "category": "tech",
       "tags": [
-        "tech"
+        "tech",
+        "finance"
       ],
-      "score": 22.8,
+      "score": 22.46,
       "source_tier": "cn",
-      "hard_news": 0.95,
+      "hard_news": 0.78,
       "article_count": 1,
       "source_count": 1,
       "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "快科技"
-      ],
-      "freshness": 0.25,
-      "representative_title": "iPhone第1、GPT第8 网友评最伟大科技产品TOP100 你服吗--快科技--科技改变未来",
-      "keywords": [
-        "科技产",
-        "iphone",
-        "产品",
-        "快科",
-        "手机",
-        "排第"
-      ],
-      "article_ids": [
-        37
-      ],
-      "urls": [
-        "https://news.mydrivers.com/1/1168/1168934.htm"
-      ],
-      "titles": [
-        "iPhone第1、GPT第8 网友评最伟大科技产品TOP100 你服吗--快科技--科技改变未来"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "星芒高管称努力贴近4999！华为首款鸿蒙AI手机5699元被嫌贵：验证新AI技术与产品体验 不急冲销量--快科技--科技改变未来"
-      },
-      "importance": 0.408
-    },
-    {
-      "id": "e21",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 22.8,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
+        "opinion": 4,
         "jargon": 0
       },
       "source_names": [
         "爱范儿"
       ],
       "freshness": 0.25,
-      "representative_title": "OPPO Reno17 Pro 体验：在手机里装进一只猫，分几步？",
+      "representative_title": "ChatGPT即将到来的大更新，为何让老用户集体破防",
       "keywords": [
-        "reno17",
-        "手机里",
-        "proppo",
-        "玻璃",
-        "后盖",
-        "支持"
+        "用户的",
+        "额度",
+        "使用",
+        "ai",
+        "chatgptoken",
+        "会员"
       ],
       "article_ids": [
-        46
+        20
       ],
       "urls": [
-        "https://www.ifanr.com/1691222?utm_source=rss&utm_medium=rss&utm_campaign"
+        "https://www.ifanr.com/1695589?utm_source=rss&utm_medium=rss&utm_campaign"
       ],
       "titles": [
-        "OPPO Reno17 Pro 体验：在手机里装进一只猫，分几步？"
+        "ChatGPT即将到来的大更新，为何让老用户集体破防"
       ],
       "is_followup": false,
       "followup_of": null,
       "importance": 0.0
     },
     {
-      "id": "e22",
+      "id": "e18",
       "category": "politics",
       "tags": [
         "politics",
@@ -989,8 +813,8 @@
         "athat"
       ],
       "article_ids": [
-        11,
-        59
+        10,
+        45
       ],
       "urls": [
         "https://foreignpolicy.com/2026/11/26/eu-europe-economic-security-sovereignty-derisking-decoupling-dependence-united-states-china/",
@@ -1008,52 +832,7 @@
       "importance": 0.402
     },
     {
-      "id": "e23",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 21.33,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "EU Commission offers little in response to US drug pricing pressures",
-      "keywords": [
-        "theushe",
-        "ton",
-        "in",
-        "drug",
-        "thatrade",
-        "commission"
-      ],
-      "article_ids": [
-        31
-      ],
-      "urls": [
-        "https://www.politico.eu/article/eu-commission-offers-little-in-response-to-us-drug-pricing-pressures/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "EU Commission offers little in response to US drug pricing pressures"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e24",
+      "id": "e19",
       "category": "politics",
       "tags": [
         "politics",
@@ -1082,7 +861,7 @@
         "tanker"
       ],
       "article_ids": [
-        39
+        30
       ],
       "urls": [
         "https://www.straitstimes.com/world/middle-east/egyptians-mourn-demand-accountability-after-deadly-tanker-explosion-kills-31"
@@ -1098,7 +877,7 @@
       "importance": 0.318
     },
     {
-      "id": "e25",
+      "id": "e20",
       "category": "politics",
       "tags": [
         "politics"
@@ -1126,7 +905,7 @@
         "保障"
       ],
       "article_ids": [
-        58
+        44
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-26/10738472.shtml"
@@ -1139,7 +918,7 @@
       "importance": 0.0
     },
     {
-      "id": "e26",
+      "id": "e21",
       "category": "tech",
       "tags": [
         "tech"
@@ -1167,7 +946,7 @@
         "ithat"
       ],
       "article_ids": [
-        16
+        15
       ],
       "urls": [
         "https://arstechnica.com/features/2026/11/from-minimalist-to-maximalist-ars-staffers-show-off-their-home-offices/"
@@ -1183,7 +962,7 @@
       "importance": 0.408
     },
     {
-      "id": "e27",
+      "id": "e22",
       "category": "tech",
       "tags": [
         "tech",
@@ -1212,7 +991,7 @@
         "technology"
       ],
       "article_ids": [
-        41
+        32
       ],
       "urls": [
         "https://thediplomat.com/2026/11/chinas-soft-espionage-the-technology-transfers-that-dont-make-headlines/"
@@ -1228,52 +1007,7 @@
       "importance": 0.408
     },
     {
-      "id": "e28",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Donations to One Nation from two Gina Rinehart associates to be probed by electoral authorities",
-      "keywords": [
-        "thelectoral",
-        "tonation",
-        "andonations",
-        "one",
-        "ofrom",
-        "by"
-      ],
-      "article_ids": [
-        5
-      ],
-      "urls": [
-        "https://www.theguardian.com/australia-news/2026/nov/27/one-nation-pauline-hanson-gina-rinehart-aec-donations-ntwnfb"
-      ],
-      "titles": [
-        "Donations to One Nation from two Gina Rinehart associates to be probed by electoral authorities"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Europeans, with Ukraine’s help, brace for more Russian attacks"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e29",
+      "id": "e23",
       "category": "politics",
       "tags": [
         "politics"
@@ -1288,36 +1022,36 @@
         "jargon": 0
       },
       "source_names": [
-        "Guardian World"
+        "CNBC World"
       ],
       "freshness": 0.25,
-      "representative_title": "Beau Lamarre-Condon used his service weapon to murder two men. Did NSW police recruiters miss any red flags?",
+      "representative_title": "Judge blocks FCC early renewals for Disney-owned ABC stations, for now",
       "keywords": [
-        "the",
-        "police",
-        "and",
-        "toflags",
-        "hiservice",
-        "lamarre-condonsweapon"
+        "thearly",
+        "oforenewalicense",
+        "andisney-owned",
+        "abc",
+        "ton",
+        "fcc"
       ],
       "article_ids": [
-        7
+        4
       ],
       "urls": [
-        "https://www.theguardian.com/australia-news/2026/nov/27/beau-lamarre-condon-service-weapon-murder-police-recruiters-ntwnfb"
+        "https://www.cnbc.com/2026/11/26/fcc-disney-abc-stations-judge-block.html"
       ],
       "titles": [
-        "Beau Lamarre-Condon used his service weapon to murder two men. Did NSW police recruiters miss any red flags?"
+        "Judge blocks FCC early renewals for Disney-owned ABC stations, for now"
       ],
       "is_followup": true,
       "followup_of": {
         "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
       },
       "importance": 0.318
     },
     {
-      "id": "e30",
+      "id": "e24",
       "category": "politics",
       "tags": [
         "politics",
@@ -1346,7 +1080,7 @@
         "with"
       ],
       "article_ids": [
-        15
+        14
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/26/texture-maxxing-food-trends-gen-z.html"
@@ -1362,7 +1096,7 @@
       "importance": 0.318
     },
     {
-      "id": "e31",
+      "id": "e25",
       "category": "politics",
       "tags": [
         "politics"
@@ -1390,7 +1124,7 @@
         "uno"
       ],
       "article_ids": [
-        18
+        16
       ],
       "urls": [
         "https://www.theguardian.com/world/2026/nov/26/lana-nusseibeh-uae-sudan-un-secretary-general"
@@ -1406,7 +1140,51 @@
       "importance": 0.318
     },
     {
-      "id": "e32",
+      "id": "e26",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 20.36,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 1,
+        "jargon": 0
+      },
+      "source_names": [
+        "CNBC Top News"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Pablo Hernández de Cos set to succeed Lagarde as ECB president",
+      "keywords": [
+        "thecbank",
+        "andeuropeandez",
+        "tofor",
+        "cos",
+        "as",
+        "in"
+      ],
+      "article_ids": [
+        27
+      ],
+      "urls": [
+        "https://www.cnbc.com/2026/11/26/pablo-hernandez-de-cos-ecb-president.html"
+      ],
+      "titles": [
+        "Pablo Hernández de Cos set to succeed Lagarde as ECB president"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Trump lands significant victories in media defamation cases"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e27",
       "category": "politics",
       "tags": [
         "politics"
@@ -1434,7 +1212,7 @@
         "withave"
       ],
       "article_ids": [
-        61
+        46
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/co-leader-of-germanys-afd-criticises-planned-talks-with-russian-envoy"
@@ -1450,7 +1228,7 @@
       "importance": 0.318
     },
     {
-      "id": "e33",
+      "id": "e28",
       "category": "finance",
       "tags": [
         "finance"
@@ -1478,7 +1256,7 @@
         "报告指今年"
       ],
       "article_ids": [
-        8
+        7
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-26/10738463.shtml"
@@ -1491,7 +1269,7 @@
       "importance": 0.0
     },
     {
-      "id": "e34",
+      "id": "e29",
       "category": "politics",
       "tags": [
         "politics"
@@ -1519,7 +1297,7 @@
         "supreme"
       ],
       "article_ids": [
-        4
+        5
       ],
       "urls": [
         "https://thediplomat.com/2026/11/south-korean-chief-justices-impending-impeachment/"
@@ -1535,52 +1313,7 @@
       "importance": 0.318
     },
     {
-      "id": "e35",
-      "category": "finance",
-      "tags": [
-        "finance",
-        "tech"
-      ],
-      "score": 19.99,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 2,
-        "jargon": 0
-      },
-      "source_names": [
-        "CNBC World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "South Korea upgrades growth forecast, raises benchmark rates to highest in two years",
-      "keywords": [
-        "the",
-        "ton",
-        "in",
-        "foratesouth",
-        "and",
-        "koreas"
-      ],
-      "article_ids": [
-        32
-      ],
-      "urls": [
-        "https://www.cnbc.com/2026/11/26/bok-rate-decision-korea-gdp-inflation.html"
-      ],
-      "titles": [
-        "South Korea upgrades growth forecast, raises benchmark rates to highest in two years"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.273
-    },
-    {
-      "id": "e36",
+      "id": "e30",
       "category": "tech",
       "tags": [
         "tech"
@@ -1608,7 +1341,7 @@
         "创新"
       ],
       "article_ids": [
-        22
+        19
       ],
       "urls": [
         "https://www.ifanr.com/1695349?utm_source=rss&utm_medium=rss&utm_campaign"
@@ -1621,215 +1354,7 @@
       "importance": 0.0
     },
     {
-      "id": "e37",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 19.66,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "华为 HarmonyOS 五大技术品牌公开，含鸿蒙星河互联、星盾安全、方舟引擎、小艺、空间计算",
-      "keywords": [
-        "鸿蒙星河互联",
-        "华为",
-        "harmonyos",
-        "技术品牌",
-        "五大技",
-        "公开"
-      ],
-      "article_ids": [
-        43
-      ],
-      "urls": [
-        "https://www.ithome.com/1/033/130.htm"
-      ],
-      "titles": [
-        "华为 HarmonyOS 五大技术品牌公开，含鸿蒙星河互联、星盾安全、方舟引擎、小艺、空间计算"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e38",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 19.66,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "界面新闻"
-      ],
-      "freshness": 0.25,
-      "representative_title": "忙着甩货的华致酒行看上算力业务",
-      "keywords": [
-        "公司",
-        "亿元",
-        "华致酒行",
-        "业务",
-        "万元",
-        "资产"
-      ],
-      "article_ids": [
-        60
-      ],
-      "urls": [
-        "https://www.jiemian.com/article/15378792.html"
-      ],
-      "titles": [
-        "忙着甩货的华致酒行看上算力业务"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e39",
-      "category": "tech",
-      "tags": [
-        "tech"
-      ],
-      "score": 19.66,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "IT之家"
-      ],
-      "freshness": 0.25,
-      "representative_title": "瑞士发生五起 AI 智能体网络攻击，电力供水通信系统遭入侵",
-      "keywords": [
-        "攻击",
-        "瑞士发生五",
-        "网络攻",
-        "五起",
-        "入侵",
-        "智能体网"
-      ],
-      "article_ids": [
-        63
-      ],
-      "urls": [
-        "https://www.ithome.com/1/033/131.htm"
-      ],
-      "titles": [
-        "瑞士发生五起 AI 智能体网络攻击，电力供水通信系统遭入侵"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e40",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 19.39,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Al Jazeera"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Why is France roiling?",
-      "keywords": [
-        "ishortagelection",
-        "france",
-        "why",
-        "roiling",
-        "nexteacheramy",
-        "nov"
-      ],
-      "article_ids": [
-        3
-      ],
-      "urls": [
-        "https://www.aljazeera.com/video/newsfeed/2026/11/26/why-is-france-roiling?traffic_source=rss"
-      ],
-      "titles": [
-        "Why is France roiling?"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e41",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 19.39,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Al Jazeera"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Two dead after Iranian drone attack on Kuwait",
-      "keywords": [
-        "twonovital",
-        "after",
-        "iranian",
-        "deadrone",
-        "attackuwaithe",
-        "were"
-      ],
-      "article_ids": [
-        24
-      ],
-      "urls": [
-        "https://www.aljazeera.com/video/newsfeed/2026/11/26/two-dead-after-iranian-drone-attack-on-kuwait?traffic_source=rss"
-      ],
-      "titles": [
-        "Two dead after Iranian drone attack on Kuwait"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e42",
+      "id": "e31",
       "category": "politics",
       "tags": [
         "politics"
@@ -1873,7 +1398,7 @@
       "importance": 0.318
     },
     {
-      "id": "e43",
+      "id": "e32",
       "category": "finance",
       "tags": [
         "finance"
@@ -1901,7 +1426,7 @@
         "are"
       ],
       "article_ids": [
-        25
+        22
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/26/hedge-funds-retail-investors.html"
@@ -1917,7 +1442,7 @@
       "importance": 0.273
     },
     {
-      "id": "e44",
+      "id": "e33",
       "category": "tech",
       "tags": [
         "tech"
@@ -1945,7 +1470,7 @@
         "获批医"
       ],
       "article_ids": [
-        48
+        36
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-26/10738462.shtml"
@@ -1958,7 +1483,7 @@
       "importance": 0.0
     },
     {
-      "id": "e45",
+      "id": "e34",
       "category": "politics",
       "tags": [
         "politics",
@@ -1987,7 +1512,7 @@
         "thatotal"
       ],
       "article_ids": [
-        38
+        29
       ],
       "urls": [
         "https://arstechnica.com/science/2026/11/draining-peatlands-is-responsible-for-a-few-percent-of-our-global-warming/"
@@ -2003,51 +1528,7 @@
       "importance": 0.318
     },
     {
-      "id": "e46",
-      "category": "finance",
-      "tags": [
-        "finance"
-      ],
-      "score": 18.17,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Politico Europe"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Europe’s food security starts with resilient farms",
-      "keywords": [
-        "theurope",
-        "and",
-        "tofood",
-        "is",
-        "farms",
-        "inestl"
-      ],
-      "article_ids": [
-        19
-      ],
-      "urls": [
-        "https://www.politico.eu/sponsored-content/europes-food-security-starts-with-resilient-farms/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
-      ],
-      "titles": [
-        "Europe’s food security starts with resilient farms"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Trump lands significant victories in media defamation cases"
-      },
-      "importance": 0.273
-    },
-    {
-      "id": "e47",
+      "id": "e35",
       "category": "finance",
       "tags": [
         "finance"
@@ -2075,7 +1556,7 @@
         "上市公司"
       ],
       "article_ids": [
-        10
+        9
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-26/10738467.shtml"
@@ -2088,89 +1569,7 @@
       "importance": 0.0
     },
     {
-      "id": "e48",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 17.45,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "界面新闻"
-      ],
-      "freshness": 0.25,
-      "representative_title": "以色列正直党与民主党就双边组阁协议达成一致",
-      "keywords": [
-        "组阁协议达成一致",
-        "以色列正",
-        "埃森科特",
-        "阵营",
-        "正直党与民主党就双边",
-        "议会"
-      ],
-      "article_ids": [
-        14
-      ],
-      "urls": [
-        "https://www.jiemian.com/article/15379233.html"
-      ],
-      "titles": [
-        "以色列正直党与民主党就双边组阁协议达成一致"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e49",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 17.45,
-      "source_tier": "cn",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "界面新闻"
-      ],
-      "freshness": 0.25,
-      "representative_title": "阿联酋迪拜航空将恢复迪拜至以色列特拉维夫航班",
-      "keywords": [
-        "迪拜航班",
-        "以色列特拉维夫航",
-        "航空将恢",
-        "阿联酋迪",
-        "安全",
-        "恢复迪"
-      ],
-      "article_ids": [
-        33
-      ],
-      "urls": [
-        "https://www.jiemian.com/article/15379261.html"
-      ],
-      "titles": [
-        "阿联酋迪拜航空将恢复迪拜至以色列特拉维夫航班"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e50",
+      "id": "e36",
       "category": "finance",
       "tags": [
         "finance",
@@ -2199,7 +1598,7 @@
         "fromohammed"
       ],
       "article_ids": [
-        56
+        42
       ],
       "urls": [
         "https://thediplomat.com/2026/11/moroccos-royal-industrial-vision-a-global-strategic-opportunity/"
@@ -2215,46 +1614,7 @@
       "importance": 0.273
     },
     {
-      "id": "e51",
-      "category": "other",
-      "tags": [],
-      "score": 16.7,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 0,
-        "jargon": 0
-      },
-      "source_names": [
-        "Al Jazeera"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Diesel tanker capsizes near Ibiza, killing crew member",
-      "keywords": [
-        "diesel",
-        "tanker",
-        "crew",
-        "capsizeshowspanish",
-        "near",
-        "ibiza"
-      ],
-      "article_ids": [
-        30
-      ],
-      "urls": [
-        "https://www.aljazeera.com/video/newsfeed/2026/11/26/aje-onl-nf_loaded-diesel-tanker-capsizes-off-ibiza-killing-one-261126?traffic_source=rss"
-      ],
-      "titles": [
-        "Diesel tanker capsizes near Ibiza, killing crew member"
-      ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
-    },
-    {
-      "id": "e52",
+      "id": "e37",
       "category": "finance",
       "tags": [
         "finance"
@@ -2282,7 +1642,7 @@
         "jonathan"
       ],
       "article_ids": [
-        21
+        18
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86004"
@@ -2295,7 +1655,7 @@
       "importance": 0.0
     },
     {
-      "id": "e53",
+      "id": "e38",
       "category": "finance",
       "tags": [
         "finance",
@@ -2324,7 +1684,7 @@
         "首次位列亚"
       ],
       "article_ids": [
-        51
+        39
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-26/10738451.shtml"
@@ -2337,7 +1697,7 @@
       "importance": 0.0
     },
     {
-      "id": "e54",
+      "id": "e39",
       "category": "other",
       "tags": [],
       "score": 15.75,
@@ -2363,7 +1723,7 @@
         "司机开启冬"
       ],
       "article_ids": [
-        9
+        8
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-26/10738473.shtml"
@@ -2376,7 +1736,7 @@
       "importance": 0.0
     },
     {
-      "id": "e55",
+      "id": "e40",
       "category": "other",
       "tags": [],
       "score": 15.75,
@@ -2402,7 +1762,7 @@
         "过去"
       ],
       "article_ids": [
-        49
+        37
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86005"
@@ -2418,7 +1778,7 @@
       "importance": 0.219
     },
     {
-      "id": "e56",
+      "id": "e41",
       "category": "finance",
       "tags": [
         "finance"
@@ -2446,7 +1806,7 @@
         "次常"
       ],
       "article_ids": [
-        29
+        26
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-26/10738459.shtml"
@@ -2459,7 +1819,7 @@
       "importance": 0.0
     },
     {
-      "id": "e57",
+      "id": "e42",
       "category": "other",
       "tags": [],
       "score": 15.03,
@@ -2481,11 +1841,11 @@
         "编辑猪",
         "猪肾在人",
         "人体内正",
-        "正常工",
-        "移植"
+        "移植",
+        "正常工作一"
       ],
       "article_ids": [
-        47
+        35
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86003"
@@ -2498,7 +1858,7 @@
       "importance": 0.0
     },
     {
-      "id": "e58",
+      "id": "e43",
       "category": "other",
       "tags": [],
       "score": 15.03,
@@ -2524,7 +1884,7 @@
         "所有"
       ],
       "article_ids": [
-        50
+        38
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86006"
