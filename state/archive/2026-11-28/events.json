@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-28T06:53:14",
+  "generated_at": "2026-11-28T12:20:51",
   "run_date": "2026-11-28",
   "window_hours": 24,
   "content_day": "2026-11-27",
   "history_days": 7,
-  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-27 当天：61/69 篇）",
-  "article_total": 61,
+  "source": "/home/runner/work/daily-brief/daily-brief/output/raw（2026-11-27 当天：59/67 篇）",
+  "article_total": 59,
   "event_total": 52,
   "selected": [
-    "e3",
     "e10",
     "e13",
     "e17",
-    "e22"
+    "e22",
+    "e23"
   ],
-  "followup": "e18",
+  "followup": "e3",
   "warnings": [
     "今天选出的新闻全部来自国内源：国际源可能没抓到（网络或源失效），选题质量会下降。"
   ],
@@ -49,7 +49,7 @@
         "polandefense"
       ],
       "article_ids": [
-        27
+        28
       ],
       "urls": [
         "https://www.politico.eu/article/wed-be-stupid-not-to-poland-defends-300m-military-ai-deal-with-palantir/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
@@ -93,7 +93,7 @@
         "ait"
       ],
       "article_ids": [
-        18
+        19
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/27/sap-job-cuts-ai-restructuring.html"
@@ -113,42 +113,51 @@
       "category": "tech",
       "tags": [
         "tech",
-        "finance"
+        "politics"
       ],
-      "score": 27.36,
-      "source_tier": "cn",
-      "hard_news": 0.95,
-      "article_count": 1,
+      "score": 27.85,
+      "source_tier": "analysis",
+      "hard_news": 0.78,
+      "article_count": 3,
       "source_count": 1,
       "readability": {
-        "opinion": 4,
+        "opinion": 0,
         "jargon": 0
       },
       "source_names": [
-        "界面新闻"
+        "Foreign Policy"
       ],
       "freshness": 0.25,
-      "representative_title": "汽车企业为更难增长的2027年做好准备",
+      "representative_title": "Right-Wing Leaders in Latin America Are Unlikely to Spurn ChinaSearch IconShare iconCopy Link iconEmail iconFacebook ico",
       "keywords": [
-        "汽车展",
-        "销量",
-        "万辆",
-        "企业",
-        "增长",
-        "界面新闻"
+        "the",
+        "tofor",
+        "and",
+        "in",
+        "iskip",
+        "on"
       ],
       "article_ids": [
-        12
+        2,
+        27,
+        43
       ],
       "urls": [
-        "https://www.jiemian.com/article/15385006.html"
+        "https://foreignpolicy.com/2026/11/27/latin-america-trump-china-right-wing-economics-orange-wave/",
+        "https://foreignpolicy.com/2026/11/27/big-tech-ai-democracy-erosion-public-trust-institutions-donald-trump/",
+        "https://foreignpolicy.com/2026/11/27/holiday-reading-list-international-book-recommendations-fiction-nonfiction-2/"
       ],
       "titles": [
-        "汽车企业为更难增长的2027年做好准备"
+        "Right-Wing Leaders in Latin America Are Unlikely to Spurn ChinaSearch IconShare iconCopy Link iconEmail iconFacebook ico",
+        "Big Tech Has Undermined Democracy. Here’s How to Reverse the Trend.Search IconShare iconCopy Link iconEmail iconFacebook",
+        "2026 Holiday Book Guide: International Reads on History, Foreign Policy, FictionSearch IconShare iconCopy Link iconEmail"
       ],
-      "is_followup": false,
-      "followup_of": null,
-      "importance": 0.0
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.575
     },
     {
       "id": "e4",
@@ -179,7 +188,7 @@
         "mafiallegations"
       ],
       "article_ids": [
-        37
+        36
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c69q8yjj1v0po?at_medium=RSS&at_campaign=rss"
@@ -268,7 +277,7 @@
         "ofor"
       ],
       "article_ids": [
-        52
+        50
       ],
       "urls": [
         "https://www.straitstimes.com/world/united-states/republicans-rethink-tariffs-giving-democrats-an-opening-to-challenge-trump"
@@ -313,8 +322,8 @@
         "inew"
       ],
       "article_ids": [
-        40,
-        55
+        39,
+        53
       ],
       "urls": [
         "https://www.technologyreview.com/2026/11/27/1149857/2027-innovators-under-35-competition-nominate/",
@@ -361,7 +370,7 @@
         "with"
       ],
       "article_ids": [
-        10
+        12
       ],
       "urls": [
         "https://arstechnica.com/cars/2026/11/volvos-big-batteries-we-drive-its-updated-2028-plug-in-hybrids/"
@@ -492,7 +501,7 @@
         "profits"
       ],
       "article_ids": [
-        17
+        18
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/27/china-industrial-profits-october.html"
@@ -536,7 +545,7 @@
         "metagent"
       ],
       "article_ids": [
-        58
+        56
       ],
       "urls": [
         "https://www.politico.eu/article/metas-uk-rollout-for-muse-ai-agent-exposes-it-to-more-liability/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
@@ -580,7 +589,7 @@
         "智驾配大"
       ],
       "article_ids": [
-        25
+        26
       ],
       "urls": [
         "https://www.ifanr.com/1695926?utm_source=rss&utm_medium=rss&utm_campaign"
@@ -621,7 +630,7 @@
         "ciacknowledgedid"
       ],
       "article_ids": [
-        49
+        47
       ],
       "urls": [
         "https://www.theguardian.com/us-news/2026/nov/27/newly-released-documents-cia-waterboarding-9-11"
@@ -665,7 +674,7 @@
         "was"
       ],
       "article_ids": [
-        13
+        14
       ],
       "urls": [
         "https://arstechnica.com/tech-policy/2026/11/intel-faced-a-choice-give-trump-10-or-face-the-consequences/"
@@ -710,7 +719,7 @@
         "to"
       ],
       "article_ids": [
-        41
+        40
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cm5y1380q3vgo?at_medium=RSS&at_campaign=rss"
@@ -754,7 +763,7 @@
         "q06"
       ],
       "article_ids": [
-        38
+        37
       ],
       "urls": [
         "https://www.ifanr.com/1695936?utm_source=rss&utm_medium=rss&utm_campaign"
@@ -795,7 +804,7 @@
         "世界纪录"
       ],
       "article_ids": [
-        14
+        15
       ],
       "urls": [
         "https://news.mydrivers.com/1/1169/1169233.htm"
@@ -839,7 +848,7 @@
         "youndersea"
       ],
       "article_ids": [
-        56
+        54
       ],
       "urls": [
         "https://arstechnica.com/shopping/2026/11/books-bikes-and-the-burbs-these-are-ars-staffs-holiday-gift-picks-for-2026/"
@@ -883,7 +892,7 @@
         "thathis"
       ],
       "article_ids": [
-        21
+        22
       ],
       "urls": [
         "https://thediplomat.com/2026/11/read-like-the-diplomat-2026-holiday-edition/"
@@ -927,7 +936,7 @@
         "四川"
       ],
       "article_ids": [
-        7
+        8
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-27/10739072.shtml"
@@ -971,7 +980,7 @@
         "上市"
       ],
       "article_ids": [
-        50
+        48
       ],
       "urls": [
         "https://www.ithome.com/1/033/771.htm"
@@ -1012,7 +1021,7 @@
         "美元"
       ],
       "article_ids": [
-        24
+        25
       ],
       "urls": [
         "https://news.mydrivers.com/1/1169/1169234.htm"
@@ -1053,7 +1062,7 @@
         "andemocratstores"
       ],
       "article_ids": [
-        8
+        9
       ],
       "urls": [
         "https://www.straitstimes.com/world/europe/centre-party-could-give-sweden-a-government-but-far-right-backing-stores-up-trouble"
@@ -1070,6 +1079,50 @@
     },
     {
       "id": "e25",
+      "category": "politics",
+      "tags": [
+        "politics"
+      ],
+      "score": 21.33,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Labor faces prospect of electoral wipeout in Victoria as voters turn to Liberals and One Nation",
+      "keywords": [
+        "thelectoral",
+        "tofor",
+        "and",
+        "labor",
+        "onelection",
+        "ination"
+      ],
+      "article_ids": [
+        10
+      ],
+      "urls": [
+        "https://www.theguardian.com/australia-news/2026/nov/28/vic-election-labor-faces-electoral-wipeout-as-voters-turn-to-liberals-and-one-nation-ntwnfb"
+      ],
+      "titles": [
+        "Labor faces prospect of electoral wipeout in Victoria as voters turn to Liberals and One Nation"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
+      },
+      "importance": 0.318
+    },
+    {
+      "id": "e26",
       "category": "politics",
       "tags": [
         "politics",
@@ -1098,7 +1151,7 @@
         "he"
       ],
       "article_ids": [
-        11
+        13
       ],
       "urls": [
         "https://www.politico.eu/article/the-man-who-coined-brexit-likes-the-sound-of-breturn-and-brejoin-peter-wilding/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
@@ -1114,7 +1167,7 @@
       "importance": 0.318
     },
     {
-      "id": "e26",
+      "id": "e27",
       "category": "politics",
       "tags": [
         "politics",
@@ -1143,7 +1196,7 @@
         "mexico"
       ],
       "article_ids": [
-        47
+        45
       ],
       "urls": [
         "https://www.straitstimes.com/world/mexico-weighs-the-limits-of-politically-popular-wage-strategy"
@@ -1159,7 +1212,7 @@
       "importance": 0.318
     },
     {
-      "id": "e27",
+      "id": "e28",
       "category": "politics",
       "tags": [
         "politics",
@@ -1188,7 +1241,7 @@
         "民众联名请"
       ],
       "article_ids": [
-        48
+        46
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-27/10738967.shtml"
@@ -1201,7 +1254,7 @@
       "importance": 0.0
     },
     {
-      "id": "e28",
+      "id": "e29",
       "category": "tech",
       "tags": [
         "tech"
@@ -1229,7 +1282,7 @@
         "inotrial"
       ],
       "article_ids": [
-        59
+        57
       ],
       "urls": [
         "https://www.technologyreview.com/2026/11/27/1149946/cutting-edge-prosthetics-allow-researchers-to-probe-the-human-mind/"
@@ -1245,7 +1298,7 @@
       "importance": 0.408
     },
     {
-      "id": "e29",
+      "id": "e30",
       "category": "tech",
       "tags": [
         "tech"
@@ -1273,7 +1326,7 @@
         "justhis"
       ],
       "article_ids": [
-        19
+        20
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/ai-mineral-rush-can-advance-just-equitable-transition-by-suneeta-kaimal-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1289,7 +1342,7 @@
       "importance": 0.408
     },
     {
-      "id": "e30",
+      "id": "e31",
       "category": "tech",
       "tags": [
         "tech"
@@ -1317,7 +1370,7 @@
         "transformation"
       ],
       "article_ids": [
-        20
+        21
       ],
       "urls": [
         "https://www.project-syndicate.org/onpoint/what-explains-ai-missing-productivity-boom-by-michael-spence-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1333,7 +1386,7 @@
       "importance": 0.408
     },
     {
-      "id": "e31",
+      "id": "e32",
       "category": "politics",
       "tags": [
         "politics"
@@ -1361,7 +1414,7 @@
         "in"
       ],
       "article_ids": [
-        5
+        6
       ],
       "urls": [
         "https://www.npr.org/2026/11/27/g-s1-155990/strobe-talbott-obit"
@@ -1377,7 +1430,7 @@
       "importance": 0.318
     },
     {
-      "id": "e32",
+      "id": "e33",
       "category": "politics",
       "tags": [
         "politics"
@@ -1405,7 +1458,7 @@
         "sexual"
       ],
       "article_ids": [
-        23
+        24
       ],
       "urls": [
         "https://www.npr.org/2026/11/27/nx-s1-6055559/gerard-depardieu-trial-rape-france"
@@ -1421,96 +1474,7 @@
       "importance": 0.318
     },
     {
-      "id": "e33",
-      "category": "politics",
-      "tags": [
-        "politics",
-        "finance"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Al Jazeera"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Serbia’s student-led movement nominates chemistry professor for presidency",
-      "keywords": [
-        "the",
-        "ofor",
-        "inominates",
-        "ton",
-        "movementhat",
-        "and"
-      ],
-      "article_ids": [
-        31
-      ],
-      "urls": [
-        "https://www.aljazeera.com/news/2026/11/27/serbias-student-led-movement-nominates-chemistry-professor-for-presidency?traffic_source=rss"
-      ],
-      "titles": [
-        "Serbia’s student-led movement nominates chemistry professor for presidency"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
-      },
-      "importance": 0.318
-    },
-    {
       "id": "e34",
-      "category": "politics",
-      "tags": [
-        "politics"
-      ],
-      "score": 20.36,
-      "source_tier": "core",
-      "hard_news": 0.78,
-      "article_count": 1,
-      "source_count": 1,
-      "readability": {
-        "opinion": 1,
-        "jargon": 0
-      },
-      "source_names": [
-        "Guardian World"
-      ],
-      "freshness": 0.25,
-      "representative_title": "Three studies link glyphosate to cancer, contradicting claims of Trump EPA",
-      "keywords": [
-        "thepand",
-        "ofor",
-        "inihas",
-        "ton",
-        "glyphosate",
-        "thathree"
-      ],
-      "article_ids": [
-        43
-      ],
-      "urls": [
-        "https://www.theguardian.com/us-news/2026/nov/27/glyphosate-cancer-studies-trump-epa"
-      ],
-      "titles": [
-        "Three studies link glyphosate to cancer, contradicting claims of Trump EPA"
-      ],
-      "is_followup": true,
-      "followup_of": {
-        "date": "2026-11-22",
-        "title": "Tom Cotton: Howard Lutnick ignored 'many' warnings on China"
-      },
-      "importance": 0.318
-    },
-    {
-      "id": "e35",
       "category": "politics",
       "tags": [
         "politics",
@@ -1539,7 +1503,7 @@
         "coalitionetanyahuntil"
       ],
       "article_ids": [
-        60
+        58
       ],
       "urls": [
         "https://www.straitstimes.com/world/middle-east/eisenkot-accuses-netanyahus-party-of-stalling-israeli-coalition-talks"
@@ -1553,6 +1517,50 @@
         "title": "Nations at UN talks on AI killer robots agree to more talks but no firm commitment to rein them in"
       },
       "importance": 0.318
+    },
+    {
+      "id": "e35",
+      "category": "finance",
+      "tags": [
+        "finance"
+      ],
+      "score": 19.99,
+      "source_tier": "core",
+      "hard_news": 0.78,
+      "article_count": 1,
+      "source_count": 1,
+      "readability": {
+        "opinion": 2,
+        "jargon": 0
+      },
+      "source_names": [
+        "Guardian World"
+      ],
+      "freshness": 0.25,
+      "representative_title": "Jess Wilson’s plan for Melbourne sewage plants risks water and wetlands without bringing debt down, experts say",
+      "keywords": [
+        "thexpertsaid",
+        "andebtreatment",
+        "tofor",
+        "melbourne",
+        "sewage",
+        "water"
+      ],
+      "article_ids": [
+        4
+      ],
+      "urls": [
+        "https://www.theguardian.com/australia-news/2026/nov/28/jess-wilson-melbourne-sewage-plants-privatisation-risks-water-and-wetlands"
+      ],
+      "titles": [
+        "Jess Wilson’s plan for Melbourne sewage plants risks water and wetlands without bringing debt down, experts say"
+      ],
+      "is_followup": true,
+      "followup_of": {
+        "date": "2026-11-22",
+        "title": "Trump lands significant victories in media defamation cases"
+      },
+      "importance": 0.273
     },
     {
       "id": "e36",
@@ -1626,7 +1634,7 @@
         "itime"
       ],
       "article_ids": [
-        15
+        16
       ],
       "urls": [
         "https://www.npr.org/2026/11/27/nx-s1-6050907/as-un-secretary-generals-last-day-approaches-search-for-his-replacement-continues"
@@ -1670,7 +1678,7 @@
         "ofor"
       ],
       "article_ids": [
-        16
+        17
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/cw074p95ye5do?at_medium=RSS&at_campaign=rss"
@@ -1715,7 +1723,7 @@
         "on"
       ],
       "article_ids": [
-        46
+        44
       ],
       "urls": [
         "https://www.cnbc.com/2026/11/27/eu-budget-2028-2034-deadlock.html"
@@ -1756,11 +1764,11 @@
         "meaton",
         "ofrance",
         "andoped",
-        "in",
-        "brazil"
+        "brazil",
+        "in"
       ],
       "article_ids": [
-        42
+        41
       ],
       "urls": [
         "https://www.bbc.co.uk/news/articles/c6rrg28npvzeo?at_medium=RSS&at_campaign=rss"
@@ -1804,7 +1812,7 @@
         "as"
       ],
       "article_ids": [
-        51
+        49
       ],
       "urls": [
         "https://www.politico.eu/article/asia-pacific-trade-accession-talks-uae-philippines-indonesia/?utm_source=RSS_Feed&utm_medium=RSS&utm_campaign=RSS_Syndication"
@@ -1849,7 +1857,7 @@
         "from"
       ],
       "article_ids": [
-        9
+        11
       ],
       "urls": [
         "https://www.project-syndicate.org/commentary/disability-inclusion-rights-in-the-un-must-go-beyond-mainstreaming-by-alberto-vasquez-encalada-2026-11?utm_source=rss&utm_medium=feed&utm_campaign=main&utm_content=en"
@@ -1938,7 +1946,7 @@
         "装机容量十年翻"
       ],
       "article_ids": [
-        4
+        5
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-27/10739074.shtml"
@@ -1979,7 +1987,7 @@
         "中新网"
       ],
       "article_ids": [
-        36
+        35
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-27/10738962.shtml"
@@ -2018,7 +2026,7 @@
         "aqua"
       ],
       "article_ids": [
-        22
+        23
       ],
       "urls": [
         "https://www.ithome.com/1/033/769.htm"
@@ -2056,11 +2064,11 @@
         "竞争是",
         "欧盟委员会称浏",
         "dma",
-        "优先事项",
-        "所有"
+        "所有",
+        "优先事项"
       ],
       "article_ids": [
-        6
+        7
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86012"
@@ -2101,7 +2109,7 @@
         "指数领跑大市"
       ],
       "article_ids": [
-        30
+        31
       ],
       "urls": [
         "https://www.chinanews.com.cn/cj/2026/11-27/10739070.shtml"
@@ -2142,7 +2150,7 @@
         "日媒"
       ],
       "article_ids": [
-        29
+        30
       ],
       "urls": [
         "https://www.chinanews.com.cn/gj/2026/11-27/10738996.shtml"
@@ -2184,7 +2192,7 @@
         "近六"
       ],
       "article_ids": [
-        28
+        29
       ],
       "urls": [
         "https://www.solidot.org/story?sid=86011"
@@ -2265,7 +2273,7 @@
         "我国自"
       ],
       "article_ids": [
-        53
+        51
       ],
       "urls": [
         "https://www.ithome.com/1/033/770.htm"
